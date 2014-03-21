@@ -8,6 +8,7 @@
 
 CMario::CMario() {
 	lives = 3 ;
+	state = MARIO_STATE_NORMAL ;	//mario starts with no power up
 }
 
 int CMario::getLives() {

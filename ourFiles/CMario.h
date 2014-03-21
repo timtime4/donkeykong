@@ -9,6 +9,11 @@
 
 #include "CEntity.h"
 
+enum {		//values for state private data member
+	MARIO_STATE_NORMAL = 0 , 	//no power up
+	MARIO_STATE_HAMMER
+}
+
 class CMario.h : public CEntity {
 	public:
 		CMario() ;
@@ -23,10 +28,7 @@ class CMario.h : public CEntity {
 
 	private:
 		int lives ;
-		
-
-
-
+		int state ;
 };
 
 

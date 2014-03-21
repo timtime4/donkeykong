@@ -25,7 +25,7 @@ class CEntity {
 		virtual void OnRender(SDL_Surface* Surf_Display) ; 
 		virtual void OnCleanup() ;
 
-		static std::vector<CEntity*> entityList ;
+		static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
 
 		int getX() ;
 		int getY() ;

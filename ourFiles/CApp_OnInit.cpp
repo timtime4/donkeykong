@@ -16,7 +16,7 @@ int CApp::OnInit() {
 		return 0 ;	//if window creation failed
 	}		
 
-	Surf_Background = CSurface::OnLoad("pngFiles/bgFiles/dkL1bg_6.png") ;
+	Surf_Background = CSurface::OnLoad("pngFiles/bgFiles/dkL1bg_7.png") ;
 	if(Surf_Background== NULL) return 0 ;
 
 

@@ -82,30 +82,6 @@ void CEvent::OnEvent(SDL_Event* Event) {
 			break ;
 		}
 
-		case SDL_JOYAXISMOTION: {
-			OnJoyAxis(Event->jaxis.which, Event->jaxis.axis, Event->jaxis.value) ;
-			break ;
-		}
-
-		case SDL_JOYBALLMOTION: {
-			OnJoyBall(Event->jball.which, Event->jball.ball, Event->jball.xrel, Event->jball.yrel) ;
-			break ;
-		}
-
-		case SDL_JOYHATMOTION: {
-			OnJoyHat(Event->jhat.which, Event->jhat.hat, Event->jhat.value) ;
-			break ;
-		
-		case SDL_JOYBUTTONDOWN: {
-			OnJoyButtonDown(Event->jbutton.which, Event->jbutton.button) ;
-			break ;
-		}
-
-		case SDL_JOYBUTTONUP: {
-			OnJoyButtonUp(Event->jbutton.which, Event->jbutton.button) ;
-			break ;
-		}
-
 		case SDL_QUIT: {
 			OnExit() ;
 			break ;
@@ -129,7 +105,6 @@ void CEvent::OnEvent(SDL_Event* Event) {
 		default:
 			OnUser(Event->user.type, Event->user.code, Event->user.data1, Event->user.data2) ;
 			break ;
-		}
 	}
 }
 
@@ -190,26 +165,6 @@ void CEvent::OnRButtonUp(int mX, int mY) {
 void CEvent::OnMButtonUp(int mX, int mY) {
 	//pure virtual, no implementation
 }
-
-void CEvent::OnJoyAxis(Uint8 which, Uint8 axis, Sint16 value) {
-	//pure virtual, no implementation
-} 
-
-void CEvent::OnJoyButtonDown(Uint8 which, Uint8 button) {
-	//pure virtual, no implementation
-} 
-
-void CEvent::OnJoyButtonUp(Uint8 which, Uint8 button) {
-	//pure virtual, no implementation
-} 
-
-void CEvent::OnJoyHat(Uint8 which, Uint8 hat, Uint8 value) {
-	//pure virtual, no implementation
-} 
-
-void CEvent::OnJoyBall(Uint8 which, Uint8 ball, Sint16 xrel, Sint16 yrel) {
-	//pure virtual, no implementation
-} 
 
 void CEvent::OnMinimize() {
 	//pure virtual, no implementation

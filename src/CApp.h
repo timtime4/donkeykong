@@ -32,6 +32,7 @@ class CApp : public CEvent {	//inherits from CEvent class
 		void OnCleanup() ;
 
 
+
 	private :
 		int running ;	//condition for while loop
 		SDL_Surface* Surf_Display ;	//"blank piece of paper"

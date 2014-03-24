@@ -1,6 +1,6 @@
 /*
  * DonkeyKong
- * CApp.cpp
+ ** CApp.cpp
  * This file contains implementation of OnExecute() function of CApp class, as well as the main function for the project.
 */
 

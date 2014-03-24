@@ -10,6 +10,9 @@ CApp::CApp() {
 	running = 1 ;
 	Surf_Display = NULL ;
 	Surf_Background = NULL ;
+	font = NULL ;
+	Surf_Highscore = NULL ;
+	textColor = {255, 0, 0} ;
 }
 
 int CApp::OnExecute() {

@@ -1,7 +1,7 @@
 all: CApp
 
 CApp:  CApp.o CApp_OnInit.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o
-	g++ CApp.o CApp_OnInit.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o -o CApp -lSDL -lSDL_image
+	g++ CApp.o CApp_OnInit.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o -o CApp -lSDL -lSDL_image -lSDL_ttf
 
 CApp.o:  CApp.cpp
 	g++ -c CApp.cpp

@@ -10,10 +10,12 @@ void CApp::OnRender() {
 
 	CSurface::OnDraw(Surf_Display, Surf_Background, 0, 0) ; 
 
+	CSurface::OnDraw(Surf_Display, Surf_Highscore, 200, 10) ;
+	
 	for(int i = 0 ; i < CEntity::entityList.size() ; i++ ) {
 		if(!CEntity::entityList[i]) continue ;
 		CEntity::entityList[i]->OnRender(Surf_Display) ;	//renders each valid entity to Surf_Display data member of CApp
-	}
+	}	
 
 	SDL_Flip(Surf_Display) ;	//update screen
 }

@@ -16,7 +16,9 @@ int CApp::OnInit() {
 		return 0 ;	//if window creation failed
 	}		
 
-	Surf_Background = CSurface::OnLoad("pngFiles/bgFiles/dkL1bg_7.png") ;
+	SDL_WM_SetCaption("Donkey Kong", NULL) ;	//window caption
+
+	Surf_Background = CSurface::OnLoad("pngFiles/bgFiles/_dkL1bg_7.png") ;
 	if(Surf_Background== NULL) return 0 ;
 
 
@@ -26,6 +28,11 @@ int CApp::OnInit() {
 	marioEntity.setY(WINDOW_HEIGHT-60) ;
 
 	CEntity::entityList.push_back(&marioEntity) ;
-	
+
+	if(TTF_Init() < 0) return 0 ;
+	font = TTF_OpenFont("lazy.ttf", 20) ;
+	if(font == NULL) return 0 ;
+	Surf_Highscore = TTF_RenderText_Solid(font, "HIGHSCORE", textColor);
+
 	return 1 ;	//true
 }

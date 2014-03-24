@@ -14,7 +14,6 @@
 
 #include "Define.h"
 
-
 class CApp : public CEvent {	//inherits from CEvent class
 	public :
 		CApp() ;

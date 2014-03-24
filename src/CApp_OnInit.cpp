@@ -20,26 +20,11 @@ int CApp::OnInit() {
 
 	SDL_WM_SetCaption("Donkey Kong", NULL) ;	//window caption
 
-////////////////
-
-
 	if(!OnInit_Static()) {
 		cout << "OnInit_Static() fail" << endl ;
 		return 0 ;
 	}
 
-/*	int i ;
-	Ladder temp ;
-	for( i = 0 ; i < 10 ; i++ ) {	
-		temp.OnInit(i*30, i*35, LADDER_WIDTH, 20+i*10) ;
-		ladders.push_back(temp) ;
-	}
-
-	p1.OnInit(60, 400, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-*/
-
-
-//////////////
 /*	if(marioEntity.OnLoad("pngFiles/marioWalking.png", 20, 40, 8) == 0) {
 		cout << "Mario didn't load" << endl ; 
 		return 0 ;
@@ -51,7 +36,7 @@ int CApp::OnInit() {
 	CEntity::entityList.push_back(&marioEntity) ;
 */
 
-/*	if(TTF_Init() < 0){
+	if(TTF_Init() < 0){
 		 cout << "TTF_Init() fail" << endl ; 
 		return 0 ;
 	}
@@ -61,6 +46,6 @@ int CApp::OnInit() {
 		return 0 ;
 	}
 	Surf_Highscore = TTF_RenderText_Solid(font, "HIGHSCORE", textColor);
-*/
+
 	return 1 ;	//true
 }

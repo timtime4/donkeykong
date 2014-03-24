@@ -13,8 +13,8 @@
 #include "CAnimation.h"
 #include "CEntity.h"
 #include "StaticObj.h"
-#include "Ladder.h"	/////////
-#include "Platform.h"	/////////
+#include "Ladder.h"	
+#include "Platform.h"
 
 #include "Define.h"
 
@@ -48,9 +48,9 @@ class CApp : public CEvent {	//inherits from CEvent class
 
 		vector< StaticObj*> bgObjs ;	//vector of pointers to all static "background" objects (Ladders and Platforms), used to invoke polymorphic behavior
 
-//		TTF_Font* font ;
-//		SDL_Surface* Surf_Highscore ;
-//		SDL_Color textColor ;	
+		TTF_Font* font ;
+		SDL_Surface* Surf_Highscore ;
+		SDL_Color textColor ;	
 
 //		CEntity marioEntity ;
 

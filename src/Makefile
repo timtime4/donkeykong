@@ -36,7 +36,7 @@ CAnimation.o: CAnimation.cpp
 CEntity.o: CEntity.cpp
 	g++ -c CEntity.cpp
 
-StaticObj.o:  StaticObj.cpp
+StaticObj.o: StaticObj.cpp
 	g++ -c StaticObj.cpp
 
 Ladder.o:  Ladder.cpp

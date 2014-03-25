@@ -9,7 +9,7 @@
 CApp::CApp() {
 	running = 1 ;
 	Surf_Display = NULL ;
-	Surf_Background = NULL ;
+	Surf_bgObjs = NULL ;
 	font = NULL ;
 	Surf_Highscore = NULL ;
 	textColor = {255, 0, 0} ;
@@ -17,9 +17,9 @@ CApp::CApp() {
 
 int CApp::OnExecute() {
 	if( !OnInit() ) {
+		cout << "init failed" << endl ;
 		return -1 ;	//error with initialization
 	}
-
 	SDL_Event Event ;
 	while(running) {
 		while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue

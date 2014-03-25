@@ -13,9 +13,12 @@ void CApp::OnCleanup() {
 		CEntity::entityList[i]->OnCleanup() ;
 	}
 	CEntity::entityList.clear() ;
+	
+	bgObjs.clear() ;
 
-	SDL_FreeSurface(Surf_Background) ;
+	SDL_FreeSurface(Surf_bgObjs) ;
 	SDL_FreeSurface(Surf_Display) ;
+	//SDL_FreeSurface(Surf_Highscore) ;
 
 	SDL_Quit() ;	//frees Surf_Display, quits SDL
 }

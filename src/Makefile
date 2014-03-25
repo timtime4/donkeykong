@@ -1,13 +1,16 @@
 all: CApp
 
-CApp:  CApp.o CApp_OnInit.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o
-	g++ CApp.o CApp_OnInit.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o -o CApp -lSDL -lSDL_image
+CApp:  CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o StaticObj.o Ladder.o Platform.o 
+	g++ CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o StaticObj.o Ladder.o Platform.o -o CApp -lSDL -lSDL_image -lSDL_ttf
 
 CApp.o:  CApp.cpp
 	g++ -c CApp.cpp
 
 CApp_OnInit.o: CApp_OnInit.cpp
 	g++ -c CApp_OnInit.cpp
+
+CApp_OnInit_Staic.o:  CApp_OnInit_Static.cpp
+	g++ -c CApp_OnInit_Static.cpp
 
 CApp_OnEvent.o: CApp_OnEvent.cpp
 	g++ -c CApp_OnEvent.cpp
@@ -32,6 +35,15 @@ CAnimation.o: CAnimation.cpp
 
 CEntity.o: CEntity.cpp
 	g++ -c CEntity.cpp
+
+StaticObj.o: StaticObj.cpp
+	g++ -c StaticObj.cpp
+
+Ladder.o:  Ladder.cpp
+	g++ -c Ladder.cpp
+
+Platform.o: Platform.cpp
+	g++ -c Platform.cpp
 
 clean:
 	rm -f *.o CApp 

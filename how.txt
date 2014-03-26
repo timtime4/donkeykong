@@ -1,4 +1,0 @@
-git clone https://bitbucket.org/srack/donkeykong
-git pull
-git commit -a
-git push

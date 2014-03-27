@@ -23,7 +23,7 @@ class CEntity {
 		virtual int OnLoad(string, int, int, int) ;
 		virtual void OnLoop() ;
 		virtual void OnRender(SDL_Surface* Surf_Display) ; 
-		void OnCleanup() ;
+		//virtual void OnCleanup() ;
 
 		static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
 

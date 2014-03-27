@@ -29,8 +29,6 @@ int CApp::OnInit() {
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}
-	
-	mario.set_clips();
 
 
 /*	if(marioEntity.OnLoad("pngFiles/marioWalking.png", 20, 40, 8) == 0) {

@@ -13,7 +13,6 @@ void CApp::OnCleanup() {
 		CEntity::entityList[i]->OnCleanup() ;
 	}
 	CEntity::entityList.clear() ;
-	mario.OnCleanup() ;
 	
 	bgObjs.clear() ;
 

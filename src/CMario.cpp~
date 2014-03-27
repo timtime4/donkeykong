@@ -11,8 +11,8 @@ CMario::CMario() {
 	//state = MARIO_STATE_NORMAL ;	//mario starts with no power up
 	state = 0 ;
 	x = 200, y = 200;
-	xVel = 0 ;
-	yVel = 0 ;
+	//xVel = 0 ;
+	//yVel = 0 ;
 	status = MARIO_RIGHT;
 	frame=0;
 }

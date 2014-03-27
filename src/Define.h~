@@ -8,6 +8,6 @@
 #define PLATFORM_HEIGHT 60
 #define LADDER_WIDTH 20
 
-#define FRAMES_PER_SECOND 20
+#define FRAMESPERSECOND 20
 
 #endif

@@ -12,7 +12,7 @@ void CApp::OnLoop() {
 		if(!CEntity::entityList[i]) continue ;	//NULL pointer check
 		CEntity::entityList[i]->OnLoop() ;	//updates each valid entity
 	}*/
-	mario.OnLoop() ;
+	
 
 }
 

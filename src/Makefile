@@ -1,7 +1,7 @@
 all: CApp
 
-CApp:  CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o StaticObj.o Ladder.o Platform.o 
-	g++ CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o StaticObj.o Ladder.o Platform.o -o CApp -lSDL -lSDL_image -lSDL_ttf
+CApp:  CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o 
+	g++ CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEvent.o CAnimation.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o -o CApp -lSDL -lSDL_image -lSDL_ttf
 
 CApp.o:  CApp.cpp
 	g++ -c CApp.cpp
@@ -44,6 +44,12 @@ Ladder.o:  Ladder.cpp
 
 Platform.o: Platform.cpp
 	g++ -c Platform.cpp
+
+CTimer.o:  CTimer.cpp
+	g++ -c CTimer.cpp
+
+CMario.o:  CMario.cpp
+	g++ -c CMario.cpp
 
 clean:
 	rm -f *.o CApp 

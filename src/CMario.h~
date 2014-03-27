@@ -34,7 +34,6 @@ class CMario : public CEntity {
 
 		int getLives() ;
 		//void setLives(int) ;
-	
 
 	private:
 		int lives ;

@@ -13,7 +13,7 @@ void CApp::OnRender() {
 		bgObjs[j]->OnRender(Surf_Display, Surf_bgObjs) ;
 	}
 
-	CSurface::OnDraw(Surf_Display, Surf_Highscore, 200, 10) ;
+	//CSurface::OnDraw(Surf_Display, Surf_Highscore, 200, 10) ;
 	
 	/*for(int i = 0 ; i < CEntity::entityList.size() ; i++ ) {
 		if(!CEntity::entityList[i]) continue ;

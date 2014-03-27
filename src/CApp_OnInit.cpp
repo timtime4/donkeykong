@@ -36,7 +36,7 @@ int CApp::OnInit() {
 	CEntity::entityList.push_back(&marioEntity) ;
 */
 
-	if(TTF_Init() < 0){
+/*	if(TTF_Init() < 0){
 		 cout << "TTF_Init() fail" << endl ; 
 		return 0 ;
 	}
@@ -46,6 +46,6 @@ int CApp::OnInit() {
 		return 0 ;
 	}
 	Surf_Highscore = TTF_RenderText_Solid(font, "HIGHSCORE", textColor);
-
+*/
 	return 1 ;	//true
 }

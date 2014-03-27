@@ -20,27 +20,24 @@ class CEntity {
 		CEntity() ;	
 		virtual ~CEntity() ;
 
-		virtual int OnLoad(string, int, int, int) ;
-		virtual void OnLoop() ;
-		virtual void OnRender(SDL_Surface* Surf_Display) ; 
+		int OnLoad(string) ;
+		virtual void OnLoop() = 0;	//
+		virtual void OnRender(SDL_Surface* Surf_Display) = 0 ; 
 		void OnCleanup() ;
 
-		static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
+		//static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
 
-	protected:
-		CAnimation Anim_Control ;
+	protected:	//data members will be accessible to inheriting classes
 		SDL_Surface* Surf_Entity ;
 		int x ;		//x,y location where blitted on screen
 		int y ; 
-		int xVel ;
+		int xVel ;	//horizontal and vertical velocity of entity
 		int yVel ;
-		int frame;			// Keeps track of which frame in animation to use
-		int status;			// Keeps track of which animation to show (left or right)
-
-		int width ;
-		int height ;
-		int animState ;	
-
+		int frame;	//keeps track of which frame in animation to use
+		int maxFrames ;	//total number of frames for a given status
+		int status;	//keeps track of which animation to show (left or right)
+		int width ;	//width of one frame
+		int height ;	//height of one frame
 		
 	private: 
 	

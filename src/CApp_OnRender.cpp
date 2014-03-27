@@ -15,12 +15,15 @@ void CApp::OnRender() {
 
 	//CSurface::OnDraw(Surf_Display, Surf_Highscore, 200, 10) ;
 	
-	mario.OnRender(Surf_Display) ;
+	//mario.OnRender(Surf_Display) ;
 	
-	/*for(int i = 0 ; i < CEntity::entityList.size() ; i++ ) {
-		if(!CEntity::entityList[i]) continue ;
-		CEntity::entityList[i]->OnRender(Surf_Display) ;	//renders each valid entity to Surf_Display data member of CApp
-	}*/
+	for(int i = 0 ; i < entityList.size() ; i++ ) {
+		if(!entityList[i]) continue ;
+		entityList[i]->OnRender(Surf_Display) ;	//renders each valid entity to Surf_Display data member of CApp
+	}
+	//peach.OnRender(Surf_Display) ;
+
+	mario.OnRender(Surf_Display) ;
 	
 	SDL_Flip(Surf_Display) ;	//update screen
 }

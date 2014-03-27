@@ -8,18 +8,26 @@
 
 void CApp::OnCleanup() {
 
-	for (int i = 0 ; i < CEntity::entityList.size() ; i++) {
-		if(!CEntity::entityList[i]) continue ;
-		CEntity::entityList[i]->OnCleanup() ;
+	SDL_FreeSurface(Surf_Display) ;
+
+	for (int i = 0 ; i < entityList.size() ; i++) {
+		if(!entityList[i]) continue ;
+		entityList[i]->OnCleanup() ;
 	}
-	CEntity::entityList.clear() ;
-	mario.OnCleanup() ;
+	entityList.clear() ;
+	//peach.OnCleanup() ;
 	
+	SDL_FreeSurface(Surf_bgObjs) ;
 	bgObjs.clear() ;
 
-	SDL_FreeSurface(Surf_bgObjs) ;
-	SDL_FreeSurface(Surf_Display) ;
 	//SDL_FreeSurface(Surf_Highscore) ;
 
-	SDL_Quit() ;	//frees Surf_Display, quits SDL
+	Mix_FreeChunk ( burns );		// Free the sound effects
+	Mix_FreeChunk ( hurts );
+	Mix_FreeChunk ( jumps );
+	Mix_FreeMusic ( theme );		// Free the music
+
+	Mix_CloseAudio();			// Quit SDL_mixer
+
+	SDL_Quit() ; 
 }

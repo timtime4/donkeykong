@@ -8,7 +8,7 @@
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_ttf.h"
-
+#include "SDL/SDL_mixer.h"
 #include "CEvent.h"
 #include "CSurface.h"
 #include "CAnimation.h"
@@ -18,6 +18,7 @@
 #include "Ladder.h"	
 #include "Platform.h"
 #include "CTimer.h"
+
 
 #include "Define.h"
 
@@ -50,13 +51,25 @@ class CApp : public CEvent {	//inherits from CEvent class
 		vector< Platform > platforms ;	//vector to hold all instantiated Platform objects
 		vector< Ladder > ladders  ;	//vector to hold all ladder objects
 
-		vector< StaticObj*> bgObjs ;	//vector of pointers to all static "background" objects (Ladders and Platforms), used to invoke polymorphic behavior
+		vector< StaticObj* > bgObjs ;	//vector of pointers to all static "background" objects (Ladders and Platforms), used to invoke polymorphic behavior
+
+		vector< CEntity* > entityList ;	//vector of pointers to all entities
 
 		//TTF_Font* font ;
 		//SDL_Surface* Surf_Highscore ;
 		//SDL_Color textColor ;	
 
 		CMario mario ;
+		//CEntity peach ;	//peach entity object, only animated to move left and right
+
+		// Music
+		Mix_Music *theme ;
+
+		// Sound effects
+		Mix_Chunk *jumps ;
+		Mix_Chunk *burns ;
+		Mix_Chunk *hurts ;
+
 
 } ;
 

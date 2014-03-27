@@ -9,25 +9,24 @@
 
 #include "CEntity.h"
 
-/*enum {		//values for state private data member
-	MARIO_STATE_NORMAL = 0 , 	//no power up
-	MARIO_STATE_HAMMER ,
-	MARIO_STATE_STAR
-}*/
-#define MARIO_WIDTH 50
-#define MARIO_HEIGHT 65
+#define MARIO_WIDTH 14
+#define MARIO_HEIGHT 27
+
 #define MARIO_RIGHT 0
 #define MARIO_LEFT 1
 
+enum marState {		//values for state private data member
+	MARIO_STATE_NORMAL = 0 , 	//no power up
+	MARIO_STATE_HAMMER ,
+	MARIO_STATE_STAR
+} ;
 
 class CMario : public CEntity {
 	public:
 		CMario() ;
 
-		int OnLoadMario(string) ;
 		virtual void OnLoop() ;
 		virtual void OnRender(SDL_Surface* Surf_Display) ;
-		//virtual void OnCleanup() ;
 
 		void set_clips() ;
 		void handle_input(SDL_Event*) ;
@@ -35,12 +34,19 @@ class CMario : public CEntity {
 		int getLives() ;
 		//void setLives(int) ;
 	
-
 	private:
 		int lives ;
-		int state ;	//normal, hammer, star
-		SDL_Rect clipsRight[2];
-		SDL_Rect clipsLeft[2];
+		marState state ;	//normal, hammer, star
+		SDL_Rect clipsRight[3];
+		SDL_Rect clipsLeft[3];
+		SDL_Rect clipsHurtR[3];
+		SDL_Rect clipsHurtL[3];
+		SDL_Rect clipsUp[2];
+		int walking ;
+		int jumping ;
+		int hurting ;
+		int climbing ;
+
 };
 
 

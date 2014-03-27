@@ -10,4 +10,9 @@
 
 #define FRAMES_PER_SECOND 20
 
+#define PEACH_WIDTH 28
+#define PEACH_HEIGHT 40
+
+
+
 #endif

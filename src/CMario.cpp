@@ -8,13 +8,19 @@
 
 CMario::CMario() {
 	lives = 3 ;
-	//state = MARIO_STATE_NORMAL ;	//mario starts with no power up
-	state = 0 ;
+	state = MARIO_STATE_NORMAL ;	//mario starts with no power up
+
 	x = 200, y = 200;
 	xVel = 0 ;
 	yVel = 0 ;
 	status = MARIO_RIGHT;
 	frame=0;
+	width = MARIO_WIDTH ;
+	height = MARIO_HEIGHT ;
+	//walking = 0 ;
+	//jumping = 0 ;
+	//hurting = 0 ;
+	//climbing = 0 ;
 }
 
 int CMario::getLives() {
@@ -26,11 +32,6 @@ int CMario::getLives() {
 	lives = _lives ;
 }*/
 
-int CMario::OnLoadMario(string file) {
-	Surf_Entity = CSurface::OnLoad(file) ;
-	if(Surf_Entity == NULL) return 0 ;
-
-}
 
 void CMario::OnLoop() {
 	x += xVel;			// Move mario left or right
@@ -44,37 +45,73 @@ void CMario::OnLoop() {
         	y -= yVel;		// Move him back
 	}
 	
+	//determines animation frame and status
+	walking = 0;
+	jumping = 0;
+	hurting = 0;
+	climbing = 0;
+	
+	if ( xVel < 0 && yVel == 0){		// If he is walking left
+		status = MARIO_LEFT;		// Change status
+		frame++;			// Move to next frame in animation
+		walking = 1; 
+	}
+	else if ( xVel > 0 && yVel == 0){	// If he is walking right
+		status = MARIO_RIGHT;		// Change status
+		frame++;			// Move to next frame in animation
+		walking = 1;
+	}
+	else if (xVel == 0 && yVel == 0){	// If he is standing still
+		frame = 0;			// Display frame 0 (standing)
+		walking = 1;
+	}
+	else if (yVel != 0){			// If he is jumping
+		frame = 1;			// Display frame 1 (jumping)
+		jumping = 1;
+	}
 	//**add collision detection
 	
 }
 
 void CMario::OnRender(SDL_Surface* Surf_Display) {
-	if ( xVel < 0){			// If he is moving left
-		status = MARIO_LEFT;	// Change status
-		frame++;		// Move to next frame in animation
-	}
-	else if ( xVel > 0){		// If he is moving right
-		status = MARIO_RIGHT;	// Change status
-		frame++;		// Move to next frame in animation
-	}
-	else{				// If he is standing still
-		frame = 0;		// Restart animation
-	}
-	
-	if ( frame >= 2){		// Loop the animation
-		frame = 0;
-	}
 
-	if ( status == MARIO_RIGHT ){
-		CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsRight[frame].y, clipsRight[frame].w, clipsRight[frame].h) ;
-	
-	//	apply_surface( x, y, mario, screen, &clipsRight[ frame ] );	// Show mario going right
+	if (walking == 1){			// If he is walking or standing
+		if ( frame >= 3){		// Loop the walking animation
+			frame = 0;
+		}
+		if ( status == MARIO_RIGHT ){
+			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsRight[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+		}
+		else if ( status == MARIO_LEFT ){
+			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+		}
 	}
-	else if ( status == MARIO_LEFT ){
-		CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, clipsLeft[frame].w, clipsLeft[frame].h) ;
-		
-	//	apply_surface( x, y, mario, screen, &clipsLeft[ frame ] );     // Show mario going left
+	if (jumping == 1){			// If he is jumping
+                if ( status == MARIO_RIGHT ){
+		CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+                }
+                else if ( status == MARIO_LEFT ){
+			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+                }
 	}
+	if (hurting == 1){			// If he is hurting
+		if (frame >= 3){		// Loop the flickering animation
+			frame = 0;
+		}
+		if ( status == MARIO_RIGHT ){
+  			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsHurtR[frame].x, clipsHurtR[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;	//Make mario flicker while facing right
+                }
+                else if ( status == MARIO_LEFT ){
+                        CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsHurtL[frame].x, clipsHurtL[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;     // Make mario flicker while facing left
+                }
+        }
+	if (climbing == 1){			// If he is climbing
+		if ( frame >= 2){		// Loop the climbing animation
+                        frame = 0;
+                }
+  			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsUp[frame].x, clipsUp[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+        }
+
 }
 
 void CMario::set_clips(){		// Clip the sprites
@@ -89,22 +126,67 @@ void CMario::set_clips(){		// Clip the sprites
         clipsRight[1].w = MARIO_WIDTH;
         clipsRight[1].h = MARIO_HEIGHT;
 
-	clipsLeft[0].x = MARIO_WIDTH;
+        clipsRight[2].x = MARIO_WIDTH;
+        clipsRight[2].y = 0;
+        clipsRight[2].w = MARIO_WIDTH;
+        clipsRight[2].h = MARIO_HEIGHT;
+
+	clipsLeft[0].x = 0;
         clipsLeft[0].y = MARIO_HEIGHT;
         clipsLeft[0].w = MARIO_WIDTH;
         clipsLeft[0].h = MARIO_HEIGHT;
 
-        clipsLeft[1].x = 0;
+        clipsLeft[1].x = MARIO_WIDTH;
         clipsLeft[1].y = MARIO_HEIGHT;
         clipsLeft[1].w = MARIO_WIDTH;
         clipsLeft[1].h = MARIO_HEIGHT;
 
+        clipsLeft[2].x = MARIO_WIDTH;
+        clipsLeft[2].y = MARIO_HEIGHT;
+        clipsLeft[2].w = MARIO_WIDTH;
+        clipsLeft[2].h = MARIO_HEIGHT;
+
+        clipsHurtR[0].x = 0;
+        clipsHurtR[0].y = 0;
+        clipsHurtR[0].w = MARIO_WIDTH;
+        clipsHurtR[0].h = MARIO_HEIGHT;
+
+        clipsHurtR[1].x = MARIO_WIDTH*2;
+        clipsHurtR[1].y = MARIO_HEIGHT;
+        clipsHurtR[1].w = MARIO_WIDTH;
+        clipsHurtR[1].h = MARIO_HEIGHT;
+
+	clipsHurtR[2].x = MARIO_WIDTH*2;
+        clipsHurtR[2].y = MARIO_HEIGHT;
+        clipsHurtR[2].w = MARIO_WIDTH;
+        clipsHurtR[2].h = MARIO_HEIGHT;
+
+        clipsHurtL[0].x = 0;
+        clipsHurtL[0].y = MARIO_HEIGHT;
+        clipsHurtL[0].w = MARIO_WIDTH;
+        clipsHurtL[0].h = MARIO_HEIGHT;
+
+        clipsHurtL[1].x = MARIO_WIDTH*2;
+        clipsHurtL[1].y = MARIO_HEIGHT;
+        clipsHurtL[1].w = MARIO_WIDTH;
+        clipsHurtL[1].h = MARIO_HEIGHT;
+
+        clipsHurtL[2].x = MARIO_WIDTH*2;
+        clipsHurtL[2].y = MARIO_HEIGHT;
+        clipsHurtL[2].w = MARIO_WIDTH;
+        clipsHurtL[2].h = MARIO_HEIGHT;
+
+        clipsUp[0].x = MARIO_WIDTH*3-10;
+        clipsUp[0].y = 0;
+        clipsUp[0].w = MARIO_WIDTH;
+        clipsUp[0].h = MARIO_HEIGHT;
+
+        clipsUp[1].x = MARIO_WIDTH*4-8;
+        clipsUp[1].y = 0;
+        clipsUp[1].w = MARIO_WIDTH;
+        clipsUp[1].h = MARIO_HEIGHT;
+
 }
-
-/*void CMario::OnCleanup() {
-
-
-} */
 
 void CMario::handle_input(SDL_Event* event){
 

@@ -32,33 +32,11 @@ int CApp::OnExecute() {
 	while(running) {
 		fps.start() ;
 		while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
-			mario.handle_input(&Event) ;
-			OnEvent(&Event) ;
-			
-			if( Event.type == SDL_KEYDOWN ){
-				if( Event.key.keysym.sym == SDLK_1 ){
-					Mix_PauseMusic();					// Pause background music
-					if ( Mix_PlayChannel(-1, burns, 0) == -1 ){		// Play mario yelling from burn
-						return 1;
-					}
-					Mix_ResumeMusic();					// Resume background music
-				}
-				if( Event.key.keysym.sym == SDLK_2 ){
-					Mix_PauseMusic();
-                                        if ( Mix_PlayChannel(-1, jumps, 0) == -1 ){		// Play jumping sound effect
-                                                return 1;
-                                        }
-					Mix_ResumeMusic();
-                                }
-                                if( Event.key.keysym.sym == SDLK_3 ){
-					Mix_PauseMusic();
-                                        if ( Mix_PlayChannel(-1, hurts, 0) == -1 ){		// Play mario getting hit by barrel
-                                                return 1;
-                                        }
-					Mix_ResumeMusic();
-                                }
+			if(!OnEvent(&Event)) {
+				OnCleanup() ;
+				return 1 ;
 			}
-
+		
 		}
 		OnLoop() ;
 		OnRender() ;

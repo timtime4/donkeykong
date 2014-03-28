@@ -17,10 +17,10 @@ CMario::CMario() {
 	frame=0;
 	width = MARIO_WIDTH ;
 	height = MARIO_HEIGHT ;
-	//walking = 0 ;
-	//jumping = 0 ;
-	//hurting = 0 ;
-	//climbing = 0 ;
+	walking = 0 ;
+	jumping = 0 ;
+	hurting = 0 ;
+	climbing = 0 ;
 }
 
 int CMario::getLives() {
@@ -37,6 +37,9 @@ void CMario::OnLoop() {
 	x += xVel;			// Move mario left or right
         y += yVel;                      // Move mario up or down
 
+	////////**add collision detection**/////////
+	//collision with platform
+
 	if( ( x < 0 ) || ( x + MARIO_WIDTH > WINDOW_WIDTH ) ){		// If mario moves too far left or right
 		x -= xVel;		// Move him back
 	}
@@ -44,7 +47,10 @@ void CMario::OnLoop() {
 	if( ( y < 0 ) || ( y + MARIO_HEIGHT > WINDOW_HEIGHT ) ){	// If mario moves too far up or down
         	y -= yVel;		// Move him back
 	}
-	
+
+
+
+
 	//determines animation frame and status
 	walking = 0;
 	jumping = 0;
@@ -69,7 +75,6 @@ void CMario::OnLoop() {
 		frame = 1;			// Display frame 1 (jumping)
 		jumping = 1;
 	}
-	//**add collision detection
 	
 }
 

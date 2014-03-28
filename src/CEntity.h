@@ -25,6 +25,11 @@ class CEntity {
 		virtual void OnRender(SDL_Surface* Surf_Display) = 0 ; 
 		void OnCleanup() ;
 
+		int getX() ;
+		int getY() ;
+		void setX(int) ;
+		void setY(int) ;
+		
 		//static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
 
 	protected:	//data members will be accessible to inheriting classes

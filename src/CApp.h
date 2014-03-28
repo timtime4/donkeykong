@@ -26,14 +26,14 @@
 #include <vector>
 using namespace std ;
 
-class CApp : public CEvent {	//inherits from CEvent class
+class CApp {	//inherits from CEvent class
 	public :
 		CApp() ;
 		int OnExecute() ;
 
 		//overarching video game functions
 		int OnInit() ;
-		void OnEvent(SDL_Event* Event) ;
+		int OnEvent(SDL_Event* Event) ;
 			void OnExit() ;
 		void OnLoop() ;
 		void OnRender() ;

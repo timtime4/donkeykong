@@ -52,4 +52,4 @@ CMario.o:  CMario.cpp
 	g++ -c CMario.cpp
 
 clean:
-	rm -f *.o CApp 
+	rm -f *.o CApp *~ 

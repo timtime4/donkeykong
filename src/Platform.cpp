@@ -6,3 +6,7 @@ Platform::Platform(int _x, int _y) {
 
 	OnInit(_x, _y, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//platform objects width and height are always same
 }
+
+int Platform::IsCollision(CMario myMar) {
+	//was there a collision?
+}

@@ -1,7 +1,8 @@
 /*
  * DonkeyKong
  * StaticObj.h
- * Abstract class that is inherited by Platform and Ladder classes.  Is meant for objects in game that are unchanging on the screen, but are interacted with.
+ * (to be) Abstract class that is inherited by Platform and Ladder classes.  Is meant for objects in game that are unchanging on the screen, but are interacted with-- mario can
+ * collide with them.
 */
 
 #ifndef STATICOBJ_H
@@ -10,6 +11,7 @@
 #include "SDL/SDL.h"
 
 #include "CSurface.h"
+#include "CMario.h"
 #include "Define.h"
 
 class StaticObj {
@@ -17,6 +19,9 @@ class StaticObj {
 		StaticObj() ;	//constructor
 		void OnInit(int, int, int, int) ;	//initialize data members
 		void OnRender(SDL_Surface*, SDL_Surface*) ;	//for rendering object to screen in correct location
+		virtual int IsCollision(CMario) = 0 ;	//pure virtual function that checks for a collision of Mario with the object, returns 1 on collision
+
+		//set and get functions for private data members
 		int getX() ;
 		int getY() ;
 		void setX(int) ;

@@ -11,6 +11,7 @@
 class Platform : public StaticObj {
 	public:
 		Platform(int = 0, int = 0) ;
+		virtual int IsCollision(CMario) ;
 	
 	private:
 } ;

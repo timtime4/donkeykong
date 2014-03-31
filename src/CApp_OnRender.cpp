@@ -8,6 +8,9 @@
 
 void CApp::OnRender() {
 
+	SDL_FillRect(Surf_Display, &Surf_Display->clip_rect, SDL_MapRGB(Surf_Display->format, 0, 0, 0)) ;	//fills the background with black
+
+
 	for (int j = 0 ; j < bgObjs.size(); j++) {
 		if(!bgObjs[j]) continue ;
 		bgObjs[j]->OnRender(Surf_Display, Surf_bgObjs) ;
@@ -15,15 +18,13 @@ void CApp::OnRender() {
 
 	//CSurface::OnDraw(Surf_Display, Surf_Highscore, 200, 10) ;
 	
-	//mario.OnRender(Surf_Display) ;
-	
 	for(int i = 0 ; i < entityList.size() ; i++ ) {
 		if(!entityList[i]) continue ;
 		entityList[i]->OnRender(Surf_Display) ;	//renders each valid entity to Surf_Display data member of CApp
 	}
-	//peach.OnRender(Surf_Display) ;
 
-	mario.OnRender(Surf_Display) ;
+
+	//peach.OnRender(Surf_Display) ;
 	
 	SDL_Flip(Surf_Display) ;	//update screen
 }

@@ -6,3 +6,7 @@ Ladder::Ladder(int _x, int _y, int _w, int _h) {
 
 	OnInit(_x, _y, _w, _h) ;
 }
+
+int Ladder::IsCollision(CMario myMar) {
+	//was there a collision?
+}

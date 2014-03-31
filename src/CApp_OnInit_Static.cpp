@@ -15,6 +15,8 @@ int CApp::OnInit_Static() {
 		cout << "BgObjs image fail" << endl ; 
 		return 0 ;
 	}
+
+	CSurface::Transparent(Surf_bgObjs, 0, 0, 0) ;	//does not work
 	
 	//////////////////INITIALIZE PLATFORMS/////////////////////////
 	int i ;

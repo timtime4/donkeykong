@@ -37,7 +37,10 @@ class CEntity {
 		int x ;		//x,y location where blitted on screen
 		int y ; 
 		int xVel ;	//horizontal and vertical velocity of entity
-		int yVel ;
+		int yVel ;	
+		int yGravityVel ;	//accounts for gravity- entities have the tendency to move downwards unless colliding with a platform or ladder, gravity here treated as a constant negative acceleration
+		//int yVelCap ; 	//maximum downward velocity of entity, caps effect of gravity
+
 		int frame;	//keeps track of which frame in animation to use
 		int maxFrames ;	//total number of frames for a given status
 		int status;	//keeps track of which animation to show (left or right)

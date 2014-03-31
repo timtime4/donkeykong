@@ -11,10 +11,8 @@ CMario::CMario() {
 	state = MARIO_STATE_NORMAL ;	//mario starts with no power up
 
 	x = 200, y = 200;
-	xVel = 0 ;
-	yVel = 0 ;
+
 	status = MARIO_RIGHT;
-	frame=0;
 	width = MARIO_WIDTH ;
 	height = MARIO_HEIGHT ;
 	walking = 0 ;
@@ -35,10 +33,10 @@ int CMario::getLives() {
 
 void CMario::OnLoop() {
 	x += xVel;			// Move mario left or right
-        y += yVel;                      // Move mario up or down
+        y += yVel + yGravityVel ;                      // Move mario up or down
 
 	////////**add collision detection**/////////
-	//collision with platform
+	//collision with platform -- checked in Platforms????
 
 	if( ( x < 0 ) || ( x + MARIO_WIDTH > WINDOW_WIDTH ) ){		// If mario moves too far left or right
 		x -= xVel;		// Move him back
@@ -197,18 +195,18 @@ void CMario::handle_input(SDL_Event* event){
 
 	if( event->type == SDL_KEYDOWN ){		// If a key was pressed
         	switch( event->key.keysym.sym ){		// Adjust the velocity accordingly
-            		case SDLK_UP: yVel -= MARIO_HEIGHT / 2; break;
-          		case SDLK_DOWN: yVel += MARIO_HEIGHT / 2; break;
-            		case SDLK_LEFT: xVel -= MARIO_WIDTH / 2; break;
-            		case SDLK_RIGHT: xVel += MARIO_WIDTH / 2; break;
+            		case SDLK_UP: yVel -= 4; break;		//changed from MARIO_HEIGHT / 2 to allow for more exact motion
+          		case SDLK_DOWN: yVel += 4; break;
+            		case SDLK_LEFT: xVel -= 2; break;	//changed form MARIO_WIDTH / 2 to allow for more exact motion
+            		case SDLK_RIGHT: xVel += 2; break;
 		}
 	}
 	else if( event->type == SDL_KEYUP ){		// If a key was released
         	switch( event->key.keysym.sym ){		// Adjust the velocity accordingly
-           		case SDLK_UP: yVel += MARIO_HEIGHT / 2; break;
-            		case SDLK_DOWN: yVel -= MARIO_HEIGHT / 2; break;
-            		case SDLK_LEFT: xVel += MARIO_WIDTH / 2; break;
-            		case SDLK_RIGHT: xVel -= MARIO_WIDTH / 2; break;
+           		case SDLK_UP: yVel += 4; break;
+            		case SDLK_DOWN: yVel -= 4; break;
+            		case SDLK_LEFT: xVel += 2; break;
+            		case SDLK_RIGHT: xVel -= 2; break;
         	}
     	}
 

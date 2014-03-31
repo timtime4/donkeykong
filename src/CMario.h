@@ -8,14 +8,9 @@
 #define CMARIO_H
 
 #include "CEntity.h"
+#include "Define.h"
 
-#define MARIO_WIDTH 14
-#define MARIO_HEIGHT 27
-
-#define MARIO_RIGHT 0
-#define MARIO_LEFT 1
-
-enum marState {		//values for state private data member
+enum marState{		//values for state private data member
 	MARIO_STATE_NORMAL = 0 , 	//no power up
 	MARIO_STATE_HAMMER ,
 	MARIO_STATE_STAR

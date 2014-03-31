@@ -14,8 +14,10 @@ CEntity::CEntity() {
 	y = 0 ;
 	xVel = 0 ;
 	yVel = 0 ;
+	yGravityVel = 1 ;	//constant velocity downwards to simulate gravity
 	width = 0 ;
 	height = 0 ;
+	frame = 0 ;
 	maxFrames = 0 ;
 	status = 0 ;
 }

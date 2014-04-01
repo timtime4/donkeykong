@@ -14,9 +14,10 @@
 using namespace std ;
 
 enum marState{		//values for state private data member
-	MARIO_STATE_NORMAL = 0 , 	//no power up
-	MARIO_STATE_HAMMER ,
-	MARIO_STATE_STAR
+	MARIO_WALKING = 0 , 	//state when mario is standing still or walking on a platform
+	MARIO_JUMPING ,		//state of mario during a jump (in the air)-- disable SPACE arrow key event
+	MARIO_CLIMBING ,	//state of mario while climbing a ladder -- disable L R arrow key events 
+	MARIO_HURTING 		//state of mario when dies
 } ;
 
 class CMario : public CEntity {
@@ -32,19 +33,17 @@ class CMario : public CEntity {
 		int getLives() ;
 		//void setLives(int) ;
 
-		int getClimbing() ;
-		void setClimbing(int) ;	
+		//int getClimbing() ;
+		//void setClimbing(int) ;	
 	
-		void setWalking(int) ;
+		//void setWalking(int) ;
+
+		int getState() ;
+		void setState(marState) ;
 	
 	private:
 		int lives ;
-		marState state ;	//normal, hammer, star
-		//mario's capabilities- 1 when turned on, 0 when off
-		int walking ;	
-		int jumping ;
-		int hurting ;	//when dead
-		int climbing ;	//when colliding with a ladder
+		marState state ;	//defined by enum marState above
 
 
 		SDL_Rect clipsRight[3];

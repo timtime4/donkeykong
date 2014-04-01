@@ -13,11 +13,9 @@ int Ladder::IsCollision(CMario& mario) {
 	//  PLATFORM_HEIGHT+mario.getHeight() is subtracted from the vertical max check because mario must be able to pass through the platform at the top of the ladder
 	if( (mario.getX() > this->x) && (mario.getX() + mario.getWidth() < this->x + this->width) && (mario.getY() + mario.getHeight() <= this->y + this->height) && (mario.getY() > this->y - (PLATFORM_HEIGHT + mario.getHeight())) ) {
 		//cout << "LADDER COLLISION" << endl ;
-		mario.setClimbing(1) ;	//sets mario's ladder capability to true
-		mario.setWalking(0) ;
+		mario.setState(MARIO_CLIMBING) ;	//sets mario's ladder capability to true
 		return 1 ;
-	} //else mario.setClimbing(0) ;	//unsets mario's ladder capability
+	} 
 
-	//was there a collision?
 	return 0 ;
 }

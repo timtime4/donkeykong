@@ -10,8 +10,8 @@
 
 CEntity::CEntity() {
 	Surf_Entity = NULL ;
-	x = 0 ;				//x position on entity on map
-	y = 0 ;				//y position of entity on map
+	x = 0 ;
+	y = 0 ;
 	xVel = 0 ;
 	yVel = 0 ;
 	yGravityVel = 1 ;	//constant velocity downwards to simulate gravity

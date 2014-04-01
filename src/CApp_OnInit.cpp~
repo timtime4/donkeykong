@@ -22,9 +22,7 @@ int CApp::OnInit() {
 	}
 	jumps = Mix_LoadWAV( "wavFiles/jump.wav" );
 	burns = Mix_LoadWAV( "wavFiles/burn.wav" );
-	hurts = 
-
-Mix_LoadWAV( "wavFiles/hurt.wav" );
+	hurts = Mix_LoadWAV( "wavFiles/hurt.wav" );
 	if ( (jumps == NULL) || (burns == NULL) || (hurts == NULL) ){
 		printf("Error: Sound Clip Load Error.");
 	}

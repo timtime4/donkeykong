@@ -20,17 +20,6 @@
 #define MARIO_START_X 50
 #define MARIO_START_Y 525
 
-#define FIRE_WIDTH 14
-#define FIRE_HEIGHT 27
-
-#define FIRE_RIGHT 0
-#define FIRE_LEFT 1
-
-#define FIRE_START_X 300
-#define FIRE_START_Y 525
-
-
-
 #define PEACH_WIDTH 28
 #define PEACH_HEIGHT 40
 

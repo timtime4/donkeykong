@@ -78,3 +78,11 @@ void CEntity::setX(int _x) {
 void CEntity::setY(int _y) {
 	if(y > 0 && y+height < WINDOW_HEIGHT) y = _y ;
 }
+
+int CEntity::getWidth() {
+	return width ;
+}
+
+int CEntity::getHeight() {
+	return height ;
+}

@@ -14,5 +14,10 @@ void CApp::OnLoop() {
 	}*/
 	mario.OnLoop() ;
 
+	int dummy ;
+	for (int i = 0 ; i < bgObjs.size() ; i++) {
+		dummy = bgObjs[i]->IsCollision(mario) ;
+	}
+
 }
 

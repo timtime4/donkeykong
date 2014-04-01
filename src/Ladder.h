@@ -11,7 +11,7 @@
 class Ladder : public StaticObj {
 	public:
 		Ladder(int = 0 , int = 0 , int = 0 , int = 0 ) ;
-		virtual int IsCollision(CMario) ;
+		virtual int IsCollision(CMario&) ;
 
 	private:
 

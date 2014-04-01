@@ -18,10 +18,10 @@ StaticObj::StaticObj() {
 }
 
 void StaticObj::OnInit(int _x, int _y, int _width, int _height) {
-	setX(_x) ;	//location on main surface
-	setY(_y) ;
-	setWidth(_width) ;
-	setHeight(_height) ;
+	x = _x ;	//location on main surface
+	y = _y ;
+	width = _width ;
+	height = _height ;
 }
 
 void StaticObj::OnRender(SDL_Surface* Surf_Display, SDL_Surface* Surf_ImgFile) {
@@ -30,7 +30,7 @@ void StaticObj::OnRender(SDL_Surface* Surf_Display, SDL_Surface* Surf_ImgFile) {
 	}
 }
 
-int StaticObj::getX() {
+/*int StaticObj::getX() {
 	return x ;
 }
 
@@ -76,4 +76,4 @@ void StaticObj::setXBlit(int _x) {
 
 void StaticObj::setYBlit(int _y) {
 	if(_y >= 0 && y <= 120) yBlit = _y ;
-}
+}*/

@@ -29,6 +29,10 @@ class CEntity {
 		int getY() ;
 		void setX(int) ;
 		void setY(int) ;
+
+		int getWidth() ;
+		int getHeight() ;
+
 		
 		//static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
 

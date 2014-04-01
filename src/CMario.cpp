@@ -16,10 +16,6 @@ CMario::CMario() {
 	status = MARIO_RIGHT;
 	width = MARIO_WIDTH ;
 	height = MARIO_HEIGHT ;
-	//walking = 0 ;
-	//jumping = 0 ;
-	//hurting = 0 ;
-	//climbing = 0 ;
 }
 
 int CMario::getLives() {

@@ -10,7 +10,6 @@
 #include <vector>
 #include <string>
 
-#include "CAnimation.h"
 #include "CSurface.h"
 #include "Define.h"
 using namespace std ;

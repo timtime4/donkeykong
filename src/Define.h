@@ -6,7 +6,7 @@
 #define WINDOW_WIDTH 480 
 
 #define PLATFORM_WIDTH 60
-#define PLATFORM_HEIGHT 60
+#define PLATFORM_HEIGHT 20
 #define LADDER_WIDTH 20
 
 #define FRAMES_PER_SECOND 40
@@ -16,6 +16,9 @@
 
 #define MARIO_RIGHT 0
 #define MARIO_LEFT 1
+
+#define MARIO_START_X 50
+#define MARIO_START_Y 525
 
 #define PEACH_WIDTH 28
 #define PEACH_HEIGHT 40

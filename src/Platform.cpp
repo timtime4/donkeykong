@@ -10,9 +10,19 @@ Platform::Platform(int _x, int _y) {
 int Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to directly update the object in CApp_OnLoop
 
 	//collision with ground-- also moves mario up when platform height moves up for slant
-	if( (mario.getY() + mario.getHeight() > this->y) && (mario.getY() < this->y) && ((mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x)))	{
+	if( (mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x) && (mario.getY() + mario.getHeight() > this->y) && (mario.getY() + mario.getHeight() - 4 < this->y) )	{
 		mario.setY(this->y - mario.getHeight()) ;
 		return 1 ;
-	} else return 0 ;
+	} 
+
+	//collision with ceiling 
+	//   is not a collision if climbing is turned on
+	int checkHeight = this->y + this->height ;	//bottom of the platform-- height at which mario would collide with a "ceiling"
+	if( (mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x) && (mario.getY() < checkHeight) && (mario.getY() + mario.getHeight() > checkHeight) && !mario.getClimbing() ) {
+		mario.setY(checkHeight) ;
+		return 1 ;
+	}
+
+	return 0 ;		
 
 }

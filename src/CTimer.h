@@ -1,9 +1,11 @@
 /*
 	CTimer.h
 */
-#include "SDL/SDL.h"
 #ifndef CTIMER_H
 #define CTIMER_H
+
+#include "SDL/SDL.h"
+
 
 
 class CTimer{		// Timer class

@@ -9,24 +9,22 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_ttf.h"
 #include "SDL/SDL_mixer.h"
-#include "CEvent.h"
+
 #include "CSurface.h"
-#include "CAnimation.h"
+//#include "CAnimation.h"
 #include "CEntity.h"
 #include "CMario.h"
 #include "StaticObj.h"
 #include "Ladder.h"	
 #include "Platform.h"
 #include "CTimer.h"
-
-
 #include "Define.h"
 
 #include <iostream>
 #include <vector>
 using namespace std ;
 
-class CApp {	//inherits from CEvent class
+class CApp {	
 	public :
 		CApp() ;
 		int OnExecute() ;
@@ -69,8 +67,6 @@ class CApp {	//inherits from CEvent class
 		Mix_Chunk *jumps ;
 		Mix_Chunk *burns ;
 		Mix_Chunk *hurts ;
-
-
 } ;
 
 #endif

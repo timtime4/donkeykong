@@ -17,62 +17,8 @@ int CApp::OnInit_Static() {
 	}
 
 	CSurface::Transparent(Surf_bgObjs, 0, 0, 0) ;	//does not work
-	
-	//////////////////INITIALIZE PLATFORMS/////////////////////////
+
 	int i ;
-	int yIncrement = 3 ;	//number of pixels by which each platform moves upward in comaparison to its neighbor platform
-	int xIncrement = 60 ;	//number of pixels by which each platform moves L or R in comparison to its neighboring platform
-	Platform temp ;
-
-	//begin 0th level, L to R
-	for (i = 0 ; i < 4 ; i++) {	//flat platforms at bottom of screen
-		temp.OnInit(xIncrement*i, 580, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-		platforms.push_back(temp) ;
-	}
-	int baseYL0 = 577 ;	//for platforms that begin to slant at level 0
-	int baseXL0 = 240 ;
-	for (i = 0 ; i < 4 ; i++) {
-		temp.OnInit(baseXL0+i*xIncrement, baseYL0-i*yIncrement, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-		platforms.push_back(temp) ;
-	}
-
-	int baseXLOdd = 360 ;	//odd level starting platform x position, R to L
-	int baseXLEven = 60 ;	//event level starting platform x position, L to R
-	int baseYL1 = 506 ;	//y starting position 1st level, R to L
-	int baseYL2 = 426 ;
-	int baseYL3 = 346 ;
-	int baseYL4 = 266 ;
-
-	for (i = 0 ; i < 7 ; i++) {	//initializes the 7 platforms on each level (1-4)
-		temp.OnInit(baseXLOdd-xIncrement*i, baseYL1-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 1 initialization
-		platforms.push_back(temp) ;
-		temp.OnInit(baseXLEven+xIncrement*i, baseYL2-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 2
-		platforms.push_back(temp) ;
-		temp.OnInit(baseXLOdd-xIncrement*i, baseYL3-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 3
-		platforms.push_back(temp) ;
-		temp.OnInit(baseXLEven+xIncrement*i, baseYL4-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 4
-		platforms.push_back(temp) ;
-	}
-
-	//begin top level, R to L
-	temp.OnInit(360, 183, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-	platforms.push_back(temp) ;
-	for (i = 0 ; i < 6 ; i++) {
-		temp.OnInit(300-xIncrement*i, 180, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-		platforms.push_back(temp) ;
-	}  
-
-	//begin platform where peach stands
-	temp.OnInit(200, 100, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-	platforms.push_back(temp) ;
-	temp.OnInit(200+PLATFORM_WIDTH, 100, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
-	platforms.push_back(temp) ;
-	
-	//push pointers to all platform objects into a vector of StaticObj pointers so polymorphic behavior can be used with virtual member functions
-	for (i = 0 ; i < platforms.size() ; i++ ) {
-		bgObjs.push_back(&platforms[i]) ;	
-	}
-
 
 	//////////INITIALIZE LADDERS//////////////
 		//the heights (4th arg of OnInit) of ladders vary based on where they are placed, maxheight=120 pixels
@@ -128,6 +74,65 @@ int CApp::OnInit_Static() {
 	for (i = 0 ; i < ladders.size() ; i++) {	//push pointers to all ladder objects into bgObjs vector
 		bgObjs.push_back(&ladders[i]) ;
 	}
+
+	
+	//////////////////INITIALIZE PLATFORMS/////////////////////////
+
+	int yIncrement = 3 ;	//number of pixels by which each platform moves upward in comaparison to its neighbor platform
+	int xIncrement = 60 ;	//number of pixels by which each platform moves L or R in comparison to its neighboring platform
+	Platform temp ;
+
+	//begin 0th level, L to R
+	for (i = 0 ; i < 4 ; i++) {	//flat platforms at bottom of screen
+		temp.OnInit(xIncrement*i, 580, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+		platforms.push_back(temp) ;
+	}
+	int baseYL0 = 577 ;	//for platforms that begin to slant at level 0
+	int baseXL0 = 240 ;
+	for (i = 0 ; i < 4 ; i++) {
+		temp.OnInit(baseXL0+i*xIncrement, baseYL0-i*yIncrement, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+		platforms.push_back(temp) ;
+	}
+
+	int baseXLOdd = 360 ;	//odd level starting platform x position, R to L
+	int baseXLEven = 60 ;	//event level starting platform x position, L to R
+	int baseYL1 = 506 ;	//y starting position 1st level, R to L
+	int baseYL2 = 426 ;
+	int baseYL3 = 346 ;
+	int baseYL4 = 266 ;
+
+	for (i = 0 ; i < 7 ; i++) {	//initializes the 7 platforms on each level (1-4)
+		temp.OnInit(baseXLOdd-xIncrement*i, baseYL1-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 1 initialization
+		platforms.push_back(temp) ;
+		temp.OnInit(baseXLEven+xIncrement*i, baseYL2-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 2
+		platforms.push_back(temp) ;
+		temp.OnInit(baseXLOdd-xIncrement*i, baseYL3-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 3
+		platforms.push_back(temp) ;
+		temp.OnInit(baseXLEven+xIncrement*i, baseYL4-yIncrement*i, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;	//level 4
+		platforms.push_back(temp) ;
+	}
+
+	//begin top level, R to L
+	temp.OnInit(360, 183, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+	platforms.push_back(temp) ;
+	for (i = 0 ; i < 6 ; i++) {
+		temp.OnInit(300-xIncrement*i, 180, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+		platforms.push_back(temp) ;
+	}  
+
+	//begin platform where peach stands
+	temp.OnInit(200, 100, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+	platforms.push_back(temp) ;
+	temp.OnInit(200+PLATFORM_WIDTH, 100, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+	platforms.push_back(temp) ;
+	
+	//push pointers to all platform objects into a vector of StaticObj pointers so polymorphic behavior can be used with virtual member functions
+	for (i = 0 ; i < platforms.size() ; i++ ) {
+		bgObjs.push_back(&platforms[i]) ;	
+	}
+
+
+
 
 	return 1 ;
 }	

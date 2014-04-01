@@ -10,7 +10,8 @@ CMario::CMario() {
 	lives = 3 ;
 	state = MARIO_STATE_NORMAL ;	//mario starts with no power up
 
-	x = 200, y = 200;
+	x = MARIO_START_X ;
+	y = MARIO_START_Y;
 
 	status = MARIO_RIGHT;
 	width = MARIO_WIDTH ;
@@ -33,10 +34,9 @@ int CMario::getLives() {
 
 void CMario::OnLoop() {
 	x += xVel;			// Move mario left or right
-        y += yVel + yGravityVel ;                      // Move mario up or down
-
-	////////**add collision detection**/////////
-	//collision with platform -- checked in Platforms????
+        if(!climbing) y+= yVel + yGravityVel ;      //add in gravity if mario is not climbing               
+	else y += yVel ;			// Move mario up or down
+	
 
 	if( ( x < 0 ) || ( x + MARIO_WIDTH > WINDOW_WIDTH ) ){		// If mario moves too far left or right
 		x -= xVel;		// Move him back
@@ -46,26 +46,18 @@ void CMario::OnLoop() {
         	y -= yVel;		// Move him back
 	}
 
-
-
-
 	//determines animation frame and status
-	walking = 0;
-	jumping = 0;
-	hurting = 0;
-	climbing = 0;
-	
-	if ( xVel < 0 && yVel == 0){		// If he is walking left
+	if ( xVel < 0 && (yVel == 0 || yVel == yGravityVel) ){		// If he is walking left
 		status = MARIO_LEFT;		// Change status
 		frame++;			// Move to next frame in animation
 		walking = 1; 
 	}
-	else if ( xVel > 0 && yVel == 0){	// If he is walking right
+	else if ( xVel > 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is walking right
 		status = MARIO_RIGHT;		// Change status
 		frame++;			// Move to next frame in animation
 		walking = 1;
 	}
-	else if (xVel == 0 && yVel == 0){	// If he is standing still
+	else if (xVel == 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is standing still
 		frame = 0;			// Display frame 0 (standing)
 		walking = 1;
 	}
@@ -73,6 +65,9 @@ void CMario::OnLoop() {
 		frame = 1;			// Display frame 1 (jumping)
 		jumping = 1;
 	}
+
+
+	cout << status << endl ;
 	
 }
 
@@ -88,14 +83,16 @@ void CMario::OnRender(SDL_Surface* Surf_Display) {
 		else if ( status == MARIO_LEFT ){
 			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
 		}
+		return ;
 	}
 	if (jumping == 1){			// If he is jumping
                 if ( status == MARIO_RIGHT ){
-		CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
                 }
                 else if ( status == MARIO_LEFT ){
 			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
                 }
+		return ;
 	}
 	if (hurting == 1){			// If he is hurting
 		if (frame >= 3){		// Loop the flickering animation
@@ -107,12 +104,14 @@ void CMario::OnRender(SDL_Surface* Surf_Display) {
                 else if ( status == MARIO_LEFT ){
                         CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsHurtL[frame].x, clipsHurtL[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;     // Make mario flicker while facing left
                 }
+		return ;
         }
 	if (climbing == 1){			// If he is climbing
 		if ( frame >= 2){		// Loop the climbing animation
                         frame = 0;
                 }
-  			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsUp[frame].x, clipsUp[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+  		CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsUp[frame].x, clipsUp[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+		return ;
         }
 
 }
@@ -197,7 +196,7 @@ void CMario::handle_input(SDL_Event* event){
         	switch( event->key.keysym.sym ){		// Adjust the velocity accordingly
             		case SDLK_UP: yVel -= 2; break;		//changed from MARIO_HEIGHT / 2 to allow for more exact motion
           		case SDLK_DOWN: yVel += 2; break;
-            		case SDLK_LEFT: xVel -= 2; break;	//changed form MARIO_WIDTH / 2 to allow for more exact motion
+            		case SDLK_LEFT: xVel -= 2; break;	//changed from MARIO_WIDTH / 2 to allow for more exact motion
             		case SDLK_RIGHT: xVel += 2; break;
 		}
 	}
@@ -211,3 +210,18 @@ void CMario::handle_input(SDL_Event* event){
     	}
 
 }
+
+int CMario::getClimbing() {
+	return climbing ;
+}
+
+void CMario::setClimbing(int value) {
+	climbing = value ;
+}
+
+
+void CMario::setWalking(int value) {
+	walking = value ;
+}
+
+

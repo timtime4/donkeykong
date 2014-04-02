@@ -73,7 +73,3 @@ int CApp::OnEvent(SDL_Event* Event) {
 
 }
 
-void CApp::OnExit() {		//is this unnecessary?
-	running = 0 ;
-}
-

@@ -11,7 +11,6 @@
 #include "SDL/SDL_mixer.h"
 
 #include "CSurface.h"
-//#include "CAnimation.h"
 #include "CEntity.h"
 #include "CMario.h"
 #include "StaticObj.h"
@@ -32,7 +31,6 @@ class CApp {
 		//overarching video game functions
 		int OnInit() ;
 		int OnEvent(SDL_Event* Event) ;
-			void OnExit() ;
 		void OnLoop() ;
 		void OnRender() ;
 		void OnCleanup() ;

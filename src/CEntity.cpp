@@ -63,6 +63,7 @@ void CEntity::OnCleanup() {
 }
 
 
+//get and set functions for protected data members needed outside of CEntity and classes inheriting from CEntity
 int CEntity::getX() {
 	return x ;
 }
@@ -85,4 +86,20 @@ int CEntity::getWidth() {
 
 int CEntity::getHeight() {
 	return height ;
+}
+
+int CEntity::getXVel() {
+	return xVel ;
+}
+
+int CEntity::getYVel() {
+	return yVel ;
+}
+
+void CEntity::setXVel(int _xVel) {
+	xVel = _xVel ;
+}
+
+void CEntity::setYVel(int _yVel) {
+	yVel = _yVel ;
 }

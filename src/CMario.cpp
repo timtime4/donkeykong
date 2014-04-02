@@ -181,27 +181,6 @@ void CMario::set_clips(){		// Clip the sprites
 
 }
 
-void CMario::handle_input(SDL_Event* event){
-
-	if( event->type == SDL_KEYDOWN ){		// If a key was pressed
-        	switch( event->key.keysym.sym ){		// Adjust the velocity accordingly
-            		case SDLK_UP: yVel -= 2 ; break;		//changed from MARIO_HEIGHT / 2 to allow for more exact motion
-          		case SDLK_DOWN: yVel += 2 ; break;
-            		case SDLK_LEFT: xVel -= 2; break;	//changed from MARIO_WIDTH / 2 to allow for more exact motion
-            		case SDLK_RIGHT: xVel += 2; break;
-		}
-	}
-	else if( event->type == SDL_KEYUP ){		// If a key was released
-        	switch( event->key.keysym.sym ){		// Adjust the velocity accordingly
-           		case SDLK_UP: yVel += 2 ; break;
-            		case SDLK_DOWN: yVel -= 2 ; break;
-            		case SDLK_LEFT: xVel += 2; break;
-            		case SDLK_RIGHT: xVel -= 2; break;
-        	}
-    	}
-
-}
-
 
 int CMario::getState() {
 	return state ;

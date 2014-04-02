@@ -128,7 +128,7 @@ int CFire::getState() {
 	return state ;
 }
 
-void CFire::setState(marState _state) {
+void CFire::setState(fireState_state) {
 	state = _state ;
 }
 

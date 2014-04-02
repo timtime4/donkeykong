@@ -32,17 +32,19 @@ class CEntity {
 		int getWidth() ;
 		int getHeight() ;
 
-		
-		//static std::vector<CEntity*> entityList ;		//exists before object instantiation, only one
+		int getXVel() ;
+		int getYVel() ;
+		void setXVel(int) ;
+		void setYVel(int) ;
 
 	protected:	//data members will be accessible to inheriting classes
 		SDL_Surface* Surf_Entity ;
+
 		int x ;		//x,y location where blitted on screen
 		int y ; 
 		int xVel ;	//horizontal and vertical velocity of entity
 		int yVel ;	
-		int yGravityVel ;	//accounts for gravity- entities have the tendency to move downwards unless colliding with a platform or ladder, gravity here treated as a constant negative acceleration
-		//int yVelCap ; 	//maximum downward velocity of entity, caps effect of gravity
+		int yGravityVel ;	//accounts for gravity- entities have the tendency to move downwards unless colliding with a platform or ladder, gravity here treated as a constant negative velocity to simplify collision with ground
 
 		int frame;	//keeps track of which frame in animation to use
 		int maxFrames ;	//total number of frames for a given status

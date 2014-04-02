@@ -28,18 +28,13 @@ class CMario : public CEntity {
 		virtual void OnRender(SDL_Surface* Surf_Display) ;
 
 		void set_clips() ;
-		void handle_input(SDL_Event*);
 
 		int getLives() ;
 		//void setLives(int) ;
 
-		//int getClimbing() ;
-		//void setClimbing(int) ;	
-	
-		//void setWalking(int) ;
-
 		int getState() ;
 		void setState(marState) ;
+
 	
 	private:
 		int lives ;

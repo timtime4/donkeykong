@@ -17,7 +17,12 @@ void CApp::OnLoop() {
 	int dummy ;
 	mario.setState(MARIO_WALKING) ;	//resets climbing to check for ladder collision each time through OnLoop
 	for (int i = 0 ; i < bgObjs.size() ; i++) {
-		dummy = bgObjs[i]->IsCollision(mario) ;
+		dummy = bgObjs[i]->IsCollision(mario) ; //*(i+1) ;	//will return the element number + 1 of the vector mario is colliding with
+		/*if(dummy > 0) {		// <=45 dummy is true for a platform ;  >45, collision with ladder
+			//something
+			dummy = 0 ;
+		}*/
+			
 	}
 
 }

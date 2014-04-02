@@ -18,11 +18,11 @@ int Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to 
 
 	//collision with ceiling 
 	//   is not a collision if climbing is turned on
-	int checkHeight = this->y + this->height ;	//bottom of the platform-- height at which mario would collide with a "ceiling"
+	/*int checkHeight = this->y + this->height ;	//bottom of the platform-- height at which mario would collide with a "ceiling"
 	if( (mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x) && (mario.getY() < checkHeight) && (mario.getY() + mario.getHeight() > checkHeight) && (mario.getState() != MARIO_CLIMBING) ) {
 		mario.setY(checkHeight) ;
 		return 1 ;
-	}
+	}*/
 
 	return 0 ;		
 

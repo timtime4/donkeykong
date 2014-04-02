@@ -103,3 +103,7 @@ void CEntity::setXVel(int _xVel) {
 void CEntity::setYVel(int _yVel) {
 	yVel = _yVel ;
 }
+
+void CEntity::setStatus(int _status) {
+	status = _status ;
+}

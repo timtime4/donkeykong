@@ -35,10 +35,12 @@ class CMario : public CEntity {
 		int getState() ;
 		void setState(marState) ;
 
+		void setUp(int) ;
 	
 	private:
 		int lives ;
 		marState state ;	//defined by enum marState above
+		int up ;
 
 
 		SDL_Rect clipsRight[3];

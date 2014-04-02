@@ -37,6 +37,8 @@ class CEntity {
 		void setXVel(int) ;
 		void setYVel(int) ;
 
+		void setStatus(int) ;
+
 	protected:	//data members will be accessible to inheriting classes
 		SDL_Surface* Surf_Entity ;
 

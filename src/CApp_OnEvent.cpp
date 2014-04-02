@@ -13,35 +13,55 @@ int CApp::OnEvent(SDL_Event* Event) {
 	//events that affect mario
 	if( Event->type == SDL_KEYDOWN ){		// If a key was pressed
         	switch( Event->key.keysym.sym ){		// Adjust the velocity accordingly
-            		case SDLK_UP: 
-				mario.setYVel(mario.getYVel()-2) ; 
+			case SDLK_SPACE:
+				mario.setYVel(mario.getYVel()-3) ;
+				mario.setUp(10) ;	//mario's yVel lasts for 5 frames
 				break ;
+
+	    		case SDLK_UP: 	//up and down arrows only available for climbing
+				if(mario.getState() == MARIO_CLIMBING) mario.setYVel(mario.getYVel()-2) ; 
+				break ;
+
           		case SDLK_DOWN: 
-				mario.setYVel(mario.getYVel()+2) ; 
+				if(mario.getState() == MARIO_CLIMBING) mario.setYVel(mario.getYVel()+2) ; 
 				break ;
+
             		case SDLK_LEFT: 
 				mario.setXVel(mario.getXVel()-2) ; 
+				mario.setStatus(MARIO_LEFT) ; 
 				break ;
+
             		case SDLK_RIGHT: 
 				mario.setXVel(mario.getXVel()+2) ;
+				mario.setStatus(MARIO_RIGHT) ; 
 				break;
+
 		}
 	}
 
 	if( Event->type == SDL_KEYUP ){		// If a key was released
-        	switch( Event->key.keysym.sym ){		// Adjust the velocity accordingly
+        	switch( Event->key.keysym.sym ){		// all velocities set to zero when keys are released
+			/*case SDLK_SPACE:
+				mario.setYVel(0) ;
+				break ;*/
+
            		case SDLK_UP: 
-				mario.setYVel(mario.getYVel()+2) ; 
+				mario.setYVel(0) ;
 				break ;
+
           		case SDLK_DOWN: 
-				mario.setYVel(mario.getYVel()-2) ; 
+				mario.setYVel(0) ;
+
 				break ;
+
             		case SDLK_LEFT: 
-				mario.setXVel(mario.getXVel()+2) ; 
+				mario.setXVel(0) ;
 				break ;
+
             		case SDLK_RIGHT: 
-				mario.setXVel(mario.getXVel()-2) ;
+				mario.setXVel(0) ;
 				break;
+
         	}
     	}
 

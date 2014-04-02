@@ -16,6 +16,8 @@ CMario::CMario() {
 	status = MARIO_RIGHT;
 	width = MARIO_WIDTH ;
 	height = MARIO_HEIGHT ;
+
+	up = 0 ;
 }
 
 int CMario::getLives() {
@@ -29,6 +31,9 @@ int CMario::getLives() {
 
 
 void CMario::OnLoop() {
+	if (up < 0 && state!=MARIO_CLIMBING) yVel = 0 ;
+	else up-- ;
+
 	//change location based on velocities
 	x += xVel;			// Move mario left or right
         if(state != MARIO_CLIMBING) y+= yVel + yGravityVel ;      //add in gravity if mario is not climbing               
@@ -42,16 +47,23 @@ void CMario::OnLoop() {
         	y -= yVel;		// Move him back
 	}
 
-	//determines animation frame and status
-	if ( xVel < 0 && (yVel == 0 || yVel == yGravityVel) ){		// If he is walking left
+
+	
+
+	//moved this to be changed when L and R keys are pressed
+	/*if ( xVel < 0 && (yVel == 0 || yVel == yGravityVel) ){		// If he is walking left
 		status = MARIO_LEFT ;		// Change status
 		frame++ ;			// Move to next frame in animation
 	}
 	else if ( xVel > 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is walking right
 		status = MARIO_RIGHT ;		// Change status
 		frame++ ;			// Move to next frame in animation
-	}
-	else if (xVel == 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is standing still
+	}*/
+
+	//determines animation frame
+	frame++ ;
+
+	if (xVel == 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is standing still
 		frame = 0;			// Display frame 0 (standing)
 	}
 	else if (yVel != 0){			// If he is jumping
@@ -190,4 +202,7 @@ void CMario::setState(marState _state) {
 	state = _state ;
 }
 
+void CMario::setUp(int val) {
+	up = val ;
+}
 

@@ -10,12 +10,20 @@ int CApp::OnEvent(SDL_Event* Event) {
 		running = 0 ; //finishes game
 	}
 
+
+
+////////////////GLITCH -- if one key is pressed down, then another is pressed, the second will not be recognized (ie. if quickly switching from walking left to walking right)
+
+
 	//events that affect mario
 	if( Event->type == SDL_KEYDOWN ){		// If a key was pressed
         	switch( Event->key.keysym.sym ){		// Adjust the velocity accordingly
 			case SDLK_SPACE:
-				mario.setYVel(mario.getYVel()-3) ;
-				mario.setUp(10) ;	//mario's yVel lasts for 5 frames
+				if(mario.getState() == MARIO_WALKING) {//*****************
+					mario.setYVel(mario.getYVel()-5) ;
+					mario.setUp(10) ;	//mario's yVel lasts for 10 frames
+					mario.setState(MARIO_JUMPING) ;//*************
+				}
 				break ;
 
 	    		case SDLK_UP: 	//up and down arrows only available for climbing
@@ -27,31 +35,30 @@ int CApp::OnEvent(SDL_Event* Event) {
 				break ;
 
             		case SDLK_LEFT: 
-				mario.setXVel(mario.getXVel()-2) ; 
-				mario.setStatus(MARIO_LEFT) ; 
+				if(mario.getPlatformCollide() || mario.getState() == MARIO_JUMPING) { //disable functionality when mario is mid-climb
+					mario.setXVel(mario.getXVel()-2) ; 
+					mario.setStatus(MARIO_LEFT) ; 
+				}
 				break ;
 
-            		case SDLK_RIGHT: 
-				mario.setXVel(mario.getXVel()+2) ;
-				mario.setStatus(MARIO_RIGHT) ; 
+            		case SDLK_RIGHT:
+				if(mario.getPlatformCollide() || mario.getState() == MARIO_JUMPING) {//disable functionality when mario is mid-climb
+					mario.setXVel(mario.getXVel()+2) ;
+					mario.setStatus(MARIO_RIGHT) ; 
+				}
 				break;
 
 		}
 	}
-
 	if( Event->type == SDL_KEYUP ){		// If a key was released
         	switch( Event->key.keysym.sym ){		// all velocities set to zero when keys are released
-			/*case SDLK_SPACE:
-				mario.setYVel(0) ;
-				break ;*/
-
+			//case SDLK_SPACE taken care of after up = 0
            		case SDLK_UP: 
 				mario.setYVel(0) ;
 				break ;
 
           		case SDLK_DOWN: 
 				mario.setYVel(0) ;
-
 				break ;
 
             		case SDLK_LEFT: 

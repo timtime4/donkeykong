@@ -14,7 +14,7 @@
 using namespace std ;
 
 enum marState{		//values for state private data member
-	MARIO_WALKING = 0 , 	//state when mario is standing still or walking on a platform
+	MARIO_WALKING , 	//state when mario is standing still or walking on a platform
 	MARIO_JUMPING ,		//state of mario during a jump (in the air)-- disable SPACE arrow key event
 	MARIO_CLIMBING ,	//state of mario while climbing a ladder -- disable L R arrow key events 
 	MARIO_HURTING 		//state of mario when dies
@@ -36,11 +36,19 @@ class CMario : public CEntity {
 		void setState(marState) ;
 
 		void setUp(int) ;
+
+		int getLadderCollide() ;
+		void setLadderCollide(int) ;
+
+		int getPlatformCollide() ;
+		void setPlatformCollide(int) ;
 	
 	private:
 		int lives ;
 		marState state ;	//defined by enum marState above
-		int up ;
+		int up ;		//greater than 0 when mario is in the middle of a jump
+		int ladderCollide ;	//true when mario is currenly colliding with a ladder
+		int platformCollide ;
 
 
 		SDL_Rect clipsRight[3];

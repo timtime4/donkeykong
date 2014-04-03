@@ -6,18 +6,23 @@
 
 #include "CApp.h"
 
-CApp::CApp() {
+CApp::CApp() {		//initialize private data members
 	running = 1 ;
+
 	Surf_Display = NULL ;
 	Surf_bgObjs = NULL ;
+
+
 	theme = NULL ;
 	jumps = NULL ;
 	burns = NULL ;
 	hurts = NULL ;
 
-	//font = NULL ;
-	//Surf_Highscore = NULL ;
-	//textColor = {255, 0, 0} ;
+	font = NULL ;
+	Surf_Highscore = NULL ;
+	textColor = {255, 0, 0} ;
+
+	score = 0 ;
 }
 
 int CApp::OnExecute() {
@@ -38,8 +43,8 @@ int CApp::OnExecute() {
 			}
 		
 		}
-		OnLoop() ;
-		OnRender() ;
+		OnLoop() ;	//updates all data
+		OnRender() ;	//displays updated screen
 		if(fps.get_ticks() < 1000 / FRAMES_PER_SECOND) {	//caps frame rate
 			SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
 		}

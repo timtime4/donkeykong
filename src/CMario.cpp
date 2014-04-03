@@ -7,6 +7,7 @@
 #include "CMario.h"
 
 CMario::CMario() {
+	set_clips() ;
 	lives = 3 ;
 	state = MARIO_WALKING ;	//mario starts with no power up
 
@@ -18,6 +19,9 @@ CMario::CMario() {
 	height = MARIO_HEIGHT ;
 
 	up = 0 ;
+
+	platformCollide = 0 ;
+	ladderCollide = 0 ;
 }
 
 int CMario::getLives() {
@@ -31,7 +35,7 @@ int CMario::getLives() {
 
 
 void CMario::OnLoop() {
-	if (up < 0 && state!=MARIO_CLIMBING) yVel = 0 ;
+	if (up <= 0 && state!=MARIO_CLIMBING) yVel = 0 ;		//accounts for mario's upward trajectory during a jump, yVel is upward until up data member has been reduced to 0
 	else up-- ;
 
 	//change location based on velocities
@@ -48,7 +52,6 @@ void CMario::OnLoop() {
 	}
 
 
-	
 
 	//moved this to be changed when L and R keys are pressed
 	/*if ( xVel < 0 && (yVel == 0 || yVel == yGravityVel) ){		// If he is walking left
@@ -59,6 +62,8 @@ void CMario::OnLoop() {
 		status = MARIO_RIGHT ;		// Change status
 		frame++ ;			// Move to next frame in animation
 	}*/
+
+
 
 	//determines animation frame
 	frame++ ;
@@ -206,3 +211,18 @@ void CMario::setUp(int val) {
 	up = val ;
 }
 
+int CMario::getLadderCollide() {
+	return ladderCollide ;
+}
+
+void CMario::setLadderCollide(int collide) {
+	ladderCollide = collide ;
+}
+
+int CMario::getPlatformCollide() {
+	return platformCollide ;
+}
+
+void CMario::setPlatformCollide(int collide) {
+	platformCollide = collide ;
+}

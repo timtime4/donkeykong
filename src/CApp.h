@@ -51,20 +51,21 @@ class CApp {
 
 		vector< CEntity* > entityList ;	//vector of pointers to all entities
 
-		//TTF_Font* font ;
-		//SDL_Surface* Surf_Highscore ;
-		//SDL_Color textColor ;	
+		TTF_Font* font ;
+		SDL_Surface* Surf_Highscore ;
+		SDL_Color textColor ;	
 
 		CMario mario ;
 		//CEntity peach ;	//peach entity object, only animated to move left and right
 
 		// Music
 		Mix_Music *theme ;
-
 		// Sound effects
 		Mix_Chunk *jumps ;
 		Mix_Chunk *burns ;
 		Mix_Chunk *hurts ;
+
+		int score ;
 
 
 } ;

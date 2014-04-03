@@ -16,11 +16,11 @@ void CApp::OnRender() {
 		bgObjs[j]->OnRender(Surf_Display, Surf_bgObjs) ;
 	}
 
-	//CSurface::OnDraw(Surf_Display, Surf_Highscore, 200, 10) ;
+	CSurface::OnDraw(Surf_Display, Surf_Highscore, 180, 10) ;
 	
-	for(int i = 0 ; i < entityList.size() ; i++ ) {
+	for(int i = 0 ; i < entityList.size() ; i++ ) { //renders each valid entity to Surf_Display data member of CApp
 		if(!entityList[i]) continue ;
-		entityList[i]->OnRender(Surf_Display) ;	//renders each valid entity to Surf_Display data member of CApp
+		entityList[i]->OnRender(Surf_Display) ;	
 	}
 
 

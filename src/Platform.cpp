@@ -12,7 +12,7 @@ int Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to 
 	//collision with ground-- also moves mario up when platform height moves up for slant
 	if( (mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x) && (mario.getY() + mario.getHeight() > this->y) && (mario.getY() + mario.getHeight() - 4 < this->y) )	{
 		mario.setY(this->y - mario.getHeight()) ;	//set mario to be standing on ground platform
-		mario.setState(MARIO_WALKING) ;		//mario in walking state when colliding with a platform
+		mario.setPlatformCollide(1) ;
 		return 1 ;
 	} 
 

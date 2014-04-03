@@ -14,7 +14,7 @@ CEntity::CEntity() {
 	y = 0 ;				//y position of entity on map
 	xVel = 0 ;
 	yVel = 0 ;
-	yGravityVel = 2 ;	//constant velocity downwards to simulate gravity
+	yGravityVel = 3 ;	//constant velocity downwards to simulate gravity
 	width = 0 ;
 	height = 0 ;
 	frame = 0 ;

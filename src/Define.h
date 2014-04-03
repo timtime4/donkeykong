@@ -11,7 +11,7 @@
 #define LADDER_WIDTH 20
 
 
-#define FRAMES_PER_SECOND 15
+#define FRAMES_PER_SECOND 20
 
 
 #define MARIO_WIDTH 14

@@ -13,13 +13,14 @@ void CApp::OnLoop() {
 		entityList[i]->OnLoop() ;	//updates each valid entity
 	}
 
+	//check for static obj collisions
 	int dummy ;
 	mario.setLadderCollide(0) ;		//reset to false each time through, will both be checked and set in IsCollision functions if there is a collision
 	mario.setPlatformCollide(0) ;
-
 	for (int i = 0 ; i < bgObjs.size() ; i++) {
 		dummy = bgObjs[i]->IsCollision(mario) ;			
 	}
+
 
 	//set mario state
 	if(!mario.getLadderCollide()) {
@@ -29,6 +30,15 @@ void CApp::OnLoop() {
 		else mario.setState(MARIO_WALKING) ;	//mario in walking state with platform collision and no ladder collision
 	}
 	else mario.setState(MARIO_CLIMBING) ;
+
+
+	//check peach collision
+	if(peach.IsCollision(mario)) {
+		running = 0 ;
+		cout << "***************" << endl << "CONGRATULATIONS!! YOU WIN!!!"<< endl << "***************" << endl ;
+		//probably want to do some more stuff
+
+	}
 
 }
 

@@ -84,8 +84,8 @@ void CMario::OnRender(SDL_Surface* Surf_Display) {
 
 		case MARIO_JUMPING :
 			frame = 1 ;
-			 if ( status == MARIO_RIGHT ){
-				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
+			 if (xVel >= 0 ){
+				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsRight[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
 		        }
 		        else {	//status == MARIO_LEFT
 				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;

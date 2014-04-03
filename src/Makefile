@@ -45,7 +45,7 @@ CTimer.o:  CTimer.cpp CTimer.h
 CMario.o:  CMario.cpp CMario.h CEntity.h CSurface.h Define.h
 	g++ -c CMario.cpp
 
-CPeach.o:  CPeach.cpp CPeach.h CEntity.h CSurface.h Define.h
+CPeach.o:  CPeach.cpp CPeach.h CEntity.h CMario.h CSurface.h Define.h
 	g++ -c CPeach.cpp
 
 clean:

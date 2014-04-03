@@ -12,6 +12,8 @@
 
 #include "CSurface.h"
 #include "Define.h"
+
+#include <iostream>
 using namespace std ;
 
 class CEntity {

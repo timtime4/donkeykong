@@ -12,38 +12,38 @@ int CApp::OnEvent(SDL_Event* Event) {
 
 
 
-////////////////GLITCH -- if one key is pressed down, then another is pressed, the second will not be recognized (ie. if quickly switching from walking left to walking right)
+////////////////GLITCH -- if one key is pressed down, then another is pressed, the second will not be recognized (ie. if quickly switching from walking left to walking right)---- ****mostly fixed by enabling keyrepeat (in CApp_OnInit)
 
 
 	//events that affect mario
 	if( Event->type == SDL_KEYDOWN ){		// If a key was pressed
         	switch( Event->key.keysym.sym ){		// Adjust the velocity accordingly
 			case SDLK_SPACE:
-				if(mario.getState() == MARIO_WALKING) {//*****************
-					mario.setYVel(mario.getYVel()-5) ;
-					mario.setUp(10) ;	//mario's yVel lasts for 10 frames
-					mario.setState(MARIO_JUMPING) ;//*************
+				if(mario.getState() == MARIO_WALKING) {
+					mario.setYVel(-5) ;
+					mario.setUp(5) ;	//mario's yVel lasts for 10 frames
+					mario.setState(MARIO_JUMPING) ;
 				}
 				break ;
 
 	    		case SDLK_UP: 	//up and down arrows only available for climbing
-				if(mario.getState() == MARIO_CLIMBING) mario.setYVel(mario.getYVel()-2) ; 
+				if(mario.getState() == MARIO_CLIMBING) mario.setYVel(-3) ; 
 				break ;
 
           		case SDLK_DOWN: 
-				if(mario.getState() == MARIO_CLIMBING) mario.setYVel(mario.getYVel()+2) ; 
+				if(mario.getState() == MARIO_CLIMBING) mario.setYVel(3) ; 
 				break ;
 
             		case SDLK_LEFT: 
 				if(mario.getPlatformCollide() || mario.getState() == MARIO_JUMPING) { //disable functionality when mario is mid-climb
-					mario.setXVel(mario.getXVel()-2) ; 
+					mario.setXVel(-3) ; 
 					mario.setStatus(MARIO_LEFT) ; 
 				}
 				break ;
 
             		case SDLK_RIGHT:
 				if(mario.getPlatformCollide() || mario.getState() == MARIO_JUMPING) {//disable functionality when mario is mid-climb
-					mario.setXVel(mario.getXVel()+2) ;
+					mario.setXVel(3) ;
 					mario.setStatus(MARIO_RIGHT) ; 
 				}
 				break;

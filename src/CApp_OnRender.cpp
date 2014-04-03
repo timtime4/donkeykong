@@ -22,9 +22,6 @@ void CApp::OnRender() {
 		if(!entityList[i]) continue ;
 		entityList[i]->OnRender(Surf_Display) ;	
 	}
-
-
-	//peach.OnRender(Surf_Display) ;
 	
 	SDL_Flip(Surf_Display) ;	//update screen
 }

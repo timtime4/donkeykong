@@ -12,7 +12,6 @@ CApp::CApp() {		//initialize private data members
 	Surf_Display = NULL ;
 	Surf_bgObjs = NULL ;
 
-
 	theme = NULL ;
 	jumps = NULL ;
 	burns = NULL ;

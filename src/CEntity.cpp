@@ -35,27 +35,6 @@ int CEntity::OnLoad(string file) {
 	return 1 ;
 }
 
-/*void CEntity::OnLoop() {	
-	x += xVel ;
-	y += yVel ;
-
-	if( x < 0 || (x + width) > WINDOW_WIDTH) x -= xVel ;
-	if( y < 0 || (y + height) > WINDOW_HEIGHT) y -= yVel ;
-
-	if (xVel < 0) {
-		status = 0 ;	//moving left is status 0
-		frame++ ;
-	} else if (xVel > 0) {
-		status = 1 ;	//moving right is status 1
-		frame++ ;
-	} else frame = 0 ;	//resets animation
-
-	if (frame >= maxFrames) frame = 0 ;	//loops animation
-}
-
-void CEntity::OnRender(SDL_Surface* Surf_Display) {
-	CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, (status+2*frame)*width, 0, width, height) ;
-}*/
 
 void CEntity::OnCleanup() {
 	if(Surf_Entity) SDL_FreeSurface(Surf_Entity) ;

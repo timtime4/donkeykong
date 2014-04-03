@@ -13,6 +13,7 @@
 #include "CSurface.h"
 #include "CEntity.h"
 #include "CMario.h"
+#include "CPeach.h"
 #include "StaticObj.h"
 #include "Ladder.h"	
 #include "Platform.h"
@@ -56,7 +57,7 @@ class CApp {
 		SDL_Color textColor ;	
 
 		CMario mario ;
-		//CEntity peach ;	//peach entity object, only animated to move left and right
+		CPeach peach ;	//peach entity object, only animated to move left and right
 
 		// Music
 		Mix_Music *theme ;

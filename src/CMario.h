@@ -10,8 +10,6 @@
 #include "CEntity.h"
 #include "Define.h"
 
-#include <iostream>
-using namespace std ;
 
 enum marState{		//values for state private data member
 	MARIO_WALKING , 	//state when mario is standing still or walking on a platform

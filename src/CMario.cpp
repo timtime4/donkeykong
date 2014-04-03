@@ -51,8 +51,6 @@ void CMario::OnLoop() {
         	y -= yVel;		// Move him back
 	}
 
-
-
 	//moved this to be changed when L and R keys are pressed
 	/*if ( xVel < 0 && (yVel == 0 || yVel == yGravityVel) ){		// If he is walking left
 		status = MARIO_LEFT ;		// Change status
@@ -64,17 +62,8 @@ void CMario::OnLoop() {
 	}*/
 
 
-
-	//determines animation frame
-	frame++ ;
-
-	if (xVel == 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is standing still
-		frame = 0;			// Display frame 0 (standing)
-	}
-	else if (yVel != 0){			// If he is jumping
-		frame = 1 ;			// Display frame 1 (jumping)
-	}
-
+	//increment animation frame
+	if(xVel!= 0 || yVel != 0) frame++ ;
 
 }
 
@@ -84,19 +73,21 @@ void CMario::OnRender(SDL_Surface* Surf_Display) {
 			if ( frame >= 3){		// Loop the walking animation
 				frame = 0;
 			}
+			if(xVel == 0) frame = 0 ;
 			if ( status == MARIO_RIGHT ){
 				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsRight[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
 			}
-			else if ( status == MARIO_LEFT ){
+			else {		//status == MARIO_LEFT
 				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
 			}
 			break ;
 
 		case MARIO_JUMPING :
+			frame = 1 ;
 			 if ( status == MARIO_RIGHT ){
 				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsRight[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
 		        }
-		        else if ( status == MARIO_LEFT ){
+		        else {	//status == MARIO_LEFT
 				CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clipsLeft[frame].x, clipsLeft[frame].y, MARIO_WIDTH, MARIO_HEIGHT) ;
 		        }
 			break ;

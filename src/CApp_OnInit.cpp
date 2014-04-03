@@ -39,6 +39,9 @@ int CApp::OnInit() {
 
 	SDL_WM_SetCaption("Donkey Kong", NULL) ;	//window caption
 
+	///////////MARIO EVENTS BEHAVIOR///////////
+	if(SDL_EnableKeyRepeat(50, 50)) return 0 ;
+
 	//////////STATIC OBJECT INTIIALIZATION//////////
 	if(!OnInit_Static()) {
 		cout << "OnInit_Static() fail" << endl ;
@@ -46,25 +49,20 @@ int CApp::OnInit() {
 	}
 
 	//////////MARIO INITIALIZATION//////////
-	if(mario.OnLoad("mar2.bmp") == 0) {
+	if(mario.OnLoad("mar.bmp") == 0) {
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}
 	entityList.push_back(&mario) ;
+	
 
-	/*if(peach.OnLoad("./pngFiles/peach.png") == 0) {
+	//////////PEACH INITIALIZATION//////////
+	if(peach.OnLoad("./pngFiles/peach.jpg") == 0) {
 		cout << "peach didn't load" << endl ;
 		return 0 ;
 	}
+	entityList.push_back(&peach) ;
 
-
-	//////////PEACH INITIALIZATION//////////
-	entityList.push_back(&peach)*/	
-
-	//peach.setWidth(PEACH_WIDTH) ;
-	//peach.setHeight(PEACH_HEIGHT) ;
-	//peach.setX(200) ;
-	//peach.setY(100) ;
 
 	//////////BARREL INITIALIZATION//////////
 

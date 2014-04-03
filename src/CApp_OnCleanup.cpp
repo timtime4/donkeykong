@@ -15,7 +15,6 @@ void CApp::OnCleanup() {
 		entityList[i]->OnCleanup() ;
 	}
 	entityList.clear() ;
-	//peach.OnCleanup() ;
 	
 	SDL_FreeSurface(Surf_bgObjs) ;
 	bgObjs.clear() ;

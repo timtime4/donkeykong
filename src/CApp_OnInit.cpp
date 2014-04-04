@@ -50,7 +50,7 @@ int CApp::OnInit() {
 	}
 
 	//////////MARIO INITIALIZATION//////////
-	if(mario.OnLoad("mar.bmp") == 0) {
+	if(mario.OnLoad("imgFiles/mar2.bmp") == 0) {
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}
@@ -58,7 +58,7 @@ int CApp::OnInit() {
 	
 
 	//////////PEACH INITIALIZATION//////////
-	if(peach.OnLoad("./pngFiles/peach.jpg") == 0) {
+	if(peach.OnLoad("imgFiles/peach.jpg") == 0) {
 		cout << "peach didn't load" << endl ;
 		return 0 ;
 	}
@@ -66,7 +66,7 @@ int CApp::OnInit() {
 
 
         ////////DONKEY KONG INITIALIZATION////////
-        if(dk.OnLoad("dk.bmp") == 0) {
+        if(dk.OnLoad("imgFiles/dk.bmp") == 0) {
                 cout << "donkey kong didn't load" << endl ;
                 return 0 ;
         }
@@ -81,11 +81,12 @@ int CApp::OnInit() {
 
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
 		
-		//open from file .highscore in ../ 
+		//open from file .highscore in src directory
 		//in form-> HIGHSCORE: xxxx, this will be read into a string and printed to the screen
-	ifstream hsFile ;
-	hsFile.open("../.highscore") ;
-	if(hsFile == NULL) return 0 ;
+	
+	ifstream hsFile;
+	hsFile.open(".highscore") ;
+	if(hsFile.fail()) return 0 ;
 	string hsString ;
 	getline(hsFile, hsString) ;	//reads line of file into line variable
 
@@ -98,7 +99,6 @@ int CApp::OnInit() {
 		cout << "Font did not open" << endl ; 
 		return 0 ;
 	}
-	//string hsString = "Highscore: 0" ; //default until figure out file io
 	Surf_Highscore = TTF_RenderText_Solid(font, hsString.c_str(), textColor);
 
 	return 1 ;	//all initialization succeeded

@@ -136,7 +136,5 @@ int CApp::OnInit_Static() {
 	//19 ladder objects
 
 
-
-
 	return 1 ;
 }	

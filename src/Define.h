@@ -43,4 +43,11 @@
 #define PEACH_START_X 200
 #define PEACH_Y 100
 
+
+#define DK_WIDTH 62
+#define DK_HEIGHT 120
+
+#define DK_START_X 30
+#define DK_START_Y 108
+
 #endif

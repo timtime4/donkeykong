@@ -23,6 +23,10 @@ int CApp::OnEvent(SDL_Event* Event) {
 					mario.setYVel(-7) ;
 					mario.setUp(7) ;	//mario's yVel lasts for 7 frames, NEED TO CHANGE THIS ACCORDING TO WHAT WE DECIDE ON FOR FRAME RATE
 					mario.setState(MARIO_JUMPING) ;
+					//play jumping sound effect
+					if ( Mix_PlayChannel(-1, jumps, 0) == -1 ){		// Play jumping sound effect
+						return 0;
+					}
 				}
 				break ;
 
@@ -82,13 +86,13 @@ int CApp::OnEvent(SDL_Event* Event) {
 			}
 			Mix_ResumeMusic();					// Resume background music
 		}
-		if( Event->key.keysym.sym == SDLK_2 ){
+	/*	if( Event->key.keysym.sym == SDLK_2 ){
 			Mix_PauseMusic();
 		        if ( Mix_PlayChannel(-1, jumps, 0) == -1 ){		// Play jumping sound effect
 		                return 0;
 		        }
 			Mix_ResumeMusic();
-		}
+		}*/
 		if( Event->key.keysym.sym == SDLK_3 ){
 			Mix_PauseMusic();
 		        if ( Mix_PlayChannel(-1, hurts, 0) == -1 ){		// Play mario getting hit by barrel

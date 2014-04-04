@@ -22,6 +22,8 @@ CApp::CApp() {		//initialize private data members
 	textColor = {255, 0, 0} ;
 
 	score = 0 ;
+	//fallCount = 0 ;
+
 }
 
 int CApp::OnExecute() {
@@ -49,17 +51,20 @@ int CApp::OnExecute() {
 		}
 	}
 
-	OnCleanup() ;
-	
+	//update .highscore file
+	//	if score > hsString (int out of this string), then overwrite .highscore with new highscore
 
-	
+	OnCleanup() ;
+
 	return 0 ;
 }
-
 
 //////BEGIN MAIN//////
 int main(int arc, char* argv[]) {
 	CApp theApp ;	//instantiate an object of type CApp
-
 	return theApp.OnExecute() ;
 }
+
+
+
+

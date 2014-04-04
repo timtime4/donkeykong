@@ -26,16 +26,29 @@ void CApp::OnLoop() {
 	if(!mario.getLadderCollide()) {
 		if(!mario.getPlatformCollide()) {
 			mario.setState(MARIO_JUMPING) ;
+			/*fallCount++ ;
+			if(fallCount > 50){
+				running = 0 ;
+				cout << "Mario fell too far. You lose." << endl ;
+			}*/
 		}
-		else mario.setState(MARIO_WALKING) ;	//mario in walking state with platform collision and no ladder collision
+		else {
+			//fallCount = 0 ;	//reset fallCount
+			mario.setState(MARIO_WALKING) ;	//mario in walking state with platform collision and no ladder collision
+		}
 	}
-	else mario.setState(MARIO_CLIMBING) ;
+	else {
+		//fallCount = 0 ;
+		mario.setState(MARIO_CLIMBING) ;
+	}
+
+
 
 
 	//check peach collision
 	if(peach.IsCollision(mario)) {
 		running = 0 ;
-		cout << "***************" << endl << "CONGRATULATIONS!! YOU WIN!!!"<< endl << "***************" << endl ;
+		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
 		//probably want to do some more stuff
 
 	}

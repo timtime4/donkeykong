@@ -9,11 +9,11 @@
 CMario::CMario() {
 	set_clips() ;
 	lives = 3 ;
-	state = MARIO_WALKING ;	//mario starts with no power up
 
 	x = MARIO_START_X ;
 	y = MARIO_START_Y;
 
+	state = MARIO_WALKING ;	//mario starts with no power up
 	status = MARIO_RIGHT;
 	width = MARIO_WIDTH ;
 	height = MARIO_HEIGHT ;
@@ -24,14 +24,17 @@ CMario::CMario() {
 	ladderCollide = 0 ;
 }
 
+CMario CMario::operator++() {	//increments mario object's lives by 1, when get extra life powerup
+	this->lives++ ;
+}
+
+CMario CMario::operator--() {	//decrements mario object's lives by 1
+	this->lives-- ;
+}
+
 int CMario::getLives() {
 	return lives ;
 }
-
-/*void CMario::setLives(int _lives) {
-	if(lives < 0) return ;
-	lives = _lives ;
-}*/
 
 
 void CMario::OnLoop() {
@@ -50,17 +53,6 @@ void CMario::OnLoop() {
 	if( ( y < 0 ) || ( y + MARIO_HEIGHT > WINDOW_HEIGHT ) ){	// If mario moves too far up or down
         	y -= yVel;		// Move him back
 	}
-
-	//moved this to be changed when L and R keys are pressed
-	/*if ( xVel < 0 && (yVel == 0 || yVel == yGravityVel) ){		// If he is walking left
-		status = MARIO_LEFT ;		// Change status
-		frame++ ;			// Move to next frame in animation
-	}
-	else if ( xVel > 0 && (yVel == 0 || yVel == yGravityVel)){	// If he is walking right
-		status = MARIO_RIGHT ;		// Change status
-		frame++ ;			// Move to next frame in animation
-	}*/
-
 
 	//increment animation frame
 	if(xVel!= 0 || yVel != 0) frame++ ;
@@ -188,6 +180,19 @@ void CMario::set_clips(){		// Clip the sprites
         clipsUp[1].h = MARIO_HEIGHT;
 
 }
+
+void CMario::reset() {		//used after mario has lost a life to reset at the beginning of the level
+	x = MARIO_START_X ;
+	y = MARIO_START_Y;
+
+	state = MARIO_WALKING ;	//mario starts with no power up
+	status = MARIO_RIGHT;
+
+	up = 0 ;
+	platformCollide = 0 ;
+	ladderCollide = 0 ;
+}
+
 
 
 int CMario::getState() {

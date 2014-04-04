@@ -87,7 +87,7 @@ int CApp::OnInit() {
 	ifstream hsFile;
 	hsFile.open(".highscore") ;
 	if(hsFile.fail()) return 0 ;
-	string hsString ;
+	//string hsString ;
 	getline(hsFile, hsString) ;	//reads line of file into line variable
 
 	if(TTF_Init() < 0){

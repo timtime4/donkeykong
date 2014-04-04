@@ -27,8 +27,11 @@ class CMario : public CEntity {
 
 		void set_clips() ;
 
+		void reset() ;
+
+		CMario operator++() ;	//overloaded pre-increment, indicates mario got an extra life
+		CMario operator--() ;	//overloaded pre-decrement, indicates loss of life for mario
 		int getLives() ;
-		//void setLives(int) ;
 
 		int getState() ;
 		void setState(marState) ;

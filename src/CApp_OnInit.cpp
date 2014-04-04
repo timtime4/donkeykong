@@ -4,6 +4,7 @@
 */
 
 #include "CApp.h"
+#include <fstream>
 
 int CApp::OnInit() {
 
@@ -72,6 +73,11 @@ int CApp::OnInit() {
 		
 		//open from file .highscore in ../ 
 		//in form-> HIGHSCORE: xxxx, this will be read into a string and printed to the screen
+	ifstream hsFile ;
+	hsFile.open("../.highscore") ;
+	if(hsFile == NULL) return 0 ;
+	string hsString ;
+	getline(hsFile, hsString) ;	//reads line of file into line variable
 
 	if(TTF_Init() < 0){
 		 cout << "TTF_Init() fail" << endl ; 
@@ -82,7 +88,7 @@ int CApp::OnInit() {
 		cout << "Font did not open" << endl ; 
 		return 0 ;
 	}
-	string hsString = "Highscore: 0" ; //default until figure out file io
+	//string hsString = "Highscore: 0" ; //default until figure out file io
 	Surf_Highscore = TTF_RenderText_Solid(font, hsString.c_str(), textColor);
 
 	return 1 ;	//all initialization succeeded

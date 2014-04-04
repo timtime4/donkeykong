@@ -14,6 +14,7 @@
 #include "CEntity.h"
 #include "CMario.h"
 #include "CPeach.h"
+#include "CDonkeyKong.h"
 #include "StaticObj.h"
 #include "Ladder.h"	
 #include "Platform.h"
@@ -58,6 +59,7 @@ class CApp {
 
 		CMario mario ;
 		CPeach peach ;	//peach entity object, only animated to move left and right
+		CDonkeyKong dk;
 
 		// Music
 		Mix_Music *theme ;

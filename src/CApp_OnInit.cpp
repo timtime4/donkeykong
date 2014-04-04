@@ -64,6 +64,16 @@ int CApp::OnInit() {
 	entityList.push_back(&peach) ;
 
 
+        ////////DONKEY KONG INITIALIZATION////////
+        if(dk.OnLoad("dk.bmp") == 0) {
+                cout << "donkey kong didn't load" << endl ;
+                return 0 ;
+        }
+        entityList.push_back(&dk) ;
+
+
+
+
 	//////////BARREL INITIALIZATION//////////
 
 

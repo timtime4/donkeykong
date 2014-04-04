@@ -32,6 +32,7 @@ class CApp {
 
 		//overarching video game functions
 		int OnInit() ;
+		int OnStartup(SDL_Event* Event) ;
 		int OnEvent(SDL_Event* Event) ;
 		void OnLoop() ;
 		void OnRender() ;
@@ -39,27 +40,34 @@ class CApp {
 
 	private :
 		int OnInit_Static() ;	//helper function to initialize all static data members
-
-		int running ;	//condition for while loop
+		
 		SDL_Surface* Surf_Display ;	//"blank piece of paper"
-		SDL_Surface* Surf_bgObjs ;
-
+		int running ;	//condition for while loop
 		CTimer fps ;	//timer object
 
+		SDL_Surface* Surf_bgObjs ;
+		vector< StaticObj* > bgObjs ;	//vector of pointers to all static "background" objects (Ladders and Platforms), used to invoke polymorphic behavior
 		vector< Platform > platforms ;	//vector to hold all instantiated Platform objects
 		vector< Ladder > ladders  ;	//vector to hold all ladder objects
 
-		vector< StaticObj* > bgObjs ;	//vector of pointers to all static "background" objects (Ladders and Platforms), used to invoke polymorphic behavior
-
 		vector< CEntity* > entityList ;	//vector of pointers to all entities
-
-		TTF_Font* font ;
-		SDL_Surface* Surf_Highscore ;
-		SDL_Color textColor ;	
-
 		CMario mario ;
 		CPeach peach ;	//peach entity object, only animated to move left and right
 		CDonkeyKong dk;
+
+
+		SDL_Surface* Surf_Highscore ;
+		TTF_Font* font ;
+		SDL_Color textColor ;	
+		string hsString ;
+		int score ;
+
+		
+		SDL_Surface* Surf_Title ;
+		SDL_Surface* Surf_Start ;
+		string menuTitle ;
+		string menuStart ;
+
 
 		// Music
 		Mix_Music *theme ;
@@ -68,10 +76,10 @@ class CApp {
 		Mix_Chunk *burns ;
 		Mix_Chunk *hurts ;
 
-		string hsString ;
-		int score ;
+
 
 		//int fallCount ;	//used to determine if mario fell too far
+
 
 
 } ;

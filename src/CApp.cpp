@@ -35,6 +35,11 @@ int CApp::OnExecute() {
        		return 1;
         }
 	SDL_Event Event ;
+
+	//start up screen implementation
+	while( OnStartup(&Event) && running ){
+	}
+
 	while(running) {
 		fps.start() ;
 		while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue

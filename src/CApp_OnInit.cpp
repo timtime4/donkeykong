@@ -79,6 +79,26 @@ int CApp::OnInit() {
 
 
 
+
+
+	//////////FONT INITIALIZATION//////////
+	if(TTF_Init() < 0){
+		 cout << "TTF_Init() fail" << endl ; 
+		return 0 ;
+	}
+	font = TTF_OpenFont("bauhs93.ttf", 20) ;
+	if(font == NULL) {
+		cout << "Font did not open" << endl ; 
+		return 0 ;
+	}
+
+	//////////STARTUP FONT INITIALIZATION//////////
+	menuTitle = "Donkey Kong" ;
+	menuStart = "START" ;
+
+	Surf_Title = TTF_RenderText_Solid(font, menuTitle.c_str(), textColor) ;
+	Surf_Start = TTF_RenderText_Solid(font, menuStart.c_str(), textColor) ;
+
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
 		
 		//open from file .highscore in src directory
@@ -90,15 +110,7 @@ int CApp::OnInit() {
 	//string hsString ;
 	getline(hsFile, hsString) ;	//reads line of file into line variable
 
-	if(TTF_Init() < 0){
-		 cout << "TTF_Init() fail" << endl ; 
-		return 0 ;
-	}
-	font = TTF_OpenFont("bauhs93.ttf", 20) ;
-	if(font == NULL) {
-		cout << "Font did not open" << endl ; 
-		return 0 ;
-	}
+
 	Surf_Highscore = TTF_RenderText_Solid(font, hsString.c_str(), textColor);
 
 	return 1 ;	//all initialization succeeded

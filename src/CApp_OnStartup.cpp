@@ -7,8 +7,8 @@
 #include "CApp.h"
 
 int CApp::OnStartup(SDL_Event* Event) {
-	CSurface::OnDraw(Surf_Display, Surf_Title, 200 , 100) ;
-	CSurface::OnDraw(Surf_Display, Surf_Start, 220, 350) ;
+
+	CSurface::OnDraw(Surf_Display, Surf_Menu, 0, 0) ;
 	SDL_Flip(Surf_Display) ;	//update screen
 
 	while(SDL_PollEvent(Event)) {	
@@ -18,7 +18,7 @@ int CApp::OnStartup(SDL_Event* Event) {
 		}
 		if(Event->type == SDL_MOUSEBUTTONDOWN) {
 			//check for location of click
-			return 0 ;
+			if( (Event->button.x > MENU_START_X) && (Event->button.x < MENU_START_X+MENU_START_WIDTH) && (Event->button.y > MENU_START_Y) && (Event->button.y < MENU_START_Y+MENU_START_HEIGHT) ) return 0 ;
 		}
 	}
 	return 1 ;

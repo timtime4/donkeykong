@@ -17,6 +17,8 @@ CApp::CApp() {		//initialize private data members
 	burns = NULL ;
 	hurts = NULL ;
 
+	Surf_Menu = NULL ;
+
 	font = NULL ;
 	Surf_Highscore = NULL ;
 	textColor = {255, 0, 0} ;

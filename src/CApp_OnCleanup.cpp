@@ -19,7 +19,10 @@ void CApp::OnCleanup() {
 	SDL_FreeSurface(Surf_bgObjs) ;
 	bgObjs.clear() ;
 
+	SDL_FreeSurface(Surf_Menu) ;
+
 	SDL_FreeSurface(Surf_Highscore) ;
+
 
 	Mix_FreeChunk ( burns );		// Free the sound effects
 	Mix_FreeChunk ( hurts );

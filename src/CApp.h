@@ -62,12 +62,7 @@ class CApp {
 		string hsString ;
 		int score ;
 
-		
-		SDL_Surface* Surf_Title ;
-		SDL_Surface* Surf_Start ;
-		string menuTitle ;
-		string menuStart ;
-
+		SDL_Surface* Surf_Menu ;	//surface for displaying start up menu screen
 
 		// Music
 		Mix_Music *theme ;

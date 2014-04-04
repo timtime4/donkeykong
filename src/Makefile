@@ -12,7 +12,7 @@ CApp_OnInit.o: CApp_OnInit.cpp CApp.h CSurface.h CEntity.h CMario.h StaticObj.h 
 CApp_OnInit_Staic.o:  CApp_OnInit_Static.cpp CApp.h CSurface.h CEntity.h CMario.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
 	g++ -c CApp_OnInit_Static.cpp
 
-CApp_OnStartup.o:  CApp_OnStartup.o CApp.h CSurface.h CEntity.h CMario.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
+CApp_OnStartup.o:  CApp_OnStartup.cpp CApp.h CSurface.h CEntity.h CMario.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
 	g++ -c CApp_OnStartup.cpp
 
 CApp_OnEvent.o: CApp_OnEvent.cpp CApp.h CSurface.h CEntity.h CMario.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h

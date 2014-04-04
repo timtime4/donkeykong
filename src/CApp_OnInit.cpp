@@ -73,12 +73,13 @@ int CApp::OnInit() {
         entityList.push_back(&dk) ;
 
 
-
-
 	//////////BARREL INITIALIZATION//////////
 
 
 
+	//////////STARTUP SCREEN INITIALIZATION//////////
+	Surf_Menu = CSurface::OnLoad("imgFiles/menu.png") ;
+	if(Surf_Menu == NULL) return 0 ;
 
 
 	//////////FONT INITIALIZATION//////////
@@ -92,12 +93,7 @@ int CApp::OnInit() {
 		return 0 ;
 	}
 
-	//////////STARTUP FONT INITIALIZATION//////////
-	menuTitle = "Donkey Kong" ;
-	menuStart = "START" ;
 
-	Surf_Title = TTF_RenderText_Solid(font, menuTitle.c_str(), textColor) ;
-	Surf_Start = TTF_RenderText_Solid(font, menuStart.c_str(), textColor) ;
 
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
 		

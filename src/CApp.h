@@ -63,6 +63,8 @@ class CApp {
 		int score ;
 
 		SDL_Surface* Surf_Menu ;	//surface for displaying start up menu screen
+		SDL_Surface* Surf_Controls ;
+		int displayControls ;		//when true, start up screen displays the controls needed to play the game 
 
 		// Music
 		Mix_Music *theme ;
@@ -70,8 +72,6 @@ class CApp {
 		Mix_Chunk *jumps ;
 		Mix_Chunk *burns ;
 		Mix_Chunk *hurts ;
-
-
 
 		//int fallCount ;	//used to determine if mario fell too far
 

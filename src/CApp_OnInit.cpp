@@ -78,9 +78,10 @@ int CApp::OnInit() {
 
 
 	//////////STARTUP SCREEN INITIALIZATION//////////
-	Surf_Menu = CSurface::OnLoad("imgFiles/menu.png") ;
+	Surf_Menu = CSurface::OnLoad("imgFiles/menu2.png") ;
 	if(Surf_Menu == NULL) return 0 ;
-
+	Surf_Controls = CSurface::OnLoad("imgFiles/controls.png") ;
+	if(Surf_Controls == NULL) return 0 ;
 
 	//////////FONT INITIALIZATION//////////
 	if(TTF_Init() < 0){

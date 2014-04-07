@@ -18,6 +18,8 @@ CApp::CApp() {		//initialize private data members
 	hurts = NULL ;
 
 	Surf_Menu = NULL ;
+	Surf_Controls = NULL ;
+	displayControls = 0 ;
 
 	font = NULL ;
 	Surf_Highscore = NULL ;

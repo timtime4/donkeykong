@@ -6,10 +6,14 @@
 #define WINDOW_WIDTH 480 
 
 
-#define MENU_START_X 160
-#define MENU_START_Y 360
-#define MENU_START_WIDTH 160
-#define MENU_START_HEIGHT 60
+#define MENU_START_X 180	//160 for menu.png
+#define MENU_START_Y 320	//360 for menu.png
+#define MENU_START_WIDTH 120	//160 for menu.png
+#define MENU_START_HEIGHT 60	//60 for menu.png
+#define MENU_CONTROLS_X 140
+#define MENU_CONTROLS_Y 400
+#define MENU_CONTROLS_WIDTH 200
+#define MENU_CONTROLS_HEIGHT 60
 
 
 #define PLATFORM_WIDTH 60

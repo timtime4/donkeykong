@@ -34,8 +34,8 @@
 #define MARIO_START_Y 525
 
 
-#define FIRE_WIDTH 14
-#define FIRE_HEIGHT 27
+#define FIRE_WIDTH 21
+#define FIRE_HEIGHT 19
 
 #define FIRE_RIGHT 0
 #define FIRE_LEFT 1

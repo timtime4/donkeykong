@@ -43,7 +43,7 @@ void CMario::OnLoop() {
 
 	//change location based on velocities
 	x += xVel;			// Move mario left or right
-        if(state != MARIO_CLIMBING) y+= yVel + yGravityVel ;      //add in gravity if mario is not climbing               
+    if(state != MARIO_CLIMBING) y+= yVel + yGravityVel ;  	//add gravity if mario isn't climbing               
 	else y += yVel ;			// Move mario up or down
 	
 	//check boundary conditions

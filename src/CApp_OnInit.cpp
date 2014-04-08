@@ -65,12 +65,19 @@ int CApp::OnInit() {
 	entityList.push_back(&peach) ;
 
 
-        ////////DONKEY KONG INITIALIZATION////////
-        if(dk.OnLoad("imgFiles/dk.bmp") == 0) {
-                cout << "donkey kong didn't load" << endl ;
-                return 0 ;
-        }
-        entityList.push_back(&dk) ;
+    ////////DONKEY KONG INITIALIZATION////////
+    if(dk.OnLoad("imgFiles/dk.bmp") == 0) {
+            cout << "donkey kong didn't load" << endl ;
+            return 0 ;
+    }
+    entityList.push_back(&dk) ;
+
+	/////////FIRE INITIALIZATION////////////
+	if(fire.OnLoad("imgFiles/fire.bmp") == 0){
+		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl;
+		return 0;
+	}
+	entityList.push_back(&fire);
 
 
 	//////////BARREL INITIALIZATION//////////

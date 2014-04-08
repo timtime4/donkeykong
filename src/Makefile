@@ -1,7 +1,7 @@
 all: CApp
 
-CApp:  CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnStartup.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o CPeach.o CDonkeyKong.o
-	g++ CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnStartup.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o CPeach.o CDonkeyKong.o -o CApp -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
+CApp:  CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnStartup.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o CPeach.o CDonkeyKong.o CFire.o
+	g++ CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnStartup.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o CPeach.o CDonkeyKong.o CFire.o -o CApp -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
 
 CApp.o:  CApp.cpp CApp.h CSurface.h CEntity.h CMario.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
 	g++ -c CApp.cpp
@@ -50,6 +50,9 @@ CMario.o:  CMario.cpp CMario.h CEntity.h CSurface.h Define.h
 
 CPeach.o:  CPeach.cpp CPeach.h CEntity.h CMario.h CSurface.h Define.h
 	g++ -c CPeach.cpp
+
+CFire.o:  CFire.cpp CFire.h CEntity.h CMario.h CSurface.h Define.h
+	g++ -c CFire.cpp
 
 CDonkeyKong.o: CDonkeyKong.cpp CDonkeyKong.h CEntity.h CMario.h CSurface.h Define.h
 	g++ -c CDonkeyKong.cpp

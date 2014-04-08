@@ -29,3 +29,18 @@ int Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to 
 	return 0 ;		
 
 }
+
+int Platform::fireIsCollision(CFire& fire) {
+	//collision with ground -- also moves fire up when platform height moves up for slant
+	if( (fire.getX() < this->x + this->width) && 
+		(fire.getX() + fire.getWidth() > this->x) &&
+		(fire.getY() + fire.getHeight() > this->y) &&
+		(fire.getY() + fire.getHeight() -4 < this->y) )
+	{
+		fire.setY(this->y - fire.getHeight());		
+		fire.setPlatformCollide(1);
+		return 1;
+	}
+
+	return 0;
+}

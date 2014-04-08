@@ -20,3 +20,7 @@ int Ladder::IsCollision(CMario& mario) {
 
 	return 0 ;
 }
+
+int Ladder::fireIsCollision(CFire& fire){
+ 	return 1;
+}

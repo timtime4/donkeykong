@@ -14,14 +14,20 @@ void CApp::OnCleanup() {
 		if(!entityList[i]) continue ;
 		entityList[i]->OnCleanup() ;
 	}
+
 	entityList.clear() ;
+
 	
 	SDL_FreeSurface(Surf_bgObjs) ;
+
 	bgObjs.clear() ;
+
 
 	SDL_FreeSurface(Surf_Menu) ;
 
+
 	SDL_FreeSurface(Surf_Highscore) ;
+
 
 
 	Mix_FreeChunk ( burns );		// Free the sound effects
@@ -29,7 +35,11 @@ void CApp::OnCleanup() {
 	Mix_FreeChunk ( jumps );
 	Mix_FreeMusic ( theme );		// Free the music
 
+
+
 	Mix_CloseAudio();			// Quit SDL_mixer
+	
+
 
 	SDL_Quit() ; 
 }

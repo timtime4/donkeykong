@@ -21,6 +21,13 @@ void CApp::OnLoop() {
 		dummy = bgObjs[i]->IsCollision(mario) ;			
 	}
 
+	int dummy2;
+	//Repeat same collision process with fire
+	fire.setPlatformCollide(0) ;
+	for (int it = 0 ; it < bgObjs.size() ; it++) {
+		dummy2 = bgObjs[it]->fireIsCollision(fire) ;			
+	}
+
 
 	//set mario state
 	if(!mario.getLadderCollide()) {
@@ -42,8 +49,12 @@ void CApp::OnLoop() {
 		mario.setState(MARIO_CLIMBING) ;
 	}
 
-
-
+	
+	//check mario and fire collision
+	if(fire.IsCollision(mario)){
+		running = 0;
+		cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;
+	}
 
 	//check peach collision
 	if(peach.IsCollision(mario)) {

@@ -91,7 +91,7 @@ void CFire::set_clips(){		// Clip the fire sprites
 
 
 int CFire::IsCollision(CMario& mario) {
-	//returns true upon collision with CMario object, indicates DEFEAT muh ha ha ha
+	//returns true upon collision with CMario object, indicates winning of level
 	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) &&
 		(mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) )
 	{

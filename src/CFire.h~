@@ -38,7 +38,7 @@ class CFire : public CEntity {
 		int getPlatformCollide() ;
 		void setPlatformCollide(int) ;
 
-		int IsCollision(CMario&) ;	//checks for the collision between mario and the fire
+		int IsCollision(CMario&) ;
 	
 	private:
 		fireState state ;	//defined by enum fireState above

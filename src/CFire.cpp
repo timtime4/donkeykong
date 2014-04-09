@@ -17,7 +17,7 @@ CFire::CFire() {
 	width = FIRE_WIDTH ;
 	height = FIRE_HEIGHT ;
 
-	xVel = 3;
+	xVel = 1.5;
 
 	platformCollide = 0 ;
 	ladderCollide = 0 ;
@@ -25,17 +25,15 @@ CFire::CFire() {
 
 void CFire::OnLoop() {
 	//change location based on velocities
-
-
 	x += xVel;			// Move FIRE left or right
 
-    if(state != FIRE_CLIMBING) y += yVel + yGravityVel ;      	//add in gravity if FIRE is not climbing               
+    if(state != FIRE_CLIMBING) y += yVel + yGravityVel ;      
 	else y += yVel ;	// Move FIRE up or down
 	
 	if((x < 0) || (x + FIRE_WIDTH > WINDOW_WIDTH)) xVel = -xVel; //if fire hits either side wall, change direction of velocity
 
 	
-	if( ( y < 0 ) || ( y + FIRE_HEIGHT > WINDOW_HEIGHT ) ){		// If FIRE moves too far up or down
+	if( ( y < 0 ) || ( y + FIRE_HEIGHT > WINDOW_HEIGHT ) ){	// If FIRE moves too far up or down
         	y -= yVel;		// Move Fire back
 	}
 
@@ -101,6 +99,16 @@ int CFire::IsCollision(CMario& mario) {
 
 }
 
+int CFire::wheresMarioX(CMario& mario){
+	if( (mario.getX() - 15 > this->x) && (this->xVel < 0) ){
+		this->xVel *= -1;
+	}
+	else if( (mario.getX() + 15 < this->x) && (this->xVel > 0) ) this->xVel *= -1;
+}
+
+int CFire::wheresMarioY(CMario& mario){
+	return mario.getY();
+}
 
 int CFire::getState() {
 	return state ;

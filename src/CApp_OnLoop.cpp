@@ -7,6 +7,7 @@
 #include "CApp.h"
 
 void CApp::OnLoop() {
+	int fireChangeDirection = 0;
 
 	for (int i = 0 ; i < entityList.size() ; i++) {		//loops through all entities (including mario)
 		if(!entityList[i]) continue ;	//NULL pointer check
@@ -25,7 +26,7 @@ void CApp::OnLoop() {
 	//Repeat same collision process with fire
 	fire.setPlatformCollide(0) ;
 	for (int it = 0 ; it < bgObjs.size() ; it++) {
-		dummy2 = bgObjs[it]->fireIsCollision(fire) ;			
+		dummy2 = bgObjs[it]->fireIsCollision(fire);			
 	}
 
 
@@ -49,7 +50,9 @@ void CApp::OnLoop() {
 		mario.setState(MARIO_CLIMBING) ;
 	}
 
-	
+	fire.wheresMarioX(mario);
+
+
 	//check mario and fire collision
 	if(fire.IsCollision(mario)){
 		running = 0;

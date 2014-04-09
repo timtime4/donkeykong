@@ -27,16 +27,19 @@ class CFire : public CEntity {
 		virtual void OnLoop() ;
 		virtual void OnRender(SDL_Surface* Surf_Display) ;
 
-		void set_clips() ;
+		void set_clips();
 
-		int getState() ;
-		void setState(fireState) ;
+		int getState();
+		void setState(fireState);
 
-		int getLadderCollide() ;
+		int getLadderCollide();
 		void setLadderCollide(int) ;
 
 		int getPlatformCollide() ;
 		void setPlatformCollide(int) ;
+
+		int wheresMarioX(CMario&);
+		int wheresMarioY(CMario&);
 
 		int IsCollision(CMario&) ;	//checks for the collision between mario and the fire
 	

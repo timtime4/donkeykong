@@ -26,7 +26,7 @@ CApp::CApp() {		//initialize private data members
 	textColor = {255, 0, 0} ;
 
 	score = 0 ;
-	//fallCount = 0 ;
+	dyingCount = 0 ;
 
 }
 

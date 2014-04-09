@@ -75,7 +75,7 @@ class CApp {
 		Mix_Chunk *burns ;
 		Mix_Chunk *hurts ;
 
-		//int fallCount ;	//used to determine if mario fell too far
+		int dyingCount ;
 
 
 

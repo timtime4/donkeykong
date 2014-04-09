@@ -31,32 +31,39 @@ void CApp::OnLoop() {
 
 
 	//set mario state
-	if(!mario.getLadderCollide()) {
-		if(!mario.getPlatformCollide()) {
-			mario.setState(MARIO_JUMPING) ;
-			/*fallCount++ ;
-			if(fallCount > 50){
-				running = 0 ;
-				cout << "Mario fell too far. You lose." << endl ;
-			}*/
+	if(mario.getState()!=MARIO_HURTING) {
+		if(!mario.getLadderCollide()) {
+			if(!mario.getPlatformCollide()) {
+				mario.setState(MARIO_JUMPING) ;
+			}
+			else {
+				mario.setState(MARIO_WALKING) ;	//mario in walking state with platform collision and no ladder collision
+			}
 		}
 		else {
-			//fallCount = 0 ;	//reset fallCount
-			mario.setState(MARIO_WALKING) ;	//mario in walking state with platform collision and no ladder collision
+			mario.setState(MARIO_CLIMBING) ;
 		}
-	}
-	else {
-		//fallCount = 0 ;
-		mario.setState(MARIO_CLIMBING) ;
 	}
 
 	fire.wheresMarioX(mario);
 
 
 	//check mario and fire collision
-	if(fire.IsCollision(mario)){
-		running = 0;
-		cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;
+	if(fire.IsCollision(mario) && mario.getState()!=MARIO_HURTING) {
+		--mario ;
+		mario.setState(MARIO_HURTING) ;	
+		mario.setXVel(0) ;
+		mario.setYVel(0) ;
+		dyingCount = 0 ;
+	}
+
+	dyingCount++ ;	//used to determine if enough time has passed with mario hurting to reset the level 
+	if(mario.getState()==MARIO_HURTING && dyingCount > 50) {
+		cout << mario.getLives() << endl ;
+		if(mario.getLives() == 0) {
+			running = 0 ;
+			cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
+		} else 	mario.reset() ;
 	}
 
 	//check peach collision

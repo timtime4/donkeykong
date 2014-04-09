@@ -50,7 +50,7 @@ int CApp::OnInit() {
 	}
 
 	//////////MARIO INITIALIZATION//////////
-	if(mario.OnLoad("imgFiles/mar2.bmp") == 0) {
+	if(mario.OnLoad("imgFiles/mar.bmp") == 0) {
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}

@@ -13,12 +13,12 @@ int CApp::OnInit() {
 		cout << "SDL_Init fail" << endl ;
 		return 0 ;	//if set up failed
 	}
+
 	
 	//////////AUDIO INITIALIZATION//////////
 	if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1){
 		printf("Sound Mixer Initialization Error");
 	}
-
 	//load music files
 	theme = Mix_LoadMUS( "wavFiles/theme.wav" );
 	if ( theme == NULL ){
@@ -31,6 +31,7 @@ int CApp::OnInit() {
 		printf("Error: Sound Clip Load Error.");
 	}
 
+
 	//////////WINDOW INITIALIZATION//////////
 	Surf_Display = SDL_SetVideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF) ;	
 	if(Surf_Display == NULL) {
@@ -40,14 +41,15 @@ int CApp::OnInit() {
 
 	SDL_WM_SetCaption("Donkey Kong", NULL) ;	//window caption
 
-	///////////MARIO EVENTS BEHAVIOR///////////
-	if(SDL_EnableKeyRepeat(50, 50)) return 0 ;
-
 	//////////STATIC OBJECT INTIIALIZATION//////////
 	if(!OnInit_Static()) {
 		cout << "OnInit_Static() fail" << endl ;
 		return 0 ;
 	}
+
+
+	///////////MARIO EVENTS BEHAVIOR///////////
+	if(SDL_EnableKeyRepeat(50, 50)) return 0 ;
 
 	//////////MARIO INITIALIZATION//////////
 	if(mario.OnLoad("imgFiles/mar2.bmp") == 0) {
@@ -55,7 +57,11 @@ int CApp::OnInit() {
 		return 0 ;
 	}
 	entityList.push_back(&mario) ;
-	
+
+	///////////MARIO LIVES DISPLAY INIT//////////
+	Surf_Lives = CSurface::OnLoad("imgFiles/marLife2.png") ;
+	if(Surf_Lives == NULL) return 0 ;
+
 
 	//////////PEACH INITIALIZATION//////////
 	if(peach.OnLoad("imgFiles/peach.jpg") == 0) {
@@ -65,12 +71,13 @@ int CApp::OnInit() {
 	entityList.push_back(&peach) ;
 
 
-    ////////DONKEY KONG INITIALIZATION////////
-    if(dk.OnLoad("imgFiles/dk.bmp") == 0) {
-            cout << "donkey kong didn't load" << endl ;
-            return 0 ;
-    }
-    entityList.push_back(&dk) ;
+	////////DONKEY KONG INITIALIZATION////////
+	if(dk.OnLoad("imgFiles/dk.bmp") == 0) {
+		cout << "donkey kong didn't load" << endl ;
+		return 0 ;
+	}
+	entityList.push_back(&dk) ;
+
 
 	/////////FIRE INITIALIZATION////////////
 	if(fire.OnLoad("imgFiles/fire.bmp") == 0){
@@ -90,6 +97,7 @@ int CApp::OnInit() {
 	Surf_Controls = CSurface::OnLoad("imgFiles/controls.png") ;
 	if(Surf_Controls == NULL) return 0 ;
 
+
 	//////////FONT INITIALIZATION//////////
 	if(TTF_Init() < 0){
 		 cout << "TTF_Init() fail" << endl ; 
@@ -102,18 +110,14 @@ int CApp::OnInit() {
 	}
 
 
-
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
-		
 		//open from file .highscore in src directory
 		//in form-> HIGHSCORE: xxxx, this will be read into a string and printed to the screen
-	
 	ifstream hsFile;
 	hsFile.open(".highscore") ;
 	if(hsFile.fail()) return 0 ;
 	//string hsString ;
 	getline(hsFile, hsString) ;	//reads line of file into line variable
-
 
 	Surf_Highscore = TTF_RenderText_Solid(font, hsString.c_str(), textColor);
 

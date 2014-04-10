@@ -77,6 +77,8 @@ class CApp {
 
 		int dyingCount ;
 
+		SDL_Surface* Surf_Lives ;
+
 
 
 } ;

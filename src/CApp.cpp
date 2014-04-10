@@ -27,6 +27,8 @@ CApp::CApp() {		//initialize private data members
 
 	score = 0 ;
 	dyingCount = 0 ;
+	
+	Surf_Lives = NULL ;
 
 }
 

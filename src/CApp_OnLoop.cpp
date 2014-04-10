@@ -55,11 +55,11 @@ void CApp::OnLoop() {
 		mario.setXVel(0) ;
 		mario.setYVel(0) ;
 		dyingCount = 0 ;
-	}
+		Mix_PlayChannel(-1, burns, 0) ;	// Play burn sound effect
+	}							
 
 	dyingCount++ ;	//used to determine if enough time has passed with mario hurting to reset the level 
 	if(mario.getState()==MARIO_HURTING && dyingCount > 50) {
-		cout << mario.getLives() << endl ;
 		if(mario.getLives() == 0) {
 			running = 0 ;
 			cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
@@ -71,7 +71,8 @@ void CApp::OnLoop() {
 		running = 0 ;
 		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
 		//probably want to do some more stuff
-
+		//celebration music?
+		//YOU WIN!!! screen
 	}
 
 }

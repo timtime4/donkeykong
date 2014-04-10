@@ -55,7 +55,7 @@ void CMario::OnLoop() {
 	}
 
 	//increment animation frame
-	if(xVel!= 0 || yVel != 0) frame++ ;
+	if(xVel!= 0 || yVel != 0 || state == MARIO_HURTING) frame++ ;
 
 }
 

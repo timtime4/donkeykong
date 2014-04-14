@@ -88,7 +88,11 @@ int CApp::OnInit() {
 
 
 	//////////BARREL INITIALIZATION//////////
-
+        if(barrel.OnLoad("imgFiles/barrel.bmp") == 0){
+                cout << "CApp_OnInit.cpp: Error - barrel.bmp did not load" << endl;
+                return 0;
+        }
+        entityList.push_back(&barrel);
 
 
 	//////////STARTUP SCREEN INITIALIZATION//////////

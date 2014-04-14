@@ -44,3 +44,18 @@ int Platform::fireIsCollision(CFire& fire) {
 
 	return 0;
 }
+
+int Platform::barrelIsCollision(CBarrel& barrel) {
+        if( (barrel.getX() < this->x + this->width) &&
+                (barrel.getX() + barrel.getWidth() > this->x) &&
+                (barrel.getY() + barrel.getHeight() > this->y) &&
+                (barrel.getY() + barrel.getHeight() -4 < this->y) )
+        {
+                barrel.setY(this->y - barrel.getHeight());
+                barrel.setPlatformCollide(1);
+                return 1;
+        }
+
+        return 0;
+}
+

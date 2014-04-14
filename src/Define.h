@@ -34,8 +34,8 @@
 #define MARIO_START_Y 525
 
 
-#define FIRE_WIDTH 12
-#define FIRE_HEIGHT 14
+#define FIRE_WIDTH 13
+#define FIRE_HEIGHT 12
 
 #define FIRE_RIGHT 0
 #define FIRE_LEFT 1
@@ -43,6 +43,18 @@
 #define FIRE_START_X 300
 #define FIRE_START_Y 525
 
+
+#define BARREL_WIDTH 13
+#define BARREL_HEIGHT 12
+
+#define BARREL_RIGHT 0
+#define BARREL_LEFT 1
+
+#define BARREL_START_X 100
+#define BARREL_START_Y 100
+
+#define BARREL_LEFT_LIMIT 200
+#define BARREL_RIGHT_LIMIT 260
 
 #define PEACH_WIDTH 28
 #define PEACH_HEIGHT 38

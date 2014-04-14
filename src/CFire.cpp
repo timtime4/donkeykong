@@ -69,21 +69,14 @@ void CFire::OnRender(SDL_Surface* Surf_Display) {
 }  //end OnRender
 
 void CFire::set_clips(){		// Clip the fire sprites
+	int i;
 
-	clips[0].x = 0;
-	clips[0].y = 0;
-	clips[0].w = FIRE_WIDTH;
-	clips[0].h = FIRE_HEIGHT;
-
-    clips[1].x = FIRE_WIDTH;
-    clips[1].y = 0;
-    clips[1].w = FIRE_WIDTH;
-    clips[1].h = FIRE_HEIGHT;
-
-    clips[2].x = FIRE_WIDTH * 2;
-    clips[2].y = 0;
-    clips[2].w = FIRE_WIDTH;
-    clips[2].h = FIRE_HEIGHT;
+	for (i = 0; i <= 2; i++){
+		clips[i].x = FIRE_WIDTH*i;
+		clips[i].y = 0;
+		clips[i].w = FIRE_WIDTH;
+		clips[i].h = FIRE_HEIGHT;
+	}
 
 }
 

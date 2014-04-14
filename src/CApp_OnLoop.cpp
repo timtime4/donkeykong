@@ -29,6 +29,13 @@ void CApp::OnLoop() {
 		dummy2 = bgObjs[it]->fireIsCollision(fire);			
 	}
 
+        int dummy3;
+        // Repeat same collision process with barrel
+        barrel.setPlatformCollide(0) ;
+        for (int it = 0 ; it < bgObjs.size() ; it++) {
+                dummy3 = bgObjs[it]->barrelIsCollision(barrel);
+        }
+
 
 	//set mario state
 	if(mario.getState()!=MARIO_HURTING) {
@@ -56,7 +63,17 @@ void CApp::OnLoop() {
 		mario.setYVel(0) ;
 		dyingCount = 0 ;
 		Mix_PlayChannel(-1, burns, 0) ;	// Play burn sound effect
-	}							
+	}				
+
+	// mario and barrel collision
+        if(barrel.IsCollision(mario) && mario.getState()!=MARIO_HURTING) {
+                --mario ;
+                mario.setState(MARIO_HURTING) ;
+                mario.setXVel(0) ;
+                mario.setYVel(0) ;
+                dyingCount = 0 ;
+                Mix_PlayChannel(-1, hurts, 0) ; // Play hit by barrel sound effect
+	}	
 
 	dyingCount++ ;	//used to determine if enough time has passed with mario hurting to reset the level 
 	if(mario.getState()==MARIO_HURTING && dyingCount > 50) {

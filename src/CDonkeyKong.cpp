@@ -23,7 +23,7 @@ void CDonkeyKong::OnLoop() {
 		if(!moved) {
 	#endif
 		frame++ ;
-		if(frame >= 30) frame = 0 ;	//only 2 frames per direction
+		if(frame >= 30) frame = 0 ;
 
 	#if SLOWED
 		moved = 1 ;	//changed for next time through OnLoop()

@@ -24,3 +24,7 @@ int Ladder::IsCollision(CMario& mario) {
 int Ladder::fireIsCollision(CFire& fire){
  	return 1;
 }
+
+int Ladder::barrelIsCollision(CBarrel& barrel){
+        return 1;
+}

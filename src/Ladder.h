@@ -13,6 +13,7 @@ class Ladder : public StaticObj {
 		Ladder(int = 0 , int = 0 , int = 0 , int = 0 ) ;
 		virtual int IsCollision(CMario&) ;
 		virtual int fireIsCollision(CFire&);
+		virtual int barrelIsCollision(CBarrel&);
 
 	private:
 

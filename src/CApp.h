@@ -16,6 +16,7 @@
 #include "CPeach.h"
 #include "CDonkeyKong.h"
 #include "CFire.h"
+#include "CBarrel.h"
 #include "StaticObj.h"
 #include "Ladder.h"	
 #include "Platform.h"
@@ -56,6 +57,7 @@ class CApp {
 		CPeach peach ;	//peach entity object, only animated to move left and right
 		CDonkeyKong dk;
 		CFire fire;
+		CBarrel barrel;
 
 
 		SDL_Surface* Surf_Highscore ;

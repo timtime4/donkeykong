@@ -36,6 +36,7 @@ class CApp {
 		int OnInit() ;
 		int OnStartup(SDL_Event* Event) ;
 		int OnEvent(SDL_Event* Event) ;
+		int OnGameover(SDL_Event* Event) ;				
 		void OnLoop() ;
 		void OnRender() ;
 		void OnCleanup() ;
@@ -45,6 +46,7 @@ class CApp {
 		
 		SDL_Surface* Surf_Display ;	//"blank piece of paper"
 		int running ;	//condition for while loop
+		int game ;	//condition for bigger while loop (can keep playing games even after gameover)
 		CTimer fps ;	//timer object
 
 		SDL_Surface* Surf_bgObjs ;
@@ -68,6 +70,7 @@ class CApp {
 
 		SDL_Surface* Surf_Menu ;	//surface for displaying start up menu screen
 		SDL_Surface* Surf_Controls ;
+		SDL_Surface* Surf_Gameover ;
 		int displayControls ;		//when true, start up screen displays the controls needed to play the game 
 
 		// Music

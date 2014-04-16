@@ -100,7 +100,10 @@ int CApp::OnInit() {
 	if(Surf_Menu == NULL) return 0 ;
 	Surf_Controls = CSurface::OnLoad("imgFiles/controls.png") ;
 	if(Surf_Controls == NULL) return 0 ;
-
+	
+	//////////GAMEOVER SCREEN INITIALIZATION//////////
+	Surf_Gameover = CSurface::OnLoad("imgFiles/gameover.png") ;
+	if(Surf_Gameover == NULL) return 0 ;
 
 	//////////FONT INITIALIZATION//////////
 	if(TTF_Init() < 0){

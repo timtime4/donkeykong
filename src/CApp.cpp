@@ -8,6 +8,7 @@
 
 CApp::CApp() {		//initialize private data members
 	running = 1 ;
+	game = 1;
 
 	Surf_Display = NULL ;
 	Surf_bgObjs = NULL ;
@@ -19,6 +20,7 @@ CApp::CApp() {		//initialize private data members
 
 	Surf_Menu = NULL ;
 	Surf_Controls = NULL ;
+	Surf_Gameover = NULL ;
 	displayControls = 0 ;
 
 	font = NULL ;
@@ -45,20 +47,24 @@ int CApp::OnExecute() {
 	//start up screen implementation
 	while( OnStartup(&Event) && running ){
 	}
-
-	while(running) {
-		fps.start() ;
-		while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
-			if(!OnEvent(&Event)) {
-				OnCleanup() ;
-				return 1 ;
-			}
+	
+	while(game) {
+		while(running) {
+			fps.start() ;
+			while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
+				if(!OnEvent(&Event)) {
+					OnCleanup() ;
+					return 1 ;
+				}
 		
+			}
+			OnLoop() ;	//updates all data
+			OnRender() ;	//displays updated screen
+			if(fps.get_ticks() < 1000 / FRAMES_PER_SECOND) {	//caps frame rate
+				SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
+			}
 		}
-		OnLoop() ;	//updates all data
-		OnRender() ;	//displays updated screen
-		if(fps.get_ticks() < 1000 / FRAMES_PER_SECOND) {	//caps frame rate
-			SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
+		while ( OnGameover(&Event) ){
 		}
 	}
 

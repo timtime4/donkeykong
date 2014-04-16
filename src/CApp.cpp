@@ -64,6 +64,9 @@ int CApp::OnExecute() {
 				SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
 			}
 		}
+		if(game == 0) break ;
+		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
+		SDL_Flip(Surf_Display) ;
 		while ( OnGameover(&Event) ){
 		}
 	}

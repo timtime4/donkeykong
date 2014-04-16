@@ -8,7 +8,7 @@
 
 CMario::CMario() {
 	set_clips() ;
-	lives = 3 ;
+	lives = 1 ;
 
 	x = MARIO_START_X ;
 	y = MARIO_START_Y;

@@ -8,8 +8,6 @@
 
 int CApp::OnGameover(SDL_Event* Event) {
 
-	CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
-
 	while(SDL_PollEvent(Event)) {	
 		if(Event->type == SDL_QUIT) {
 			game = 0 ; //finishes game
@@ -28,6 +26,5 @@ int CApp::OnGameover(SDL_Event* Event) {
 		}
 	}
 
-	SDL_Flip(Surf_Display) ;	//update screen
 	return 1 ;
 }

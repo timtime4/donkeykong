@@ -67,6 +67,7 @@ class CApp {
 		SDL_Color textColor ;	
 		string hsString ;
 		int score ;
+		int gotPoints ;		//counter to restrict mario's ability to get points (instead of constant stream of points as jumps over), will only get points for jumping over an obstacle when = 0
 
 		SDL_Surface* Surf_Menu ;	//surface for displaying start up menu screen
 		SDL_Surface* Surf_Controls ;

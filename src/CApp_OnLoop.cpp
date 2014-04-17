@@ -66,17 +66,26 @@ void CApp::OnLoop() {
 	}				
 
 	// mario and barrel collision
-        if(barrel.IsCollision(mario) && mario.getState()!=MARIO_HURTING) {
+        if(barrel.IsCollision(mario) == 1 && mario.getState()!=MARIO_HURTING) {
                 --mario ;
                 mario.setState(MARIO_HURTING) ;
                 mario.setXVel(0) ;
                 mario.setYVel(0) ;
                 dyingCount = 0 ;
                 Mix_PlayChannel(-1, hurts, 0) ; // Play hit by barrel sound effect
-	}	
+	} else if (barrel.IsCollision(mario) == 2 && mario.getState()==MARIO_JUMPING && gotPoints==0) {	
+		gotPoints++ ;
+		score+= 200 ;
+		cout << score << endl ;
+	}
+//restrict mario's points gain to once over each obstacle, the counter takes 25 seconds to restart (enough time for mario to jump entirely over barrel), at which point mario can get receive points again
+	if(gotPoints > 0) {
+		gotPoints++ ;		//counter for gotPoints reset (25 loops)
+		if(gotPoints > 25) gotPoints = 0 ;	
+	}
 
 	dyingCount++ ;	//used to determine if enough time has passed with mario hurting to reset the level 
-	if(mario.getState()==MARIO_HURTING && dyingCount > 50) {
+	if(mario.getState()==MARIO_HURTING && dyingCount > 30) {
 		if(mario.getLives() == 0) {
 			running = 0 ;
 			cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	

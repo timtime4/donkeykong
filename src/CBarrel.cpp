@@ -85,11 +85,14 @@ int CBarrel::IsCollision(CMario& mario) {
 	{
 		return 1 ;
 	}*/
+
+
+	//returns 1 if collision with CMario object, returns 2 if mario jumps over within a close enough y range
 	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
 		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
 			return 1 ;	//indicates collision with barrel and death of mario
-		} else if ( (mario.getY() + mario.getHeight() < this->y) && (mario.getY() > this->y - 40) ) {
-			return 2 ;	//indicates mario jumpint over barrel
+		} else if ( (mario.getY()+mario.getHeight() < this->y) && (mario.getY()+mario.getHeight() > this->y - 25) ) {
+			return 2 ;	//indicates mario jumping over barrel
 		}
 	} 
 

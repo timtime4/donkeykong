@@ -55,46 +55,61 @@ void CApp::OnLoop() {
 	fire.wheresMarioX(mario);
 
 
+	//GLITCH -- STILL GET POINTS IF JUMP AND FALL INTO FIRE OR BARREL
+
+
 	//check mario and fire collision
-	if(fire.IsCollision(mario) && mario.getState()!=MARIO_HURTING) {
-		--mario ;
+	if(fire.IsCollision(mario) == 1 && mario.getState() != MARIO_HURTING) {
 		mario.setState(MARIO_HURTING) ;	
 		mario.setXVel(0) ;
 		mario.setYVel(0) ;
-		dyingCount = 0 ;
+		dyingCount++ ;		//starts dyingCount incrementing
 		Mix_PlayChannel(-1, burns, 0) ;	// Play burn sound effect
-	}				
+	} else if (fire.IsCollision(mario) == 2 && mario.getState() == MARIO_JUMPING && gotPoints == 0) {
+		gotPoints++ ;
+		//score+= 200 ;
+		//cout << score << endl ;
+	}
 
 	// mario and barrel collision
-        if(barrel.IsCollision(mario) == 1 && mario.getState()!=MARIO_HURTING) {
-                --mario ;
+        if(barrel.IsCollision(mario) == 1 && mario.getState() != MARIO_HURTING) {
                 mario.setState(MARIO_HURTING) ;
                 mario.setXVel(0) ;
                 mario.setYVel(0) ;
-                dyingCount = 0 ;
+		dyingCount++ ;		//starts dyingCount incrementing
                 Mix_PlayChannel(-1, hurts, 0) ; // Play hit by barrel sound effect
-	} else if (barrel.IsCollision(mario) == 2 && mario.getState()==MARIO_JUMPING && gotPoints==0) {	
+	} else if (barrel.IsCollision(mario) == 2 && mario.getState() == MARIO_JUMPING && gotPoints == 0) {	
 		gotPoints++ ;
-		score+= 200 ;
-		cout << score << endl ;
+		//score+= 200 ;
+		//cout << score << endl ;
 	}
-//restrict mario's points gain to once over each obstacle, the counter takes 25 seconds to restart (enough time for mario to jump entirely over barrel), at which point mario can get receive points again
 	if(gotPoints > 0) {
-		gotPoints++ ;		//counter for gotPoints reset (25 loops)
-		if(gotPoints > 25) gotPoints = 0 ;	
+		gotPoints++ ;		//increment until reset (15 loops)
+		if(gotPoints > 15 && mario.getState() != MARIO_HURTING) {	//successfully jumped over fire or barrel (ie. did not fall into it) 
+			gotPoints = 0 ;
+			score+=200 ;
+			cout << "SCORE:  " << score << endl ;
+		}	
 	}
 
-	dyingCount++ ;	//used to determine if enough time has passed with mario hurting to reset the level 
-	if(mario.getState()==MARIO_HURTING && dyingCount > 30) {
-		if(mario.getLives() == 0) {
-			running = 0 ;
-			cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
-		} else 	mario.reset() ;
+	if(dyingCount > 0) {
+		dyingCount++ ;		//increment until reset (50 loops)
+		gotPoints = 0 ;		//can't get points if died before sufficient wait time (ie. time to make it over the obstacle
+		if(dyingCount > 50) {
+			dyingCount = 0 ;
+	                --mario ;	//decrement lives after blinking finished
+			if(mario.getLives() == 0) {
+				running = 0 ;
+				cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
+			} else 	mario.reset() ;
+		}
 	}
 
 	//check peach collision
 	if(peach.IsCollision(mario)) {
 		running = 0 ;
+		score+=1500 ;	
+		cout << "SCORE:  " << score << endl ;
 		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
 		//probably want to do some more stuff
 		//celebration music?

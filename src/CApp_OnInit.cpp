@@ -120,13 +120,13 @@ int CApp::OnInit() {
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
 		//open from file .highscore in src directory
 		//in form-> HIGHSCORE: xxxx, this will be read into a string and printed to the screen
-	ifstream hsFile;
+	/*ifstream hsFile;
 	hsFile.open(".highscore") ;
 	if(hsFile.fail()) return 0 ;
 	//string hsString ;
 	getline(hsFile, hsString) ;	//reads line of file into line variable
 
 	Surf_Highscore = TTF_RenderText_Solid(font, hsString.c_str(), textColor);
-
+*/
 	return 1 ;	//all initialization succeeded
 }

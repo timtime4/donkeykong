@@ -54,10 +54,6 @@ void CApp::OnLoop() {
 
 	fire.wheresMarioX(mario);
 
-
-	//GLITCH -- STILL GET POINTS IF JUMP AND FALL INTO FIRE OR BARREL
-
-
 	//check mario and fire collision
 	if(fire.IsCollision(mario) == 1 && mario.getState() != MARIO_HURTING) {
 		mario.setState(MARIO_HURTING) ;	
@@ -67,8 +63,6 @@ void CApp::OnLoop() {
 		Mix_PlayChannel(-1, burns, 0) ;	// Play burn sound effect
 	} else if (fire.IsCollision(mario) == 2 && mario.getState() == MARIO_JUMPING && gotPoints == 0) {
 		gotPoints++ ;
-		//score+= 200 ;
-		//cout << score << endl ;
 	}
 
 	// mario and barrel collision
@@ -80,15 +74,31 @@ void CApp::OnLoop() {
                 Mix_PlayChannel(-1, hurts, 0) ; // Play hit by barrel sound effect
 	} else if (barrel.IsCollision(mario) == 2 && mario.getState() == MARIO_JUMPING && gotPoints == 0) {	
 		gotPoints++ ;
-		//score+= 200 ;
-		//cout << score << endl ;
+
 	}
 	if(gotPoints > 0) {
 		gotPoints++ ;		//increment until reset (15 loops)
-		if(gotPoints > 15 && mario.getState() != MARIO_HURTING) {	//successfully jumped over fire or barrel (ie. did not fall into it) 
+		if(gotPoints > 7 && mario.getState() != MARIO_HURTING) {	//successfully jumped over fire or barrel (ie. did not fall onto it) 
 			gotPoints = 0 ;
 			score+=200 ;
-			cout << "SCORE:  " << score << endl ;
+
+			displayPoints = 1 ;
+			pointsX = mario.getX() ;
+			pointsY = mario.getY() - 10 ;
+			Surf_Points = TTF_RenderText_Solid(pointsFont, "+200", textColor) ;
+
+			ostringstream scoreStream ;	//string stream for displaying score
+			scoreStream << "Score: " << score ;
+			scoreString = scoreStream.str() ;
+			Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+
+			if(score > hs) {
+				hs = score ;
+				ostringstream hsStream ;
+				hsStream << "Highscore: " << hs ;
+				hsString = hsStream.str() ;
+				Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
+			}
 		}	
 	}
 
@@ -101,7 +111,9 @@ void CApp::OnLoop() {
 			if(mario.getLives() == 0) {
 				running = 0 ;
 				cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
-			} else 	mario.reset() ;
+			} else {
+				mario.reset() ;
+			}
 		}
 	}
 
@@ -109,9 +121,26 @@ void CApp::OnLoop() {
 	if(peach.IsCollision(mario)) {
 		running = 0 ;
 		score+=1500 ;	
+		displayPoints = 1 ;
+		pointsX = mario.getX() ;
+		pointsY = mario.getY() - 10 ;
+		Surf_Points = TTF_RenderText_Solid(pointsFont, "+1500", textColor) ;
+
+		ostringstream scoreStream ;	//string stream for displaying score
+		scoreStream << "Score: " << score ;
+		scoreString = scoreStream.str() ;
+		Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+
+		if(score > hs) {
+			hs = score ;
+			ostringstream hsStream ;
+			hsStream << "Highscore: " << hs ;
+			hsString = hsStream.str() ;
+			Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
+		}
+
 		cout << "SCORE:  " << score << endl ;
 		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
-		//probably want to do some more stuff
 		//celebration music?
 		//YOU WIN!!! screen
 	}

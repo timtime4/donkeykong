@@ -4,7 +4,6 @@
 */
 
 #include "CApp.h"
-#include <fstream>
 
 int CApp::OnInit() {
 
@@ -110,23 +109,53 @@ int CApp::OnInit() {
 		 cout << "TTF_Init() fail" << endl ; 
 		return 0 ;
 	}
-	font = TTF_OpenFont("bauhs93.ttf", 20) ;
-	if(font == NULL) {
+	scoreFont = TTF_OpenFont("bauhs93.ttf", 18) ;
+	pointsFont = TTF_OpenFont("bauhs93.ttf", 10) ;	//smaller font for display when points are added to score
+	if(scoreFont == NULL || pointsFont == NULL) {
 		cout << "Font did not open" << endl ; 
 		return 0 ;
 	}
 
 
-	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
-		//open from file .highscore in src directory
-		//in form-> HIGHSCORE: xxxx, this will be read into a string and printed to the screen
-	/*ifstream hsFile;
-	hsFile.open(".highscore") ;
-	if(hsFile.fail()) return 0 ;
-	//string hsString ;
-	getline(hsFile, hsString) ;	//reads line of file into line variable
+	//////////SCORE DISPLAY INITIALIZATION///////////
+	ostringstream scoreStream ;
+	scoreStream << "Score: " << score ;	//string stream for creating full score text, ie. "Score: 0"
+	scoreString = scoreStream.str() ;	//convert stream to string
+	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
 
-	Surf_Highscore = TTF_RenderText_Solid(font, hsString.c_str(), textColor);
-*/
+	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
+	ifstream hsFile;
+	hsFile.open(".highscore") ;
+	if(!hsFile.fail()){
+		getline(hsFile, hsString) ;	//reads line of file into line variable
+		hs = atoi(hsString.c_str()) ;	//converts high score from file to integer for later comparison with user's score
+		hsFile.close() ;
+	}else hs = 0 ;	//if file doesn't open, assume no saved highscore, so highscore = 0 
+	ostringstream hsStream ;	
+	hsStream << "Highscore: " << hs ;	//string stream for creating full highscore text, ie. "Highscore: 1400"
+	hsString =  hsStream.str() ;	//convert stream to string
+	Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor);
+
 	return 1 ;	//all initialization succeeded
 }
+
+
+
+//////////*** FORMAT NUMBERS TO BE OUTPUT AS SCORES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

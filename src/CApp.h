@@ -24,6 +24,8 @@
 #include "Define.h"
 
 #include <iostream>
+#include <sstream>
+#include <fstream>
 #include <vector>
 using namespace std ;
 
@@ -31,6 +33,7 @@ class CApp {
 	public :
 		CApp() ;
 		int OnExecute() ;
+		void resetGame() ;
 
 		//overarching video game functions
 		int OnInit() ;
@@ -61,13 +64,23 @@ class CApp {
 		CFire fire;
 		CBarrel barrel;
 
-
-		SDL_Surface* Surf_Highscore ;
-		TTF_Font* font ;
+		TTF_Font* scoreFont ;
+		TTF_Font* pointsFont ;
 		SDL_Color textColor ;	
-		string hsString ;
+
+		int hs ;
+		string hsString ;	
+		SDL_Surface* Surf_Highscore ;
+		
 		int score ;
+		string scoreString ;
+		SDL_Surface* Surf_Score ;
 		int gotPoints ;		//counter to restrict mario's ability to get points (instead of constant stream of points as jumps over), will only get points for jumping over an obstacle when = 0
+		
+		SDL_Surface* Surf_Points ;	//used to display number of points added to score when an event happens, ie. jump over barrel or fire
+		int displayPoints ;	//counter for displaying number of points added to score
+		int pointsX ;		//x, y location for where to display number of points added -- above mario's x, y position when get points
+		int pointsY ;	
 
 		SDL_Surface* Surf_Menu ;	//surface for displaying start up menu screen
 		SDL_Surface* Surf_Controls ;

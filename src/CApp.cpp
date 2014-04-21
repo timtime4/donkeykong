@@ -23,16 +23,35 @@ CApp::CApp() {		//initialize private data members
 	Surf_Gameover = NULL ;
 	displayControls = 0 ;
 
-	font = NULL ;
+	scoreFont = NULL ;
+	pointsFont = NULL ;
+	textColor = {0, 165, 230} ;
+
+	hs = 0 ;
 	Surf_Highscore = NULL ;
-	textColor = {255, 0, 0} ;
 
 	score = 0 ;
+	Surf_Points = NULL ;
+	Surf_Score = NULL ;
+	displayPoints = 0 ;
 	gotPoints = 0 ;
 
 	dyingCount = 0 ;
 	
 	Surf_Lives = NULL ;
+
+}
+
+void CApp::resetGame() {
+	mario.reset() ;
+	mario.setLives(3) ;
+	barrel.reset() ;	
+	fire.reset() ;
+	score = 0 ;
+	ostringstream scoreStream ;
+	scoreStream << "Score: " << score ;	//string stream for creating full score text, ie. "Score: 0"
+	scoreString = scoreStream.str() ;	//convert stream to string
+	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
 
 }
 
@@ -51,6 +70,8 @@ int CApp::OnExecute() {
 	}
 	
 	while(game) {
+		resetGame() ;
+
 		while(running) {
 			fps.start() ;
 			while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
@@ -66,6 +87,7 @@ int CApp::OnExecute() {
 				SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
 			}
 		}
+		SDL_Delay(1000) ;	//pause to display game end, time wanted needs to be decided****
 		if(game == 0) break ;
 		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
 		SDL_Flip(Surf_Display) ;
@@ -74,7 +96,8 @@ int CApp::OnExecute() {
 	}
 
 	//update .highscore file
-	//	if score > hsString (int out of this string), then overwrite .highscore with new highscore
+	ofstream hsFile(".highscore") ;
+	hsFile << hs ;
 
 	OnCleanup() ;
 

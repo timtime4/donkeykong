@@ -17,7 +17,7 @@ CFire::CFire() {
 	width = FIRE_WIDTH ;
 	height = FIRE_HEIGHT ;
 
-	xVel = 1.5;
+	xVel = 1 ;	//must be whole number
 
 	platformCollide = 0 ;
 	ladderCollide = 0 ;
@@ -82,13 +82,6 @@ void CFire::set_clips(){		// Clip the fire sprites
 
 
 int CFire::IsCollision(CMario& mario) {
-	//returns true upon collision with CMario object, indicates DEFEAT muh ha ha ha
-	/*if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) &&
-		(mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) )
-	{
-		return 1 ;
-	}*/
-
 	//returns 1 if collides with CMario object, returns 2 if mario jumps over within a y threshold
 	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
 		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
@@ -136,3 +129,9 @@ void CFire::setPlatformCollide(int collide) {
 	platformCollide = collide ;
 }
 
+void CFire::reset() {
+	state = FIRE_WALKING ;
+	x = FIRE_START_X ;
+	y = FIRE_START_Y ;
+
+}

@@ -5,6 +5,7 @@
 */
 
 #include "CFire.h"
+#include <cmath>
 
 CFire::CFire() {
 	set_clips() ;
@@ -17,8 +18,11 @@ CFire::CFire() {
 	width = FIRE_WIDTH ;
 	height = FIRE_HEIGHT ;
 
-	xVel = 1.5;
-	yVel = 1.5;
+
+	//xVel = 1.5;
+	//yVel = 1.5;
+	xVel = 2 ;	//must be whole number
+	yVel = 2;
 
 	platformCollide = 0 ;
 	ladderCollide = 0 ;
@@ -32,7 +36,6 @@ void CFire::OnLoop() {
 		y += yGravityVel;
 	}
 	if(state == FIRE_SEARCHING){
-		cout << "collide " << getLadderCollide();
 		if(getLadderCollide()){
 			state = FIRE_CLIMBING;
 		} else {
@@ -74,22 +77,21 @@ void CFire::set_clips(){		// Clip the fire sprites
 
 
 int CFire::IsCollision(CMario& mario) {
-	//returns true upon collision with CMario object, indicates DEFEAT muh ha ha ha
-	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) &&
-		(mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) )
-	{
-		return 1 ;
-	}
+	//returns 1 if collides with CMario object, returns 2 if mario jumps over within a y threshold
+	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
+		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
+			return 1 ;	//indicates collision with fire and death of mario
+		} else if ( (mario.getY()+mario.getHeight() < this->y) && (mario.getY()+mario.getHeight() > this->y - 25) ) {
+			return 2 ;	//indicates mario jumping over fire
+		}
+	} 
 	return 0 ;
-
 }
 
 int CFire::IsDiffLevel(CMario& mario){
-	if( (this->y - mario.getY()) > (LEVEL_0_MAX - LEVEL_1_MIN) ){ //indicates fire is on level lower than mario 													and not climbing a ladder
+	if( abs(this->y - mario.getY()) > 22){ //indicates fire is on level lower than mario and not climbing a ladder
 		return 1;
-	}
-	else{
-		setState(FIRE_WALKING);
+	} else{
 		return 0;
 	}
 }
@@ -127,3 +129,10 @@ void CFire::setPlatformCollide(int collide) {
 	platformCollide = collide ;
 }
 
+
+void CFire::reset() {
+	state = FIRE_WALKING ;
+	x = FIRE_START_X ;
+	y = FIRE_START_Y ;
+
+}

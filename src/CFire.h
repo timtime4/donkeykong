@@ -42,6 +42,8 @@ class CFire : public CEntity {
 		int IsDiffLevel(CMario&);
 
 		int IsCollision(CMario&) ;	//checks for the collision between mario and the fire
+
+		void reset() ;
 	
 	private:
 		fireState state ;	//defined by enum fireState above

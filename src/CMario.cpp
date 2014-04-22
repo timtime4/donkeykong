@@ -36,6 +36,9 @@ int CMario::getLives() {
 	return lives ;
 }
 
+void CMario::setLives(int _lives) {
+	lives = _lives ;
+}
 
 void CMario::OnLoop() {
 	if (up <= 0 && state!=MARIO_CLIMBING) yVel = 0 ;		//accounts for mario's upward trajectory during a jump, yVel is upward until up data member has been reduced to 0

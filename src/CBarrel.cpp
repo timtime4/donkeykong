@@ -79,12 +79,16 @@ void CBarrel::set_clips(){		// Clip the barrel sprites
 
 
 int CBarrel::IsCollision(CMario& mario) {
-	//returns true upon collision with CMario object, indicates DEFEAT muh ha ha ha
-	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) &&
-		(mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) )
-	{
-		return 1 ;
-	}
+	//returns 1 if collision with CMario object, returns 2 if mario jumps over within a close enough y range
+	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
+		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
+			return 1 ;	//indicates collision with barrel and death of mario
+		} else if ( (mario.getY()+mario.getHeight() < this->y) && (mario.getY()+mario.getHeight() > this->y - 25) ) {
+			return 2 ;	//indicates mario jumping over barrel
+		}
+	} 
+
+
 	return 0 ;
 
 }
@@ -97,3 +101,7 @@ void CBarrel::setPlatformCollide(int collide) {
 	platformCollide = collide ;
 }
 
+void CBarrel::reset() {
+	x = BARREL_START_X ;
+	y = BARREL_START_Y ;
+}

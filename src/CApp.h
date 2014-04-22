@@ -24,6 +24,8 @@
 #include "Define.h"
 
 #include <iostream>
+#include <sstream>
+#include <fstream>
 #include <vector>
 using namespace std ;
 
@@ -31,11 +33,13 @@ class CApp {
 	public :
 		CApp() ;
 		int OnExecute() ;
+		void resetGame() ;
 
 		//overarching video game functions
 		int OnInit() ;
 		int OnStartup(SDL_Event* Event) ;
 		int OnEvent(SDL_Event* Event) ;
+		int OnGameover(SDL_Event* Event) ;				
 		void OnLoop() ;
 		void OnRender() ;
 		void OnCleanup() ;
@@ -45,6 +49,7 @@ class CApp {
 		
 		SDL_Surface* Surf_Display ;	//"blank piece of paper"
 		int running ;	//condition for while loop
+		int game ;	//condition for bigger while loop (can keep playing games even after gameover)
 		CTimer fps ;	//timer object
 
 		SDL_Surface* Surf_bgObjs ;
@@ -59,15 +64,27 @@ class CApp {
 		CFire fire;
 		CBarrel barrel;
 
-
-		SDL_Surface* Surf_Highscore ;
-		TTF_Font* font ;
+		TTF_Font* scoreFont ;
+		TTF_Font* pointsFont ;
 		SDL_Color textColor ;	
-		string hsString ;
+
+		int hs ;
+		string hsString ;	
+		SDL_Surface* Surf_Highscore ;
+		
 		int score ;
+		string scoreString ;
+		SDL_Surface* Surf_Score ;
+		int gotPoints ;		//counter to restrict mario's ability to get points (instead of constant stream of points as jumps over), will only get points for jumping over an obstacle when = 0
+		
+		SDL_Surface* Surf_Points ;	//used to display number of points added to score when an event happens, ie. jump over barrel or fire
+		int displayPoints ;	//counter for displaying number of points added to score
+		int pointsX ;		//x, y location for where to display number of points added -- above mario's x, y position when get points
+		int pointsY ;	
 
 		SDL_Surface* Surf_Menu ;	//surface for displaying start up menu screen
 		SDL_Surface* Surf_Controls ;
+		SDL_Surface* Surf_Gameover ;
 		int displayControls ;		//when true, start up screen displays the controls needed to play the game 
 
 		// Music

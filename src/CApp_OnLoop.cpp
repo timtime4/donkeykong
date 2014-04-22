@@ -52,50 +52,104 @@ void CApp::OnLoop() {
 		}
 	}
 	
-	cout << "fire State = " << fire.getState() << endl;
-	if(fire.IsDiffLevel(mario) && fire.getState() != FIRE_CLIMBING){
+	cout << "Diff Level: " << fire.IsDiffLevel(mario) << "collide: " << fire.getLadderCollide() << "fire State = " << fire.getState() << endl;
+	cout << "Mario: " << mario.getY() << " Fire: " << fire.getY() << endl;
+	if(fire.IsDiffLevel(mario) && !fire.getLadderCollide()){
 		fire.setState(FIRE_SEARCHING);
-	} else if(fire.IsDiffLevel(mario) && fire.getState() == FIRE_CLIMBING){
+	} else if(fire.IsDiffLevel(mario) && fire.getLadderCollide()){
 		fire.setState(FIRE_CLIMBING);
 	} else if(!fire.IsDiffLevel(mario)){
 		fire.setState(FIRE_WALKING);
 		fire.wheresMarioX(mario);
 	}
 
-
 	//check mario and fire collision
-	if(fire.IsCollision(mario) && mario.getState()!=MARIO_HURTING) {
-		--mario ;
+	if(fire.IsCollision(mario) == 1 && mario.getState() != MARIO_HURTING) {
 		mario.setState(MARIO_HURTING) ;	
 		mario.setXVel(0) ;
 		mario.setYVel(0) ;
-		dyingCount = 0 ;
+		dyingCount++ ;		//starts dyingCount incrementing
 		Mix_PlayChannel(-1, burns, 0) ;	// Play burn sound effect
-	}				
+	} else if (fire.IsCollision(mario) == 2 && mario.getState() == MARIO_JUMPING && gotPoints == 0) {
+		gotPoints++ ;
+	}
 
 	// mario and barrel collision
-        if(barrel.IsCollision(mario) && mario.getState()!=MARIO_HURTING) {
-                --mario ;
+        if(barrel.IsCollision(mario) == 1 && mario.getState() != MARIO_HURTING) {
                 mario.setState(MARIO_HURTING) ;
                 mario.setXVel(0) ;
                 mario.setYVel(0) ;
-                dyingCount = 0 ;
+		dyingCount++ ;		//starts dyingCount incrementing
                 Mix_PlayChannel(-1, hurts, 0) ; // Play hit by barrel sound effect
-	}	
+	} else if (barrel.IsCollision(mario) == 2 && mario.getState() == MARIO_JUMPING && gotPoints == 0) {	
+		gotPoints++ ;
 
-	dyingCount++ ;	//used to determine if enough time has passed with mario hurting to reset the level 
-	if(mario.getState()==MARIO_HURTING && dyingCount > 50) {
-		if(mario.getLives() == 0) {
-			running = 0 ;
-			cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
-		} else 	mario.reset() ;
+	}
+	if(gotPoints > 0) {
+		gotPoints++ ;		//increment until reset (15 loops)
+		if(gotPoints > 7 && mario.getState() != MARIO_HURTING) {	//successfully jumped over fire or barrel (ie. did not fall onto it) 
+			gotPoints = 0 ;
+			score+=200 ;
+
+			displayPoints = 1 ;
+			pointsX = mario.getX() ;
+			pointsY = mario.getY() - 10 ;
+			Surf_Points = TTF_RenderText_Solid(pointsFont, "+200", textColor) ;
+
+			ostringstream scoreStream ;	//string stream for displaying score
+			scoreStream << "Score: " << score ;
+			scoreString = scoreStream.str() ;
+			Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+
+			if(score > hs) {
+				hs = score ;
+				ostringstream hsStream ;
+				hsStream << "Highscore: " << hs ;
+				hsString = hsStream.str() ;
+				Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
+			}
+		}	
+	}
+
+	if(dyingCount > 0) {
+		dyingCount++ ;		//increment until reset (50 loops)
+		gotPoints = 0 ;		//can't get points if died before sufficient wait time (ie. time to make it over the obstacle
+		if(dyingCount > 50) {
+			dyingCount = 0 ;
+	                --mario ;	//decrement lives after blinking finished
+			if(mario.getLives() == 0) {
+				running = 0 ;
+				cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
+			} else {
+				mario.reset() ;
+			}
+		}
 	}
 
 	//check peach collision
 	if(peach.IsCollision(mario)) {
 		running = 0 ;
+		score+=1500 ;	
+		displayPoints = 1 ;
+		pointsX = mario.getX() ;
+		pointsY = mario.getY() - 10 ;
+		Surf_Points = TTF_RenderText_Solid(pointsFont, "+1500", textColor) ;
+
+		ostringstream scoreStream ;	//string stream for displaying score
+		scoreStream << "Score: " << score ;
+		scoreString = scoreStream.str() ;
+		Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+
+		if(score > hs) {
+			hs = score ;
+			ostringstream hsStream ;
+			hsStream << "Highscore: " << hs ;
+			hsString = hsStream.str() ;
+			Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
+		}
+
+		cout << "SCORE:  " << score << endl ;
 		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
-		//probably want to do some more stuff
 		//celebration music?
 		//YOU WIN!!! screen
 	}

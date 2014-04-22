@@ -28,7 +28,7 @@ int CApp::OnInit_Static() {
 
 	//begin 0th level, L to R
 	for (i = 0 ; i < 4 ; i++) {	//flat platforms at bottom of screen
-		temp.OnInit(xIncrement*i, 580, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+		temp.OnInit(xIncrement*i, LEVEL_0_MIN, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
 		platforms.push_back(temp) ;
 	}
 	int baseYL0 = 577 ;	//for platforms that begin to slant at level 0
@@ -40,9 +40,9 @@ int CApp::OnInit_Static() {
 
 	int baseXLOdd = 360 ;	//odd level starting platform x position, R to L
 	int baseXLEven = 60 ;	//event level starting platform x position, L to R
-	int baseYL1 = 506 ;	//y starting position 1st level, R to L
-	int baseYL2 = 426 ;
-	int baseYL3 = 346 ;
+	int baseYL1 = LEVEL_1_MIN ;	//y starting position 1st level, R to L
+	int baseYL2 = LEVEL_2_MIN ;
+	int baseYL3 = LEVEL_3_MIN ;
 	int baseYL4 = 266 ;
 
 	for (i = 0 ; i < 7 ; i++) {	//initializes the 7 platforms on each level (1-4)

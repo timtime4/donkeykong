@@ -16,8 +16,8 @@ using namespace std ;
 
 enum fireState{			//values for state private data member
 	FIRE_WALKING = 0 , 	//state when fire is moving horizontally along platform	
-	FIRE_CLIMBING ,		//state when the fire follows Mario up a platform
-	FIRE_ATTACKING 		//state when fire collides with Mario and ends his worthless life.
+	FIRE_SEARCHING ,		//state when the fire follows Mario up a platform
+	FIRE_CLIMBING 		//state when fire collides with Mario and ends his worthless life.
 } ;
 
 class CFire : public CEntity {
@@ -39,7 +39,7 @@ class CFire : public CEntity {
 		void setPlatformCollide(int) ;
 
 		int wheresMarioX(CMario&);
-		int wheresMarioY(CMario&);
+		int IsDiffLevel(CMario&);
 
 		int IsCollision(CMario&) ;	//checks for the collision between mario and the fire
 	

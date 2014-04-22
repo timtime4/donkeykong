@@ -72,4 +72,17 @@
 #define DK_START_X 30
 #define DK_START_Y 108
 
+#define LEVEL_0_MIN 580		//for these levels this is lowest y value where platform exists
+#define LEVEL_0_MAX 568		//for these levels this is highest y value where platform exists
+
+#define LEVEL_1_MIN 506		
+#define LEVEL_1_MAX 485
+
+#define LEVEL_2_MIN 426
+#define LEVEL_2_MAX 405
+
+#define LEVEL_3_MIN 346
+#define LEVEL_3_MAX 325
+
+
 #endif

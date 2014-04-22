@@ -18,6 +18,7 @@ CFire::CFire() {
 	height = FIRE_HEIGHT ;
 
 	xVel = 1.5;
+	yVel = 1.5;
 
 	platformCollide = 0 ;
 	ladderCollide = 0 ;
@@ -25,10 +26,23 @@ CFire::CFire() {
 
 void CFire::OnLoop() {
 	//change location based on velocities
-	x += xVel;			// Move FIRE left or right
 
-    if(state != FIRE_CLIMBING) y += yVel + yGravityVel ;      
-	else y += yVel ;	// Move FIRE up or down
+	if(state == FIRE_WALKING) {
+		x += xVel;		// Move FIRE left or right
+		y += yGravityVel;
+	}
+	if(state == FIRE_SEARCHING){
+		cout << "collide " << getLadderCollide();
+		if(getLadderCollide()){
+			state = FIRE_CLIMBING;
+		} else {
+			x += xVel;
+			y += yGravityVel;
+		}
+	} 
+    if(state == FIRE_CLIMBING){
+		y -= yVel;
+	}
 	
 	if((x < 0) || (x + FIRE_WIDTH > WINDOW_WIDTH)) xVel = -xVel; //if fire hits either side wall, change direction of velocity
 
@@ -37,36 +51,14 @@ void CFire::OnLoop() {
         	y -= yVel;		// Move Fire back
 	}
 
-////////////NEED TO FIX THIS BELOW/////////////////
-	//determines animation frame and status
-	if (yVel == 0 || yVel == yGravityVel){			// If fire is moving horizontally
-		frame++;									// Move to next frame in animation
-	}
+	frame++;									// Move to next frame in animation
+	
 }
 
 void CFire::OnRender(SDL_Surface* Surf_Display) {
-	switch(state) {					// state is a private data type from CFire
-		case FIRE_WALKING :
-			if ( frame >= 3){		// Loop the horizontal motion animation
-				frame = 0;
-			}
-			CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clips[frame].x, clips[frame].y, 	FIRE_WIDTH, FIRE_HEIGHT);
-			break ;
-
-		case FIRE_CLIMBING :
-			if ( frame >= 2){		// Loop the climbing animation
-				frame = 0;
-			}
-			//Build this in later
-			break ;
-
-		case FIRE_ATTACKING:
-			// Build this in later	
-			break ;
-
-	}  //end switch
-
-}  //end OnRender
+	if ( frame >= 3) frame = 0;
+	CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clips[frame].x, clips[frame].y, FIRE_WIDTH, FIRE_HEIGHT);
+} 
 
 void CFire::set_clips(){		// Clip the fire sprites
 	int i;
@@ -92,15 +84,22 @@ int CFire::IsCollision(CMario& mario) {
 
 }
 
+int CFire::IsDiffLevel(CMario& mario){
+	if( (this->y - mario.getY()) > (LEVEL_0_MAX - LEVEL_1_MIN) ){ //indicates fire is on level lower than mario 													and not climbing a ladder
+		return 1;
+	}
+	else{
+		setState(FIRE_WALKING);
+		return 0;
+	}
+}
+
+//This function will change the direction of the fire if it makes sense in respect to Mario
 int CFire::wheresMarioX(CMario& mario){
 	if( (mario.getX() - 15 > this->x) && (this->xVel < 0) ){
 		this->xVel *= -1;
 	}
 	else if( (mario.getX() + 15 < this->x) && (this->xVel > 0) ) this->xVel *= -1;
-}
-
-int CFire::wheresMarioY(CMario& mario){
-	return mario.getY();
 }
 
 int CFire::getState() {

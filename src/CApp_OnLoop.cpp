@@ -23,22 +23,22 @@ void CApp::OnLoop() {
 	}
 
 	int dummy2;
-	//Repeat same collision process with fire
+	fire.setLadderCollide(0);
 	fire.setPlatformCollide(0) ;
 	for (int it = 0 ; it < bgObjs.size() ; it++) {
 		dummy2 = bgObjs[it]->fireIsCollision(fire);			
 	}
 
-        int dummy3;
-        // Repeat same collision process with barrel
-        barrel.setPlatformCollide(0) ;
-        for (int it = 0 ; it < bgObjs.size() ; it++) {
-                dummy3 = bgObjs[it]->barrelIsCollision(barrel);
-        }
+    int dummy3;
+    // Repeat same collision process with barrel
+    barrel.setPlatformCollide(0) ;
+    for (int it = 0 ; it < bgObjs.size() ; it++) {
+            dummy3 = bgObjs[it]->barrelIsCollision(barrel);
+    }
 
 
 	//set mario state
-	if(mario.getState()!=MARIO_HURTING) {
+	if(mario.getState()!= MARIO_HURTING) {
 		if(!mario.getLadderCollide()) {
 			if(!mario.getPlatformCollide()) {
 				mario.setState(MARIO_JUMPING) ;
@@ -51,8 +51,16 @@ void CApp::OnLoop() {
 			mario.setState(MARIO_CLIMBING) ;
 		}
 	}
-
-	fire.wheresMarioX(mario);
+	
+	cout << "fire State = " << fire.getState() << endl;
+	if(fire.IsDiffLevel(mario) && fire.getState() != FIRE_CLIMBING){
+		fire.setState(FIRE_SEARCHING);
+	} else if(fire.IsDiffLevel(mario) && fire.getState() == FIRE_CLIMBING){
+		fire.setState(FIRE_CLIMBING);
+	} else if(!fire.IsDiffLevel(mario)){
+		fire.setState(FIRE_WALKING);
+		fire.wheresMarioX(mario);
+	}
 
 
 	//check mario and fire collision

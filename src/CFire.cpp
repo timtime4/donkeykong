@@ -18,10 +18,7 @@ CFire::CFire() {
 	width = FIRE_WIDTH ;
 	height = FIRE_HEIGHT ;
 
-
-	//xVel = 1.5;
-	//yVel = 1.5;
-	xVel = 2 ;	//must be whole number
+	xVel = 1;
 	yVel = 2;
 
 	platformCollide = 0 ;
@@ -35,7 +32,7 @@ void CFire::OnLoop() {
 		x += xVel;		// Move FIRE left or right
 		y += yGravityVel;
 	}
-	if(state == FIRE_SEARCHING){
+	if(state == FIRE_SEARCHING){  //fire will just search for a ladder to climb
 		if(getLadderCollide()){
 			state = FIRE_CLIMBING;
 		} else {

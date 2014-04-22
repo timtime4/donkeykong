@@ -52,8 +52,8 @@ void CApp::OnLoop() {
 		}
 	}
 	
-	cout << "Diff Level: " << fire.IsDiffLevel(mario) << "collide: " << fire.getLadderCollide() << "fire State = " << fire.getState() << endl;
-	cout << "Mario: " << mario.getY() << " Fire: " << fire.getY() << endl;
+	//cout << "Diff Level: " << fire.IsDiffLevel(mario) << "collide: " << fire.getLadderCollide() << "fire State = " << fire.getState() << endl;
+	//cout << "Mario: " << mario.getY() << " Fire: " << fire.getY() << endl;
 	if(fire.IsDiffLevel(mario) && !fire.getLadderCollide()){
 		fire.setState(FIRE_SEARCHING);
 	} else if(fire.IsDiffLevel(mario) && fire.getLadderCollide()){

@@ -19,13 +19,13 @@ int CApp::OnInit() {
 		printf("Sound Mixer Initialization Error");
 	}
 	//load music files
-	theme = Mix_LoadMUS( "wavFiles/theme.wav" );
+	theme = Mix_LoadMUS( "../wavFiles/theme.wav" );
 	if ( theme == NULL ){
 		printf("Error: Music Load Error.");
 	}
-	jumps = Mix_LoadWAV( "wavFiles/jump.wav" );
-	burns = Mix_LoadWAV( "wavFiles/burn.wav" );
-	hurts = Mix_LoadWAV( "wavFiles/hurt.wav" );
+	jumps = Mix_LoadWAV( "../wavFiles/jump.wav" );
+	burns = Mix_LoadWAV( "../wavFiles/burn.wav" );
+	hurts = Mix_LoadWAV( "../wavFiles/hurt.wav" );
 	if ( (jumps == NULL) || (burns == NULL) || (hurts == NULL) ){
 		printf("Error: Sound Clip Load Error.");
 	}
@@ -51,19 +51,19 @@ int CApp::OnInit() {
 	if(SDL_EnableKeyRepeat(50, 50)) return 0 ;
 
 	//////////MARIO INITIALIZATION//////////
-	if(mario.OnLoad("imgFiles/mar2.bmp") == 0) {
+	if(mario.OnLoad("../imgFiles/mar2.bmp") == 0) {
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}
 	entityList.push_back(&mario) ;
 
 	///////////MARIO LIVES DISPLAY INIT//////////
-	Surf_Lives = CSurface::OnLoad("imgFiles/marLife2.png") ;
+	Surf_Lives = CSurface::OnLoad("../imgFiles/marLife2.png") ;
 	if(Surf_Lives == NULL) return 0 ;
 
 
 	//////////PEACH INITIALIZATION//////////
-	if(peach.OnLoad("imgFiles/peach.jpg") == 0) {
+	if(peach.OnLoad("../imgFiles/peach.jpg") == 0) {
 		cout << "peach didn't load" << endl ;
 		return 0 ;
 	}
@@ -71,7 +71,7 @@ int CApp::OnInit() {
 
 
 	////////DONKEY KONG INITIALIZATION////////
-	if(dk.OnLoad("imgFiles/dk.bmp") == 0) {
+	if(dk.OnLoad("../imgFiles/dk.bmp") == 0) {
 		cout << "donkey kong didn't load" << endl ;
 		return 0 ;
 	}
@@ -79,7 +79,7 @@ int CApp::OnInit() {
 
 
 	/////////FIRE INITIALIZATION////////////
-	if(fire.OnLoad("imgFiles/fire.bmp") == 0){
+	if(fire.OnLoad("../imgFiles/fire.bmp") == 0){
 		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl;
 		return 0;
 	}
@@ -87,7 +87,7 @@ int CApp::OnInit() {
 
 
 	//////////BARREL INITIALIZATION//////////
-        if(barrel.OnLoad("imgFiles/barrel.bmp") == 0){
+        if(barrel.OnLoad("../imgFiles/barrel.bmp") == 0){
                 cout << "CApp_OnInit.cpp: Error - barrel.bmp did not load" << endl;
                 return 0;
         }
@@ -95,13 +95,13 @@ int CApp::OnInit() {
 
 
 	//////////STARTUP SCREEN INITIALIZATION//////////
-	Surf_Menu = CSurface::OnLoad("imgFiles/menu2.png") ;
+	Surf_Menu = CSurface::OnLoad("../imgFiles/menu2.png") ;
 	if(Surf_Menu == NULL) return 0 ;
-	Surf_Controls = CSurface::OnLoad("imgFiles/controls.png") ;
+	Surf_Controls = CSurface::OnLoad("../imgFiles/controls.png") ;
 	if(Surf_Controls == NULL) return 0 ;
 	
 	//////////GAMEOVER SCREEN INITIALIZATION//////////
-	Surf_Gameover = CSurface::OnLoad("imgFiles/gameover.png") ;
+	Surf_Gameover = CSurface::OnLoad("../imgFiles/gameover.png") ;
 	if(Surf_Gameover == NULL) return 0 ;
 
 	//////////FONT INITIALIZATION//////////
@@ -109,8 +109,8 @@ int CApp::OnInit() {
 		 cout << "TTF_Init() fail" << endl ; 
 		return 0 ;
 	}
-	scoreFont = TTF_OpenFont("bauhs93.ttf", 18) ;
-	pointsFont = TTF_OpenFont("bauhs93.ttf", 10) ;	//smaller font for display when points are added to score
+	scoreFont = TTF_OpenFont("../bauhs93.ttf", 18) ;
+	pointsFont = TTF_OpenFont("../bauhs93.ttf", 10) ;	//smaller font for display when points are added to score
 	if(scoreFont == NULL || pointsFont == NULL) {
 		cout << "Font did not open" << endl ; 
 		return 0 ;
@@ -125,7 +125,7 @@ int CApp::OnInit() {
 
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
 	ifstream hsFile;
-	hsFile.open(".highscore") ;
+	hsFile.open("../.highscore") ;
 	if(!hsFile.fail()){
 		getline(hsFile, hsString) ;	//reads line of file into line variable
 		hs = atoi(hsString.c_str()) ;	//converts high score from file to integer for later comparison with user's score
@@ -137,25 +137,8 @@ int CApp::OnInit() {
 	Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor);
 
 	return 1 ;	//all initialization succeeded
+
 }
-
-
-
-//////////*** FORMAT NUMBERS TO BE OUTPUT AS SCORES
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

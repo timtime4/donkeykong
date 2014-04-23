@@ -148,8 +148,8 @@ void CApp::OnLoop() {
 			Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
 		}
 
-		cout << "SCORE:  " << score << endl ;
 		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
+		wonGame = 1 ;	//***********
 		//celebration music?
 		//YOU WIN!!! screen
 	}

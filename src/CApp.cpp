@@ -10,6 +10,7 @@ CApp::CApp() {		//initialize private data members
 	running = 1 ;
 	game = 1;
 
+
 	Surf_Display = NULL ;
 	Surf_bgObjs = NULL ;
 
@@ -40,9 +41,12 @@ CApp::CApp() {		//initialize private data members
 	
 	Surf_Lives = NULL ;
 
+	wonGame = 0 ; 
+	Surf_WonText = NULL ;
 }
 
 void CApp::resetGame() {
+	wonGame = 0 ;
 	mario.reset() ;
 	mario.setLives(3) ;
 	barrel.reset() ;	
@@ -90,13 +94,18 @@ int CApp::OnExecute() {
 		SDL_Delay(1000) ;	//pause to display game end, time wanted needs to be decided****
 		if(game == 0) break ;
 		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
+		/*if(wonGame) {
+			Surf_WonText = TTF_RenderText_Solid(scoreFont, "You Win!", {0,255,0}) ;
+			CSurface::OnDraw(Surf_Display, Surf_WonText, 200, 225) ;
+		}*/
+
 		SDL_Flip(Surf_Display) ;
 		while ( OnGameover(&Event) ){
 		}
 	}
 
 	//update .highscore file
-	ofstream hsFile(".highscore") ;
+	ofstream hsFile("../.highscore") ;
 	hsFile << hs ;
 
 	OnCleanup() ;

@@ -48,8 +48,10 @@ class CApp {
 		int OnInit_Static() ;	//helper function to initialize all static data members
 		
 		SDL_Surface* Surf_Display ;	//"blank piece of paper"
-		int running ;	//condition for while loop
+		int running ;	//condition for inner while loop (controls individual playing of a game
 		int game ;	//condition for bigger while loop (can keep playing games even after gameover)
+
+
 		CTimer fps ;	//timer object
 
 		SDL_Surface* Surf_bgObjs ;
@@ -98,6 +100,8 @@ class CApp {
 
 		SDL_Surface* Surf_Lives ;
 
+		int wonGame ;
+		SDL_Surface* Surf_WonText ;
 
 
 } ;

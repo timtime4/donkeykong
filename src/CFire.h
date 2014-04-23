@@ -41,7 +41,7 @@ class CFire : public CEntity {
 		int wheresMarioX(CMario&);
 		int IsDiffLevel(CMario&);
 
-		int IsCollision(CMario&) ;	//checks for the collision between mario and the fire
+		//virtual int IsCollision(CMario&) ;	//checks for the collision between mario and the fire
 
 		void reset() ;
 	

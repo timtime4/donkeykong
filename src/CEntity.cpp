@@ -34,6 +34,18 @@ void CEntity::OnCleanup() {
 	Surf_Entity = NULL ;
 }
 
+int CEntity::IsCollision(CMario& mario) {	//used for CFire, CBarrel, and CDonkeyKong classes
+	//returns 1 if collides with CMario object, returns 2 if mario jumps over within a y threshold
+	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
+		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
+			return 1 ;	//indicates collision with entity and death of mario
+		} else if ( (mario.getY()+mario.getHeight() < this->y) && (mario.getY()+mario.getHeight() > this->y - 25) ) {
+			return 2 ;	//indicates mario jumping over entity
+		}
+	} 
+	return 0 ;
+}
+
 
 //get and set functions for protected data members needed outside of CEntity and classes inheriting from CEntity
 int CEntity::getX() {

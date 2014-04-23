@@ -24,10 +24,10 @@ class StaticObj {
 		StaticObj() ;	//constructor
 		void OnInit(int, int, int, int) ;	//initialize data members
 		void OnRender(SDL_Surface*, SDL_Surface*) ;	//for rendering object to screen in correct location
-		virtual int IsCollision(CMario&) = 0 ;	//pure virtual function that checks for a collision of Mario with the object, returns 1 on collision, CMario object passed by reference so original in CApp class can be modified by the function
 
-		virtual int fireIsCollision(CFire&) = 0;
-		virtual int barrelIsCollision(CBarrel&) = 0;
+		virtual void IsCollision(CMario&) = 0 ;	//pure virtual function that checks for a collision of Mario with the object, returns 1 on collision, CMario object passed by reference so original in CApp class can be modified by the function
+		virtual void fireIsCollision(CFire&) = 0;
+		virtual void barrelIsCollision(CBarrel&) = 0;
 
 		//set and get functions for private data members
 		/*int getX() ;

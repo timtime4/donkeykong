@@ -26,6 +26,8 @@ class CEntity {
 		virtual void OnRender(SDL_Surface* Surf_Display) = 0 ; 
 		void OnCleanup() ;
 
+		virtual int IsCollision(CMario&) ;		//virtual function for determining if an entity has collided with mario
+
 		int getX() ;
 		int getY() ;
 		void setX(int) ;

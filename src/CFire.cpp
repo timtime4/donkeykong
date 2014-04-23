@@ -73,7 +73,7 @@ void CFire::set_clips(){		// Clip the fire sprites
 }
 
 
-int CFire::IsCollision(CMario& mario) {
+/*int CFire::IsCollision(CMario& mario) {
 	//returns 1 if collides with CMario object, returns 2 if mario jumps over within a y threshold
 	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
 		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
@@ -83,7 +83,7 @@ int CFire::IsCollision(CMario& mario) {
 		}
 	} 
 	return 0 ;
-}
+}*/
 
 int CFire::IsDiffLevel(CMario& mario){
 	if( abs(this->y - mario.getY()) > 22){ //indicates fire is on level lower than mario and not climbing a ladder

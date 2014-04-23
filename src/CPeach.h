@@ -18,7 +18,7 @@ class CPeach : public CEntity {		//inheriting from CEntity class
 
 		virtual void OnLoop() ;
 		virtual void OnRender(SDL_Surface* Surf_Display) ;
-		int IsCollision(CMario&) ;
+		virtual int IsCollision(CMario&) ;
 
 	private:
 		int direction ;	//+1 or -1, will determine if she is currently moving left or right

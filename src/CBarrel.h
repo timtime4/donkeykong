@@ -27,7 +27,7 @@ class CBarrel : public CEntity {
 		int getPlatformCollide() ;
 		void setPlatformCollide(int);
 
-		int IsCollision(CMario&) ;	//checks for the collision between mario and the barrel
+		//virtual int IsCollision(CMario&) ;	//checks for the collision between mario and the barrel
 
 		void reset() ;
 	

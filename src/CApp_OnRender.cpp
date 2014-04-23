@@ -25,7 +25,7 @@ void CApp::OnRender() {
 		entityList[i]->OnRender(Surf_Display) ;	
 	}
 	//mario
-	mario.OnRender(Surf_Display) ;		//*****
+	mario.OnRender(Surf_Display) ;
 
 	//score information
 	CSurface::OnDraw(Surf_Display, Surf_Highscore, 180, 0) ;

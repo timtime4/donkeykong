@@ -40,3 +40,7 @@ void CDonkeyKong::OnRender(SDL_Surface* Surf_Display) {
 	}
 }
 
+int CDonkeyKong::identifyType() {
+	return 3 ;
+}
+

@@ -58,5 +58,7 @@ int CPeach::IsCollision(CMario& mario) {
 
 }
 
-
+int CPeach::identifyType() {
+	return 4 ;
+}
 

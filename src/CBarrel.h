@@ -22,6 +22,8 @@ class CBarrel : public CEntity {
 		virtual void OnLoop() ;
 		virtual void OnRender(SDL_Surface* Surf_Display) ;
 
+		virtual int identifyType() ;
+
 		void set_clips();
 
 		int getPlatformCollide() ;

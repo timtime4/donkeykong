@@ -19,11 +19,12 @@ void CApp::OnRender() {
 		bgObjs[j]->OnRender(Surf_Display, Surf_bgObjs) ;
 	}
 
-	//any entities
+	//all entities (dk, barrels, fire, peach)
 	for(i = 0 ; i < entityList.size() ; i++ ) { //renders each valid entity to Surf_Display data member of CApp
 		if(!entityList[i]) continue ;
 		entityList[i]->OnRender(Surf_Display) ;	
 	}
+	peach.OnRender(Surf_Display) ;
 	//mario
 	mario.OnRender(Surf_Display) ;
 
@@ -35,7 +36,6 @@ void CApp::OnRender() {
 		displayPoints++ ;
 		if(displayPoints > 5) displayPoints = 0 ;
 	}
-
 
 	//display mario's picture to represent nubmer of lives remaining	
 	for (i = 0 ; i < mario.getLives(); i++) {

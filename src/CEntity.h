@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 
+#include "SDL/SDL_mixer.h"
 #include "CSurface.h"
 #include "CMario.h"
 #include "Define.h"
@@ -27,6 +28,10 @@ class CEntity {
 		void OnCleanup() ;
 
 		virtual int IsCollision(CMario&) ;		//virtual function for determining if an entity has collided with mario
+		//virtual void playSoundEffect() ;
+
+		virtual int identifyType() = 0 ;		//used to determine which inheriting type a CEntity object is, for determining the sound effect to be played with a collision; CFire = 1, CBarrel = 2, CDonkeyKong = 3, CPeach = 4
+
 
 		int getX() ;
 		int getY() ;

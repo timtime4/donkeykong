@@ -46,6 +46,10 @@ int CEntity::IsCollision(CMario& mario) {	//used for CFire, CBarrel, and CDonkey
 	return 0 ;
 }
 
+/*void CEntity::playSoundEffect(Mix_Chunk *effect) {
+
+}*/
+
 
 //get and set functions for protected data members needed outside of CEntity and classes inheriting from CEntity
 int CEntity::getX() {

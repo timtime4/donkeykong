@@ -66,7 +66,8 @@ int CApp::OnInit() {
 		cout << "peach didn't load" << endl ;
 		return 0 ;
 	}
-	entityList.push_back(&peach) ;
+	//peach not added to entityList because result of collision is different from other entities
+	//entityList.push_back(&peach) ;
 
 
 	////////DONKEY KONG INITIALIZATION////////

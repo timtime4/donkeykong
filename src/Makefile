@@ -33,7 +33,7 @@ CApp_OnGameover.o: CApp_OnGameover.cpp	CApp.h CSurface.h CEntity.h CMario.h Stat
 CSurface.o: CSurface.cpp CSurface.h
 	g++ -c CSurface.cpp
 
-CEntity.o: CEntity.cpp CEntity.h CSurface.h Define.h
+CEntity.o: CEntity.cpp CEntity.h CMario.h CSurface.h Define.h
 	g++ -c CEntity.cpp
 
 StaticObj.o: StaticObj.cpp StaticObj.h CSurface.h CMario.h Define.h
@@ -48,7 +48,7 @@ Platform.o: Platform.cpp Platform.h StaticObj.h CSurface.h CMario.h Define.h
 CTimer.o:  CTimer.cpp CTimer.h
 	g++ -c CTimer.cpp
 
-CMario.o:  CMario.cpp CMario.h CEntity.h CSurface.h Define.h
+CMario.o:  CMario.cpp CMario.h CSurface.h Define.h
 	g++ -c CMario.cpp
 
 CPeach.o:  CPeach.cpp CPeach.h CEntity.h CMario.h CSurface.h Define.h

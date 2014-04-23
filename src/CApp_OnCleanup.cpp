@@ -12,6 +12,7 @@ void CApp::OnCleanup() {
 		entityList[i]->OnCleanup() ;
 	}
 	entityList.clear() ;
+	mario.OnCleanup() ;
 	
 	SDL_FreeSurface(Surf_bgObjs) ;	//free all static background objects
 	bgObjs.clear() ;

@@ -55,7 +55,6 @@ int CApp::OnInit() {
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}
-	entityList.push_back(&mario) ;
 
 	///////////MARIO LIVES DISPLAY INIT//////////
 	Surf_Lives = CSurface::OnLoad("../imgFiles/marLife2.png") ;

@@ -7,37 +7,35 @@
 #include "CMario.h"
 
 CMario::CMario() {
-	set_clips() ;
-	lives = 3 ;
+	width = MARIO_WIDTH ;
+	height = MARIO_HEIGHT ;
+	Surf_Entity = NULL ;
 
+	set_clips() ;
+	reset() ;
+	yGravityVel = 3 ;
+	lives = 3 ;
+}
+
+
+void CMario::reset() {		//used after mario has lost a life or when starting a game to reset at the beginning of the level
 	x = MARIO_START_X ;
 	y = MARIO_START_Y;
+	xVel = 0 ;
+	yVel = 0 ;
 
 	state = MARIO_WALKING ;	//mario starts with no power up
 	status = MARIO_RIGHT;
-	width = MARIO_WIDTH ;
-	height = MARIO_HEIGHT ;
 
 	up = 0 ;
-
 	platformCollide = 0 ;
 	ladderCollide = 0 ;
 }
 
-CMario CMario::operator++() {	//increments mario object's lives by 1, when get extra life powerup
-	this->lives++ ;
-}
-
-CMario CMario::operator--() {	//decrements mario object's lives by 1
-	this->lives-- ;
-}
-
-int CMario::getLives() {
-	return lives ;
-}
-
-void CMario::setLives(int _lives) {
-	lives = _lives ;
+int CMario::OnLoad(string file) {
+	Surf_Entity = CSurface::OnLoad(file.c_str()) ;
+	if(Surf_Entity == NULL) return 0 ;
+	return 1 ;
 }
 
 void CMario::OnLoop() {
@@ -46,7 +44,7 @@ void CMario::OnLoop() {
 
 	//change location based on velocities
 	x += xVel;			// Move mario left or right
-    if(state != MARIO_CLIMBING) y+= yVel + yGravityVel ;  	//add gravity if mario isn't climbing               
+   	if(state != MARIO_CLIMBING) y+= yVel + yGravityVel ;  	//add gravity if mario isn't climbing               
 	else y += yVel ;			// Move mario up or down
 	
 	//check boundary conditions
@@ -109,6 +107,11 @@ void CMario::OnRender(SDL_Surface* Surf_Display) {
 	}  //end switch
 
 }  //end OnRender
+
+void CMario::OnCleanup() {
+	if(Surf_Entity) SDL_FreeSurface(Surf_Entity) ;
+	Surf_Entity = NULL ;
+}
 
 void CMario::set_clips(){		// Clip the sprites
 
@@ -184,19 +187,67 @@ void CMario::set_clips(){		// Clip the sprites
 
 }
 
-void CMario::reset() {		//used after mario has lost a life to reset at the beginning of the level
-	x = MARIO_START_X ;
-	y = MARIO_START_Y;
 
-	state = MARIO_WALKING ;	//mario starts with no power up
-	status = MARIO_RIGHT;
-
-	up = 0 ;
-	platformCollide = 0 ;
-	ladderCollide = 0 ;
+CMario CMario::operator++() {	//increments mario object's lives by 1, when get extra life powerup
+	this->lives++ ;
 }
 
+CMario CMario::operator--() {	//decrements mario object's lives by 1
+	this->lives-- ;
+}
 
+//get and set functions for data members needed outside of CMario
+int CMario::getLives() {
+	return lives ;
+}
+
+void CMario::setLives(int _lives) {
+	lives = _lives ;
+}
+
+int CMario::getX() {
+	return x ;
+}
+
+int CMario::getY() {
+	return y ;
+}
+
+void CMario::setX(int _x) {
+	if(x > 0 && x+width < WINDOW_WIDTH) x = _x ;
+}
+
+void CMario::setY(int _y) {
+	if(y > 0 && y+height < WINDOW_HEIGHT) y = _y ;
+}
+
+int CMario::getWidth() {
+	return width ;
+}
+
+int CMario::getHeight() {
+	return height ;
+}
+
+int CMario::getXVel() {
+	return xVel ;
+}
+
+int CMario::getYVel() {
+	return yVel ;
+}
+
+void CMario::setXVel(int _xVel) {
+	xVel = _xVel ;
+}
+
+void CMario::setYVel(int _yVel) {
+	yVel = _yVel ;
+}
+
+void CMario::setStatus(int _status) {
+	status = _status ;
+}
 
 int CMario::getState() {
 	return state ;

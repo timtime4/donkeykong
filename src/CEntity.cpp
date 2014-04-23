@@ -1,12 +1,11 @@
 /*
  * DonkeyKong
  * CEntity.cpp
- * This file contains the implementation of CEntity class.
+ * This file contains the implementation of CEntity class. 
 */
 
 #include "CEntity.h"
 
-//std::vector<CEntity*> CEntity::entityList ;	
 
 CEntity::CEntity() {
 	Surf_Entity = NULL ;
@@ -22,16 +21,10 @@ CEntity::CEntity() {
 	status = 0 ;
 }
 
-CEntity::~CEntity() {
-	//empty deconstructor definition
-}
 
 int CEntity::OnLoad(string file) {
 	Surf_Entity = CSurface::OnLoad(file.c_str()) ;
 	if(Surf_Entity == NULL) return 0 ;
-
-	CSurface::Transparent(Surf_Entity, 255, 255, 255) ;	//not working - because of color or function?
-
 	return 1 ;
 }
 

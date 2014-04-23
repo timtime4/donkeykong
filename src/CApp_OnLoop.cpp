@@ -13,6 +13,7 @@ void CApp::OnLoop() {
 		if(!entityList[i]) continue ;	//NULL pointer check
 		entityList[i]->OnLoop() ;	//updates each valid entity
 	}
+	mario.OnLoop() ;	//*************
 
 	//check for static obj collisions
 	int dummy ;

@@ -10,20 +10,27 @@ void CApp::OnRender() {
 
 	int i ;
 
-	SDL_FillRect(Surf_Display, &Surf_Display->clip_rect, SDL_MapRGB(Surf_Display->format, 0, 0, 0)) ;	//fills the background with black
+	//fill background with black
+	SDL_FillRect(Surf_Display, &Surf_Display->clip_rect, SDL_MapRGB(Surf_Display->format, 0, 0, 0) ) ;
 
+	//ladders and platforms
 	for (int j = 0 ; j < bgObjs.size(); j++) {
 		if(!bgObjs[j]) continue ;
 		bgObjs[j]->OnRender(Surf_Display, Surf_bgObjs) ;
 	}
+
+	//any entities
 	for(i = 0 ; i < entityList.size() ; i++ ) { //renders each valid entity to Surf_Display data member of CApp
 		if(!entityList[i]) continue ;
 		entityList[i]->OnRender(Surf_Display) ;	
 	}
+	//mario
+	mario.OnRender(Surf_Display) ;		//*****
 
+	//score information
 	CSurface::OnDraw(Surf_Display, Surf_Highscore, 180, 0) ;
 	CSurface::OnDraw(Surf_Display, Surf_Score, 0, 0) ;
-	if(displayPoints > 0) {
+	if(displayPoints > 0) {		//true when mario has just earned points
 		CSurface::OnDraw(Surf_Display, Surf_Points, pointsX, pointsY) ;
 		displayPoints++ ;
 		if(displayPoints > 5) displayPoints = 0 ;

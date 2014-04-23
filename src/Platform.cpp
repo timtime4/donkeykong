@@ -14,6 +14,16 @@ void Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to
 		mario.setY(this->y - mario.getHeight()) ;	//set mario to be standing on ground platform
 		mario.setPlatformCollide(1) ;
 	}
+
+	//collision with ceiling-- is not a collision if climbing is turned on
+	int checkHeight = this->y + this->height ;	//bottom of the platform-- height at which mario would collide with a "ceiling"
+	if( (mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x) && (mario.getY() < checkHeight) && 
+		(mario.getY() + mario.getHeight() > checkHeight) && (mario.getState() != MARIO_CLIMBING) ) 
+	{
+		mario.setY(checkHeight) ;
+	}
+
+
 }
 
 void Platform::entityIsCollision(CEntity& entity) {

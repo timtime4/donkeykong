@@ -10,13 +10,14 @@
 
 int CApp::OnInit_Static() {
 
+	platforms.clear() ;
+	ladders.clear() ;
+
 	Surf_bgObjs = CSurface::OnLoad("../imgFiles/bgFiles/staticObjects.png") ;	//load file containing static objects image sprites
 	if(Surf_bgObjs == NULL) {
 		cout << "BgObjs image fail" << endl ; 
 		return 0 ;
 	}
-
-	CSurface::Transparent(Surf_bgObjs, 0, 0, 0) ;	//does not work
 
 	int i ;
 

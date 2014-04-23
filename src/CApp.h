@@ -64,6 +64,7 @@ class CApp {
 		CPeach peach ;	//peach entity object, only animated to move left and right
 		CDonkeyKong dk;
 		CFire fire;
+		CFire fire2;
 		CBarrel barrel;
 
 		TTF_Font* scoreFont ;

@@ -19,6 +19,8 @@ CEntity::CEntity() {
 	frame = 0 ;
 	maxFrames = 0 ;
 	status = 0 ;
+	platformCollide = 0 ;
+	ladderCollide = 0 ;
 }
 
 
@@ -94,4 +96,20 @@ void CEntity::setYVel(int _yVel) {
 
 void CEntity::setStatus(int _status) {
 	status = _status ;
+}
+
+int CEntity::getLadderCollide() {
+	return ladderCollide ;
+}
+
+void CEntity::setLadderCollide(int collide) {
+	ladderCollide = collide ;
+}
+
+int CEntity::getPlatformCollide() {
+	return platformCollide ;
+}
+
+void CEntity::setPlatformCollide(int collide) {
+	platformCollide = collide ;
 }

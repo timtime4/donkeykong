@@ -32,7 +32,6 @@ class CEntity {
 
 		virtual int identifyType() = 0 ;		//used to determine which inheriting type a CEntity object is, for determining the sound effect to be played with a collision; CFire = 1, CBarrel = 2, CDonkeyKong = 3, CPeach = 4
 
-
 		int getX() ;
 		int getY() ;
 		void setX(int) ;
@@ -48,6 +47,11 @@ class CEntity {
 
 		void setStatus(int) ;
 
+		int getLadderCollide();
+		void setLadderCollide(int) ;
+		int getPlatformCollide() ;
+		void setPlatformCollide(int) ;
+
 	protected:			//data members will be accessible to inheriting classes
 		SDL_Surface* Surf_Entity ;
 
@@ -62,6 +66,9 @@ class CEntity {
 		int status;		//keeps track of which animation to show (left or right)
 		int width ;		//width of one frame
 		int height ;		//height of one frame
+
+		int platformCollide ;
+		int ladderCollide ;
 		
 	private: 
 	

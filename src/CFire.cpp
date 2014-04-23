@@ -21,8 +21,8 @@ CFire::CFire() {
 	xVel = 1;
 	yVel = 2;
 
-	platformCollide = 0 ;
-	ladderCollide = 0 ;
+//	platformCollide = 0 ;
+//	ladderCollide = 0 ;
 }
 
 void CFire::OnLoop() {
@@ -102,7 +102,7 @@ void CFire::setState(fireState _state) {
 }
 
 
-int CFire::getLadderCollide() {
+/*int CFire::getLadderCollide() {
 	return ladderCollide ;
 }
 
@@ -116,7 +116,7 @@ int CFire::getPlatformCollide() {
 
 void CFire::setPlatformCollide(int collide) {
 	platformCollide = collide ;
-}
+}*/
 
 
 void CFire::reset() {

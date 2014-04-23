@@ -34,12 +34,12 @@ class CFire : public CEntity {
 		int getState();
 		void setState(fireState);
 
-		int getLadderCollide();
+/*		int getLadderCollide();
 		void setLadderCollide(int) ;
 
 		int getPlatformCollide() ;
 		void setPlatformCollide(int) ;
-
+*/
 		int wheresMarioX(CMario&);
 		int IsDiffLevel(CMario&);
 
@@ -50,8 +50,8 @@ class CFire : public CEntity {
 
 		SDL_Rect clips[3];
 
-		int ladderCollide ;	//true when mario is currenly colliding with a ladder
-		int platformCollide ;
+//		int ladderCollide ;	//true when mario is currenly colliding with a ladder
+//		int platformCollide ;
 
 };
 

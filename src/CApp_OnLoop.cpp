@@ -10,7 +10,6 @@ void CApp::OnLoop() {
 	int fireChangeDirection = 0;
 
 	for (int i = 0 ; i < entityList.size() ; i++) {		//loops through all entities (including mario)
-		if(!entityList[i]) continue ;	//NULL pointer check
 		entityList[i]->OnLoop() ;	//updates each valid entity
 	}
 	mario.OnLoop() ;
@@ -18,18 +17,16 @@ void CApp::OnLoop() {
 
 	//check for collisions with static objects
 	mario.setLadderCollide(0) ;		//reset to false each time through, will both be checked and set in IsCollision functions if there is a collision
-	mario.setPlatformCollide(0) ;
-	for (int i = 0 ; i < bgObjs.size() ; i++) {
-		bgObjs[i]->IsCollision(mario) ;			
-	}
+	mario.setPlatformCollide(0) ;	
 	fire.setLadderCollide(0);
 	fire.setPlatformCollide(0) ;
-	for (int it = 0 ; it < bgObjs.size() ; it++) {
-		bgObjs[it]->fireIsCollision(fire);			
-	}
+	barrel.setLadderCollide(0) ;
 	barrel.setPlatformCollide(0) ;
-	for (int it = 0 ; it < bgObjs.size() ; it++) {
-		bgObjs[it]->barrelIsCollision(barrel);
+	for (int i = 0 ; i < bgObjs.size() ; i++) {
+		bgObjs[i]->IsCollision(mario) ;
+		for(int j = 0 ; j < entityList.size() ; j++) {	
+			bgObjs[i]->entityIsCollision(*entityList[j]) ;
+		}		
 	}
 
 	//set mario state

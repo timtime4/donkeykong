@@ -67,7 +67,6 @@ int CApp::OnInit() {
 		return 0 ;
 	}
 	//peach not added to entityList because result of collision is different from other entities
-	//entityList.push_back(&peach) ;
 
 
 	////////DONKEY KONG INITIALIZATION////////
@@ -84,6 +83,13 @@ int CApp::OnInit() {
 		return 0;
 	}
 	entityList.push_back(&fire);
+	if(fire2.OnLoad("../imgFiles/fire.bmp") == 0) {
+		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl; 
+		return 0 ;
+	}
+	fire2.setX(200) ;
+	fire2.setY(300) ;
+	entityList.push_back(&fire2) ;
 
 
 	//////////BARREL INITIALIZATION//////////

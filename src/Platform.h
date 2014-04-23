@@ -12,8 +12,7 @@ class Platform : public StaticObj {
 	public:
 		Platform(int = 0, int = 0) ;
 		virtual void IsCollision(CMario&) ;
-		virtual void fireIsCollision(CFire&);
-		virtual void barrelIsCollision(CBarrel&);
+		virtual void entityIsCollision(CEntity&) ;
 	
 	private:
 } ;

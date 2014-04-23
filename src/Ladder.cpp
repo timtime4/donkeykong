@@ -22,15 +22,11 @@ void Ladder::IsCollision(CMario& mario) {
 	} 
 }
 
-void Ladder::fireIsCollision(CFire& fire){
- 	if( (fire.getX() > this->x) && (fire.getX() + fire.getWidth() < this->x + this->width) && 
-		(fire.getY() <= this->y + this->height) && 
-		(fire.getY() > this->y - (PLATFORM_HEIGHT + fire.getHeight())) ) 
+void Ladder::entityIsCollision(CEntity& entity) {
+	if( (entity.getX() > this->x) && (entity.getX() + entity.getWidth() < this->x + this->width) && 
+		(entity.getY() <= this->y + this->height) && (entity.getY() > this->y - (PLATFORM_HEIGHT + entity.getHeight())) ) 
 	{
-		fire.setLadderCollide(1) ; 	//ladderCollide set to true, know when exit ladder
+		entity.setLadderCollide(1) ; 	//ladderCollide set to true, know when exit ladder
 	} 
 }
 
-void Ladder::barrelIsCollision(CBarrel& barrel){
-
-}

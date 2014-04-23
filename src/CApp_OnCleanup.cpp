@@ -23,6 +23,7 @@ void CApp::OnCleanup() {
 	SDL_FreeSurface(Surf_Highscore) ;
 	SDL_FreeSurface(Surf_Score) ;
 	SDL_FreeSurface(Surf_Points) ;
+	SDL_FreeSurface(Surf_WonText) ;
 
 	SDL_FreeSurface(Surf_Display) ;
 

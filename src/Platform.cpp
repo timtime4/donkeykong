@@ -16,22 +16,14 @@ void Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to
 	}
 }
 
-void Platform::fireIsCollision(CFire& fire) {
+void Platform::entityIsCollision(CEntity& entity) {
 	//collision with ground -- also moves fire up when platform height moves up for slant
-	if( (fire.getX() < this->x + this->width) && (fire.getX() + fire.getWidth() > this->x) &&
-		(fire.getY() + fire.getHeight() > this->y) && (fire.getY() + fire.getHeight() -4 < this->y) )
-	{
-		fire.setY(this->y - fire.getHeight());		
-		fire.setPlatformCollide(1);
-	}
-}
-
-void Platform::barrelIsCollision(CBarrel& barrel) {
-        if( (barrel.getX() < this->x + this->width) && (barrel.getX() + barrel.getWidth() > this->x) &&
-                (barrel.getY() + barrel.getHeight() > this->y) && (barrel.getY() + barrel.getHeight() -4 < this->y) )
+	if( (entity.getX() < this->x + this->width) && (entity.getX() + entity.getWidth() > this->x) &&
+		(entity.getY() + entity.getHeight() > this->y) && (entity.getY() + entity.getHeight() -4 < this->y) )
         {
-                barrel.setY(this->y - barrel.getHeight());
-                barrel.setPlatformCollide(1);
+                entity.setY(this->y - entity.getHeight());
+                entity.setPlatformCollide(1);
         }
 }
+
 

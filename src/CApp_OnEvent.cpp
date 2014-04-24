@@ -18,7 +18,7 @@ int CApp::OnEvent(SDL_Event* Event) {
 				case SDLK_SPACE:
 					if(mario.getState() == MARIO_WALKING) {
 						mario.setYVel(-7) ;
-						mario.setUp(7) ;	//mario's yVel lasts for 7 frames, NEED TO CHANGE THIS ACCORDING TO WHAT WE DECIDE ON FOR FRAME RATE
+						mario.setUp(8) ;	//mario's yVel lasts for 7 frames, NEED TO CHANGE THIS ACCORDING TO WHAT WE DECIDE ON FOR FRAME RATE
 						mario.setState(MARIO_JUMPING) ;
 						//play jumping sound effect
 						if ( Mix_PlayChannel(-1, jumps, 0) == -1 ){		// Play jumping sound effect

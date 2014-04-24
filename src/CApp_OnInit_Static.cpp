@@ -12,6 +12,7 @@ int CApp::OnInit_Static() {
 
 	platforms.clear() ;
 	ladders.clear() ;
+	bgObjs.clear() ;
 
 	Surf_bgObjs = CSurface::OnLoad("../imgFiles/bgFiles/staticObjects.png") ;	//load file containing static objects image sprites
 	if(Surf_bgObjs == NULL) {

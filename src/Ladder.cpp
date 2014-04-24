@@ -16,7 +16,7 @@ void Ladder::IsCollision(CMario& mario) {
 		(mario.getY() > this->y - (PLATFORM_HEIGHT + mario.getHeight())) ) 
 	{
 		//remove consideration of PLATFORM_HEIGHT above the ladder as part of collision for broken ladder and two ladders next to peach's platform
-		if( (this->height > 30 && this->height < 100) || (mario.getY() > this->y - mario.getHeight()/2) ) {	//can climb above ladder to half of his height 
+		if( (this->height > 30 ) || (mario.getY() > this->y - mario.getHeight()/2) ) {	//can climb above ladder to half of his height 
 			mario.setLadderCollide(1) ; 	//ladderCollide set to true, know when exit ladder
 		}
 	} 

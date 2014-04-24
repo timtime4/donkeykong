@@ -42,7 +42,8 @@ CApp::CApp() {		//initialize private data members
 	Surf_Lives = NULL ;
 
 	wonGame = 0 ; 
-	Surf_WonText = NULL ;
+
+	Surf_LevelText = NULL ;
 }
 
 void CApp::resetGame() {
@@ -75,6 +76,12 @@ int CApp::OnExecute() {
 	
 	while(game) {
 		resetGame() ;
+		//display LEVEL 1
+		SDL_FillRect(Surf_Display, &Surf_Display->clip_rect, SDL_MapRGB(Surf_Display->format, 0, 0, 0) ) ;
+		Surf_LevelText = TTF_RenderText_Solid(largeFont, "LEVEL 1", {0,255,0}) ;
+		CSurface::OnDraw(Surf_Display, Surf_LevelText, 200, 225) ;
+		SDL_Flip(Surf_Display) ;
+		SDL_Delay(3000) ;		
 
 		while(running) {
 			fps.start() ;
@@ -95,8 +102,7 @@ int CApp::OnExecute() {
 		if(game == 0) break ;
 		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
 		/*if(wonGame) {
-			Surf_WonText = TTF_RenderText_Solid(scoreFont, "You Win!", {0,255,0}) ;
-			CSurface::OnDraw(Surf_Display, Surf_WonText, 200, 225) ;
+
 		}*/
 
 		SDL_Flip(Surf_Display) ;

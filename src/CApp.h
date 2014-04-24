@@ -46,7 +46,8 @@ class CApp {
 
 	private :
 		int OnInit_Static() ;	//helper function to initialize all static data members
-		
+		int OnInit_StaticL2() ;		
+
 		SDL_Surface* Surf_Display ;	//"blank piece of paper"
 		int running ;	//condition for inner while loop (controls individual playing of a game
 		int game ;	//condition for bigger while loop (can keep playing games even after gameover)
@@ -70,6 +71,7 @@ class CApp {
 		TTF_Font* scoreFont ;
 		TTF_Font* pointsFont ;
 		SDL_Color textColor ;	
+		TTF_Font* largeFont ;
 
 		int hs ;
 		string hsString ;	
@@ -102,7 +104,8 @@ class CApp {
 		SDL_Surface* Surf_Lives ;
 
 		int wonGame ;
-		SDL_Surface* Surf_WonText ;
+
+		SDL_Surface* Surf_LevelText ;
 
 
 } ;

@@ -41,7 +41,7 @@ int CApp::OnInit() {
 	SDL_WM_SetCaption("Donkey Kong", NULL) ;	//window caption
 
 	//////////STATIC OBJECT INTIIALIZATION//////////
-	if(!OnInit_Static()) {
+	if(!OnInit_StaticL2()) {				//************
 		cout << "OnInit_Static() fail" << endl ;
 		return 0 ;
 	}
@@ -117,7 +117,8 @@ int CApp::OnInit() {
 	}
 	scoreFont = TTF_OpenFont("../bauhs93.ttf", 18) ;
 	pointsFont = TTF_OpenFont("../bauhs93.ttf", 10) ;	//smaller font for display when points are added to score
-	if(scoreFont == NULL || pointsFont == NULL) {
+	largeFont = TTF_OpenFont("../bauhs93.ttf", 30) ;
+	if(scoreFont == NULL || pointsFont == NULL || largeFont == NULL) {
 		cout << "Font did not open" << endl ; 
 		return 0 ;
 	}

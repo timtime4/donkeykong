@@ -22,8 +22,6 @@ void Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to
 	{
 		mario.setY(checkHeight) ;
 	}
-
-
 }
 
 void Platform::entityIsCollision(CEntity& entity) {

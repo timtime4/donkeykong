@@ -26,7 +26,6 @@ CApp::CApp() {		//initialize private data members
 
 	scoreFont = NULL ;
 	pointsFont = NULL ;
-	textColor = {0, 165, 230} ;
 
 	hs = 0 ;
 	Surf_Highscore = NULL ;
@@ -45,18 +44,27 @@ CApp::CApp() {		//initialize private data members
 	wonLevel2 = 0 ;
 
 	Surf_LevelText = NULL ;
+
+	levelCounter = 0 ;
+	constantEntitiesCount = 0 ;
 }
 
 void CApp::resetLevel() {
 	running = 1 ;
 	mario.reset() ;
-	barrel.reset() ;	
+	barrel.reset() ;
+	barrel2.reset() ;
+	barrel3.reset() ;
+	levelCounter = 0 ;
+	while(entityList.size() > constantEntitiesCount) {
+		entityList.pop_back() ;	//removes additional barrels from entityList
+	}
 	fire.reset() ;
 	fire2.reset() ;
 	ostringstream scoreStream ;
 	scoreStream << "Score: " << score ;	//string stream for creating full score text, ie. "Score: 0"
 	scoreString = scoreStream.str() ;	//convert stream to string
-	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), {0, 165, 230}) ;
 }
 
 int CApp::OnExecute() {

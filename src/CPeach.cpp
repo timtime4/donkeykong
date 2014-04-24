@@ -49,7 +49,7 @@ void CPeach::OnRender(SDL_Surface* Surf_Display) {
 
 int CPeach::IsCollision(CMario& mario) {
 	//returns true upon collision with CMario object, indicates winning of level
-	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) &&
+	if( (mario.getX() < this->x + this->width + 5) && (mario.getX() + mario.getWidth() > this->x) &&
 		(mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) )
 	{
 		return 1 ;

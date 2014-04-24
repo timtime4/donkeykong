@@ -92,6 +92,16 @@ int CApp::OnInit() {
                 return 0;
         }
         entityList.push_back(&barrel);
+	constantEntitiesCount = entityList.size() ;
+
+	//don't push_back barrel2 or barrel3 until reached a certain levelCounter value (in CApp_OnLoop.cpp)
+	if(barrel2.OnLoad("../imgFiles/barrel.bmp") == 0){
+		cout << "Barrel didn't load" << endl ;
+		return 0 ;
+	}
+	if(barrel3.OnLoad("../imgFiles/barrel.bmp") == 0){
+		return 0 ;
+	}
 
 
 	//////////STARTUP SCREEN INITIALIZATION//////////
@@ -122,7 +132,7 @@ int CApp::OnInit() {
 	ostringstream scoreStream ;
 	scoreStream << "Score: " << score ;	//string stream for creating full score text, ie. "Score: 0"
 	scoreString = scoreStream.str() ;	//convert stream to string
-	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), {0, 165, 230}) ;
 
 	//////////HIGHSCORE DISPLAY INITIALIZATION//////////
 	ifstream hsFile;
@@ -135,7 +145,7 @@ int CApp::OnInit() {
 	ostringstream hsStream ;	
 	hsStream << "Highscore: " << hs ;	//string stream for creating full highscore text, ie. "Highscore: 1400"
 	hsString =  hsStream.str() ;	//convert stream to string
-	Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor);
+	Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), {0, 165, 230});
 
 	return 1 ;	//all initialization succeeded
 

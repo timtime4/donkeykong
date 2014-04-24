@@ -15,6 +15,17 @@ void CApp::OnLoop() {
 	mario.OnLoop() ;
 	peach.OnLoop() ;
 
+	//add barrels
+	if(levelCounter == 250) entityList.push_back(&barrel2) ;
+	else if (levelCounter == 500) entityList.push_back(&barrel3) ;
+	else if (levelCounter == 750) barrel.reset() ;
+	else if (levelCounter == 1000) barrel2.reset() ;
+	else if (levelCounter == 1250) barrel3.reset() ;
+	else if (levelCounter == 1500) barrel.reset() ;
+	else if (levelCounter == 1750) barrel2.reset() ;
+	else if (levelCounter == 2000) barrel3.reset() ;
+	levelCounter++ ;
+
 	//check for collisions with static objects
 	mario.setLadderCollide(0) ;		//reset to false each time through, will both be checked and set in IsCollision functions if there is a collision
 	mario.setPlatformCollide(0) ;	
@@ -44,8 +55,7 @@ void CApp::OnLoop() {
 		}
 	}
 	
-	//cout << "Diff Level: " << fire.IsDiffLevel(mario) << "collide: " << fire.getLadderCollide() << "fire State = " << fire.getState() << endl;
-	//cout << "Mario: " << mario.getY() << " Fire: " << fire.getY() << endl;
+	//AI for fire
 	if(fire.IsDiffLevel(mario) && !fire.getLadderCollide()){
 		fire.setState(FIRE_SEARCHING);
 	} else if(fire.IsDiffLevel(mario) && fire.getLadderCollide()){
@@ -54,6 +64,7 @@ void CApp::OnLoop() {
 		fire.setState(FIRE_WALKING);
 		fire.wheresMarioX(mario);
 	}
+
 
 	//check entity (other than peach) collisions with mario
 	for (int i = 0 ; i < entityList.size() ; i++) {
@@ -79,22 +90,26 @@ void CApp::OnLoop() {
 		displayPoints = 1 ;
 		pointsX = mario.getX() ;
 		pointsY = mario.getY() - 10 ;
-		Surf_Points = TTF_RenderText_Solid(pointsFont, "+1500", textColor) ;
+		Surf_Points = TTF_RenderText_Solid(pointsFont, "+1500", {255, 105, 180}) ;	//pink for peach
 
 		ostringstream scoreStream ;	//string stream for displaying score
 		scoreStream << "Score: " << score ;
 		scoreString = scoreStream.str() ;
-		Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+		Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), {0, 165, 230}) ;
 
 		if(score > hs) {
 			hs = score ;
 			ostringstream hsStream ;
 			hsStream << "Highscore: " << hs ;
 			hsString = hsStream.str() ;
-			Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
+			Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), {0, 165, 230}) ;
 		}
 
-		wonLevel1 = 1 ;
+		if(!wonLevel1) {
+			wonLevel1 = 1 ;
+		} else if (!wonLevel2) {
+			wonLevel2 = 1 ;
+		}
 		//celebration music?
 		//YOU WIN!!! screen
 	}
@@ -102,26 +117,26 @@ void CApp::OnLoop() {
 	//update score, highscore, and their displays
 	if(gotPoints > 0) {
 		gotPoints++ ;		//increment until reset (15 loops)
-		if(gotPoints > 7 && mario.getState() != MARIO_HURTING) {	//successfully jumped over fire or barrel (ie. did not fall onto it) 
+		if(gotPoints > 8 && mario.getState() != MARIO_HURTING) {	//successfully jumped over fire or barrel (ie. did not fall onto it) 
 			gotPoints = 0 ;
 			score+=200 ;
 
 			displayPoints = 1 ;
 			pointsX = mario.getX() ;
 			pointsY = mario.getY() - 10 ;
-			Surf_Points = TTF_RenderText_Solid(pointsFont, "+200", textColor) ;
+			Surf_Points = TTF_RenderText_Solid(pointsFont, "+200", {255, 100, 70}) ;	//orange for scoring over barrels and fire
 
 			ostringstream scoreStream ;	//string stream for displaying score
 			scoreStream << "Score: " << score ;
 			scoreString = scoreStream.str() ;
-			Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
+			Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), {0, 165, 230}) ;
 
 			if(score > hs) {
 				hs = score ;
 				ostringstream hsStream ;
 				hsStream << "Highscore: " << hs ;
 				hsString = hsStream.str() ;
-				Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
+				Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), {0, 165, 230}) ;
 			}
 		}	
 	}

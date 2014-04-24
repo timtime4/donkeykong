@@ -1,5 +1,4 @@
 /*
-***
  * DonkeyKong
  * CApp.h
 */
@@ -67,10 +66,11 @@ class CApp {
 		CFire fire;
 		CFire fire2;
 		CBarrel barrel;
+		CBarrel barrel2 ;
+		CBarrel barrel3 ;
 
 		TTF_Font* scoreFont ;
 		TTF_Font* pointsFont ;
-		SDL_Color textColor ;	
 		TTF_Font* largeFont ;
 
 		int hs ;
@@ -107,6 +107,9 @@ class CApp {
 		int wonLevel2 ;
 
 		SDL_Surface* Surf_LevelText ;
+
+		int levelCounter ;
+		int constantEntitiesCount ;	//keeps track of number of entities that will always be part of the game (ie. all entities except additional barrels)
 
 
 } ;

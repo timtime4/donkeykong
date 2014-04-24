@@ -24,16 +24,15 @@ CBarrel::CBarrel() {
 }
 
 void CBarrel::OnLoop() {
-	int yloc;
-
-	x += xVel;			// Move BARREL left or right
+	//int yloc;
 
 	frame++;
 	if (frame >= 4) frame = 0;
 
+	x += xVel;			// Move BARREL left or right
 	y += yVel + yGravityVel;
 
-	if((x < 5 || x+BARREL_WIDTH > WINDOW_WIDTH-5) && y < 580) {
+	if((x < 5 || x+BARREL_WIDTH > WINDOW_WIDTH-5) && y < 560) {
 		xVel = -xVel ;
 	}
 	

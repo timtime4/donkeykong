@@ -75,7 +75,7 @@
 
 
 #define DK_WIDTH 62
-#define DK_HEIGHT 120
+#define DK_HEIGHT 80 //120
 
 #define DK_START_X 30
 #define DK_START_Y 108

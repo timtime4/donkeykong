@@ -34,24 +34,21 @@ class CFire : public CEntity {
 		int getState();
 		void setState(fireState);
 
-/*		int getLadderCollide();
-		void setLadderCollide(int) ;
-
-		int getPlatformCollide() ;
-		void setPlatformCollide(int) ;
-*/
 		int wheresMarioX(CMario&);
 		int IsDiffLevel(CMario&);
 
 		void reset() ;
+
+		void setXinit(int) ;
+		void setYinit(int) ;
 	
 	private:
 		fireState state ;	//defined by enum fireState above
+		int xinit ;		//position fire starts, used for reset() function
+		int yinit ;
 
 		SDL_Rect clips[3];
 
-//		int ladderCollide ;	//true when mario is currenly colliding with a ladder
-//		int platformCollide ;
 
 };
 

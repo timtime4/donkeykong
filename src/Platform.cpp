@@ -9,7 +9,7 @@ Platform::Platform(int _x, int _y) {
 void Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to directly update the object in CApp_OnLoop
 	//collision with ground-- also moves mario up when platform height moves up for slant
 	if( (mario.getX() < this->x + this->width) && (mario.getX()+mario.getWidth() > this->x) && 
-		(mario.getY() + mario.getHeight() > this->y) &&	(mario.getY() + mario.getHeight() - 4 < this->y) )	
+		(mario.getY() + mario.getHeight() > this->y) &&	(mario.getY() + mario.getHeight() - 5 < this->y) )	
 	{
 		mario.setY(this->y - mario.getHeight()) ;	//set mario to be standing on ground platform
 		mario.setPlatformCollide(1) ;
@@ -27,7 +27,7 @@ void Platform::IsCollision(CMario& mario) {	//pass CMario object by reference to
 void Platform::entityIsCollision(CEntity& entity) {
 	//collision with ground -- also moves fire up when platform height moves up for slant
 	if( (entity.getX() < this->x + this->width) && (entity.getX() + entity.getWidth() > this->x) &&
-		(entity.getY() + entity.getHeight() > this->y) && (entity.getY() + entity.getHeight() -4 < this->y) )
+		(entity.getY() + entity.getHeight() > this->y) && (entity.getY() + entity.getHeight() -5 < this->y) )
         {
                 entity.setY(this->y - entity.getHeight());
                 entity.setPlatformCollide(1);

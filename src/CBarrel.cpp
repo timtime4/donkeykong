@@ -17,7 +17,7 @@ CBarrel::CBarrel() {
 	width = BARREL_WIDTH ;
 	height = BARREL_HEIGHT ;
 
-	xVel = 5;
+	xVel = 4;
 
 	platformCollide = 0 ;
 //	ladderCollide = 0 ;
@@ -32,8 +32,12 @@ void CBarrel::OnLoop() {
 	if (frame >= 4) frame = 0;
 
 	y += yVel + yGravityVel;
+
+	if((x < 5 || x+BARREL_WIDTH > WINDOW_WIDTH-5) && y < 580) {
+		xVel = -xVel ;
+	}
 	
-	if((x + BARREL_WIDTH < 45) || (x + BARREL_WIDTH > WINDOW_WIDTH-45)){		//if barrel hits either side wall, change direction of velocity
+/*	if((x + BARREL_WIDTH < 45) || (x + BARREL_WIDTH > WINDOW_WIDTH-45)){		//if barrel hits either side wall, change direction of velocity
 		yloc = y;
 		while (1){
 			y += 1;
@@ -44,7 +48,7 @@ void CBarrel::OnLoop() {
 			}
 		}
 	}
-	
+*/	
 	if( ( y < 0 ) || ( y + BARREL_HEIGHT > WINDOW_HEIGHT ) ){	// If BARREL moves too far up or down
         	y -= yVel;		// Move Barrel back
 	}
@@ -93,4 +97,5 @@ void CBarrel::setPlatformCollide(int collide) {
 void CBarrel::reset() {
 	x = BARREL_START_X ;
 	y = BARREL_START_Y ;
+	xVel = 4 ;
 }

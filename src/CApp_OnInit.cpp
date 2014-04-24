@@ -40,13 +40,6 @@ int CApp::OnInit() {
 
 	SDL_WM_SetCaption("Donkey Kong", NULL) ;	//window caption
 
-	//////////STATIC OBJECT INTIIALIZATION//////////
-	if(!OnInit_StaticL2()) {				//************
-		cout << "OnInit_Static() fail" << endl ;
-		return 0 ;
-	}
-
-
 	///////////MARIO EVENTS BEHAVIOR///////////
 	if(SDL_EnableKeyRepeat(50, 50)) return 0 ;
 
@@ -78,6 +71,7 @@ int CApp::OnInit() {
 
 
 	/////////FIRE INITIALIZATION////////////
+
 	if(fire.OnLoad("../imgFiles/fire.bmp") == 0){
 		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl;
 		return 0;
@@ -87,8 +81,8 @@ int CApp::OnInit() {
 		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl; 
 		return 0 ;
 	}
-	fire2.setX(200) ;
-	fire2.setY(300) ;
+	fire2.setXinit(10) ;
+	fire2.setYinit(250) ;
 	entityList.push_back(&fire2) ;
 
 

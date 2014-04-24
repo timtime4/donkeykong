@@ -94,8 +94,7 @@ void CApp::OnLoop() {
 			Surf_Highscore = TTF_RenderText_Solid(scoreFont, hsString.c_str(), textColor) ;
 		}
 
-		cout << "*************************" << endl << "CONGRATULATIONS! YOU WIN!"<< endl << "*************************" << endl ;
-		wonGame = 1 ;	//***********
+		wonLevel1 = 1 ;
 		//celebration music?
 		//YOU WIN!!! screen
 	}
@@ -136,7 +135,8 @@ void CApp::OnLoop() {
 	                --mario ;	//decrement lives after blinking finished
 			if(mario.getLives() == 0) {
 				running = 0 ;
-				cout << "*************************" << endl << "SORRY!  YOU LOSE!"<< endl << "*************************" << endl;	
+				wonLevel1 = 0 ;
+				wonLevel2 = 0 ;
 			} else {
 				mario.reset() ;
 			}

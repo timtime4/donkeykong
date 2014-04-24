@@ -33,7 +33,7 @@ class CApp {
 	public :
 		CApp() ;
 		int OnExecute() ;
-		void resetGame() ;
+		void resetLevel() ;
 
 		//overarching video game functions
 		int OnInit() ;
@@ -103,7 +103,8 @@ class CApp {
 
 		SDL_Surface* Surf_Lives ;
 
-		int wonGame ;
+		int wonLevel1 ;
+		int wonLevel2 ;
 
 		SDL_Surface* Surf_LevelText ;
 

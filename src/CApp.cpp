@@ -41,23 +41,22 @@ CApp::CApp() {		//initialize private data members
 	
 	Surf_Lives = NULL ;
 
-	wonGame = 0 ; 
+	wonLevel1 = 0 ; 
+	wonLevel2 = 0 ;
 
 	Surf_LevelText = NULL ;
 }
 
-void CApp::resetGame() {
-	wonGame = 0 ;
+void CApp::resetLevel() {
+	running = 1 ;
 	mario.reset() ;
-	mario.setLives(3) ;
 	barrel.reset() ;	
 	fire.reset() ;
-	score = 0 ;
+	fire2.reset() ;
 	ostringstream scoreStream ;
 	scoreStream << "Score: " << score ;	//string stream for creating full score text, ie. "Score: 0"
 	scoreString = scoreStream.str() ;	//convert stream to string
 	Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), textColor) ;
-
 }
 
 int CApp::OnExecute() {
@@ -75,14 +74,20 @@ int CApp::OnExecute() {
 	}
 	
 	while(game) {
-		resetGame() ;
-		//display LEVEL 1
+		OnInit_Static() ;
+		wonLevel1 = 0 ;
+		wonLevel2 = 0 ;
+		mario.setLives(3) ;
+		score = 0 ;
+		resetLevel() ;
+
+		//display LEVEL 1 intro
 		SDL_FillRect(Surf_Display, &Surf_Display->clip_rect, SDL_MapRGB(Surf_Display->format, 0, 0, 0) ) ;
 		Surf_LevelText = TTF_RenderText_Solid(largeFont, "LEVEL 1", {0,255,0}) ;
 		CSurface::OnDraw(Surf_Display, Surf_LevelText, 200, 225) ;
 		SDL_Flip(Surf_Display) ;
-		SDL_Delay(3000) ;		
-
+		SDL_Delay(1500) ;		
+		//////play LEVEL 1//////
 		while(running) {
 			fps.start() ;
 			while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
@@ -90,7 +95,6 @@ int CApp::OnExecute() {
 					OnCleanup() ;
 					return 1 ;
 				}
-		
 			}
 			OnLoop() ;	//updates all data
 			OnRender() ;	//displays updated screen
@@ -98,13 +102,38 @@ int CApp::OnExecute() {
 				SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
 			}
 		}
-		SDL_Delay(1000) ;	//pause to display game end, time wanted needs to be decided****
+		SDL_Delay(3000) ;	//pause to display game end
 		if(game == 0) break ;
+
+		if(wonLevel1) {	//start level 2
+			OnInit_StaticL2() ;	//initialize level 2
+			resetLevel() ;
+			//display LEVEL 2 intro
+			SDL_FillRect(Surf_Display, &Surf_Display->clip_rect, SDL_MapRGB(Surf_Display->format, 0, 0, 0) ) ;
+			Surf_LevelText = TTF_RenderText_Solid(largeFont, "LEVEL 2", {255,255,0}) ;
+			CSurface::OnDraw(Surf_Display, Surf_LevelText, 200, 225) ;
+			SDL_Flip(Surf_Display) ;
+			SDL_Delay(1500) ;
+			//////play LEVEL 2//////
+			while(running) {
+				fps.start() ;
+				while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
+					if(!OnEvent(&Event)) {
+						OnCleanup() ;
+						return 1 ;
+					}
+				}
+				OnLoop() ;	//updates all data
+				OnRender() ;	//displays updated screen
+				if(fps.get_ticks() < 1000 / FRAMES_PER_SECOND) {	//caps frame rate
+					SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() ) ;
+				}
+			}
+			SDL_Delay(3000) ;	//pause to display game end
+			if(game == 0) break ;
+		}
+
 		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
-		/*if(wonGame) {
-
-		}*/
-
 		SDL_Flip(Surf_Display) ;
 		while ( OnGameover(&Event) ){
 		}

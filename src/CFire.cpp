@@ -12,8 +12,11 @@ CFire::CFire() {
 
 	state = FIRE_WALKING ;	//FIRE starts on the lowest platform
 
-	x = FIRE_START_X ;
-	y = FIRE_START_Y;
+	xinit = FIRE_START_X ;
+	yinit = FIRE_START_Y;
+
+	x = xinit ;
+	y = yinit ;
 
 	width = FIRE_WIDTH ;
 	height = FIRE_HEIGHT ;
@@ -21,8 +24,6 @@ CFire::CFire() {
 	xVel = 1;
 	yVel = 2;
 
-//	platformCollide = 0 ;
-//	ladderCollide = 0 ;
 }
 
 void CFire::OnLoop() {
@@ -101,27 +102,18 @@ void CFire::setState(fireState _state) {
 	state = _state ;
 }
 
-
-/*int CFire::getLadderCollide() {
-	return ladderCollide ;
-}
-
-void CFire::setLadderCollide(int collide) {
-	ladderCollide = collide ;
-}
-
-int CFire::getPlatformCollide() {
-	return platformCollide ;
-}
-
-void CFire::setPlatformCollide(int collide) {
-	platformCollide = collide ;
-}*/
-
-
 void CFire::reset() {
 	state = FIRE_WALKING ;
-	x = FIRE_START_X ;
-	y = FIRE_START_Y ;
 
+	x = xinit ;
+	y = yinit ;
 }
+
+void CFire::setXinit(int _x) {
+	xinit = _x ;
+}
+
+void CFire::setYinit(int _y) {
+	yinit = _y ;
+}
+

@@ -109,8 +109,8 @@ int CApp::OnInit_Static() {
 
 	tempL.OnInit(365, 366, LADDER_WIDTH, 45) ;	//begin level 2 ladders
 	ladders.push_back(tempL) ;
-	tempL.OnInit(220, 357, LADDER_WIDTH, 63) ;
-	ladders.push_back(tempL) ;
+	/*tempL.OnInit(220, 357, LADDER_WIDTH, 63) ;
+	ladders.push_back(tempL) ;*/
 	tempL.OnInit(120, 354, LADDER_WIDTH, 24) ;
 	ladders.push_back(tempL) ;
 	tempL.OnInit(120, 405, LADDER_WIDTH, 18) ;
@@ -118,8 +118,8 @@ int CApp::OnInit_Static() {
 
 	tempL.OnInit(75, 446, LADDER_WIDTH, 45) ;	//begin level 1 ladders
 	ladders.push_back(tempL) ;
-	tempL.OnInit(185, 440, LADDER_WIDTH, 57) ;
-	ladders.push_back(tempL) ;
+	/*tempL.OnInit(185, 440, LADDER_WIDTH, 57) ;
+	ladders.push_back(tempL) ;*/
 	tempL.OnInit(310, 434, LADDER_WIDTH, 24) ;
 	ladders.push_back(tempL) ;
 

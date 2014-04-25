@@ -68,6 +68,7 @@ class CApp {
 		CBarrel barrel;
 		CBarrel barrel2 ;
 		CBarrel barrel3 ;
+		CBarrel barrel4 ;
 
 		TTF_Font* scoreFont ;
 		TTF_Font* pointsFont ;

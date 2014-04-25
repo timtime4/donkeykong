@@ -21,6 +21,10 @@ CBarrel::CBarrel() {
 
 	platformCollide = 0 ;
 //	ladderCollide = 0 ;
+
+	resetCount = 0 ;
+
+	yGravityVel = 4 ;
 }
 
 void CBarrel::OnLoop() {
@@ -52,6 +56,11 @@ void CBarrel::OnLoop() {
         	y -= yVel;		// Move Barrel back
 	}
 
+	if(resetCount == 800) {
+		this->reset() ;	//after 750 loops, reset barrel to top of level
+	}
+
+	resetCount++ ;
 
 }
 
@@ -97,4 +106,5 @@ void CBarrel::reset() {
 	x = BARREL_START_X ;
 	y = BARREL_START_Y ;
 	xVel = 4 ;
+	resetCount = 0 ;
 }

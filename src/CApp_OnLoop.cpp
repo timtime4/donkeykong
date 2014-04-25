@@ -16,14 +16,9 @@ void CApp::OnLoop() {
 	peach.OnLoop() ;
 
 	//add barrels
-	if(levelCounter == 250) entityList.push_back(&barrel2) ;
-	else if (levelCounter == 500) entityList.push_back(&barrel3) ;
-	else if (levelCounter == 750) barrel.reset() ;
-	else if (levelCounter == 1000) barrel2.reset() ;
-	else if (levelCounter == 1250) barrel3.reset() ;
-	else if (levelCounter == 1500) barrel.reset() ;
-	else if (levelCounter == 1750) barrel2.reset() ;
-	else if (levelCounter == 2000) barrel3.reset() ;
+	if(levelCounter == 200) entityList.push_back(&barrel2) ;
+	else if (levelCounter == 400) entityList.push_back(&barrel3) ;
+	else if(levelCounter == 600) entityList.push_back(&barrel4) ;
 	levelCounter++ ;
 
 	//check for collisions with static objects

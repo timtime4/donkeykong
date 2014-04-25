@@ -29,17 +29,14 @@ class CBarrel : public CEntity {
 		int getPlatformCollide() ;
 		void setPlatformCollide(int);
 
-		//virtual int IsCollision(CMario&) ;	//checks for the collision between mario and the barrel
-
 		void reset() ;
 	
 	private:
-
 		SDL_Rect clips[3];
 		int moved;
 		int direction;
 		int platformCollide ;
-
+		int resetCount ;
 };
 
 

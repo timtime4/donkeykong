@@ -102,6 +102,9 @@ int CApp::OnInit() {
 	if(barrel3.OnLoad("../imgFiles/barrel.bmp") == 0){
 		return 0 ;
 	}
+	if(barrel4.OnLoad("../imgFiles/barrel.bmp") == 0){
+		return 0 ;
+	}
 
 
 	//////////STARTUP SCREEN INITIALIZATION//////////

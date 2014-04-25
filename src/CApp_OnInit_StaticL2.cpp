@@ -82,7 +82,7 @@ int CApp::OnInit_StaticL2() {
 
 
 	//begin top level, R to L
-	for (i = 0 ; i < 4 ; i++) {
+	for (i = 0 ; i < 3 ; i++) {
 		temp.OnInit(xIncrement*i, 180, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
 		platforms.push_back(temp) ;
 	}
@@ -107,9 +107,9 @@ int CApp::OnInit_StaticL2() {
 	ladders.push_back(tempL) ;
 	tempL.OnInit(300, 303, LADDER_WIDTH, 47) ;
 	ladders.push_back(tempL) ; 
-	tempL.OnInit(185, 200, LADDER_WIDTH, 32) ;
+	tempL.OnInit(135, 200, LADDER_WIDTH, 32) ;
 	ladders.push_back(tempL) ;
-	tempL.OnInit(185, 270, LADDER_WIDTH, 13) ;
+	tempL.OnInit(135, 270, LADDER_WIDTH, 10) ;
 	ladders.push_back(tempL) ;
 
 	for (i = 0 ; i < ladders.size() ; i++) {

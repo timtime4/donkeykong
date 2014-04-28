@@ -9,8 +9,6 @@
 CBarrel::CBarrel() {
 	set_clips() ;
 
-//	state = BARREL_WALKING ;	//BARREL starts on the lowest platform
-
 	x = BARREL_START_X ;
 	y = BARREL_START_Y;
 
@@ -20,7 +18,6 @@ CBarrel::CBarrel() {
 	xVel = 4;
 
 	platformCollide = 0 ;
-//	ladderCollide = 0 ;
 
 	resetCount = 0 ;
 
@@ -28,31 +25,18 @@ CBarrel::CBarrel() {
 }
 
 void CBarrel::OnLoop() {
-	//int yloc;
 
 	frame++;
 	if (frame >= 4) frame = 0;
 
-	x += xVel;			// Move BARREL left or right
+	x += xVel;			// Move barrel left or right
 	y += yVel + yGravityVel;
 
-	if((x < 5 || x+BARREL_WIDTH > WINDOW_WIDTH-5) && y < 560) {
-		xVel = -xVel ;
+	if((x < 5 || x+BARREL_WIDTH > WINDOW_WIDTH-5) && y < 560) {	// If barrel gets to the end of the platform
+		xVel = -xVel ;		// Make it start moving the other way
 	}
-	
-/*	if((x + BARREL_WIDTH < 45) || (x + BARREL_WIDTH > WINDOW_WIDTH-45)){		//if barrel hits either side wall, change direction of velocity
-		yloc = y;
-		while (1){
-			y += 1;
-			x = x;
-			if (y - 51 > yloc){
-				xVel = -xVel;
-				break;
-			}
-		}
-	}
-*/	
-	if( ( y < 0 ) || ( y + BARREL_HEIGHT > WINDOW_HEIGHT ) ){	// If BARREL moves too far up or down
+
+	if( ( y < 0 ) || ( y + BARREL_HEIGHT > WINDOW_HEIGHT ) ){	// If barrel moves too far up or down
         	y -= yVel;		// Move Barrel back
 	}
 
@@ -83,7 +67,7 @@ void CBarrel::set_clips(){		// Clip the barrel sprites
 		clips[it].w = BARREL_WIDTH;
 		clips[it].h = BARREL_HEIGHT;
 	}
-        for (it = 2; it <= 3; it++){
+        for (it = 2; it <= 3; it++){		// Fixes the fact that the sprites get off-center
                 clips[it].x = BARREL_WIDTH*it+1;
                 clips[it].y = 0;
                 clips[it].w = BARREL_WIDTH;

@@ -4,10 +4,10 @@ CApp:  CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnInit_StaticL2.o CApp_OnS
 	g++ CApp.o CApp_OnInit.o CApp_OnInit_Static.o CApp_OnInit_StaticL2.o CApp_OnStartup.o CApp_OnEvent.o CApp_OnLoop.o CApp_OnRender.o CApp_OnCleanup.o CSurface.o CEntity.o StaticObj.o Ladder.o Platform.o CTimer.o CMario.o CPeach.o CDonkeyKong.o CFire.o CBarrel.o CApp_OnGameover.o -o CApp -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
 
 CApp.o:  CApp.cpp CApp.h CSurface.h CEntity.h CMario.h CFire.h CDonkeyKong.h CBarrel.h CPeach.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
-	g++ -c CApp.cpp
+	g++ -w -c CApp.cpp
 
 CApp_OnInit.o: CApp_OnInit.cpp CApp.h CSurface.h CEntity.h CMario.h CFire.h CDonkeyKong.h CBarrel.h CPeach.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
-	g++ -c CApp_OnInit.cpp
+	g++ -w -c CApp_OnInit.cpp
 
 CApp_OnInit_Staic.o:  CApp_OnInit_Static.cpp CApp.h CSurface.h CEntity.h CMario.h CFire.h CDonkeyKong.h CBarrel.h CPeach.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
 	g++ -c CApp_OnInit_Static.cpp
@@ -22,7 +22,7 @@ CApp_OnEvent.o: CApp_OnEvent.cpp CApp.h CSurface.h CEntity.h CMario.h CFire.h CD
 	g++ -c CApp_OnEvent.cpp
 
 CApp_OnLoop.o: CApp_OnLoop.cpp CApp.h CSurface.h CEntity.h CMario.h CFire.h CDonkeyKong.h CBarrel.h CPeach.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
-	g++ -c CApp_OnLoop.cpp
+	g++ -w -c CApp_OnLoop.cpp
 
 CApp_OnRender.o: CApp_OnRender.cpp CApp.h CSurface.h CEntity.h CMario.h CFire.h CDonkeyKong.h CBarrel.h CPeach.h StaticObj.h Ladder.h Platform.h CTimer.h Define.h
 	g++ -c CApp_OnRender.cpp

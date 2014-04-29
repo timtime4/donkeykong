@@ -61,6 +61,7 @@ void CApp::resetLevel() {
 	}
 	fire.reset() ;
 	fire2.reset() ;
+	fire3.reset() ;
 	ostringstream scoreStream ;
 	scoreStream << "Score: " << score ;	//string stream for creating full score text, ie. "Score: 0"
 	scoreString = scoreStream.str() ;	//convert stream to string

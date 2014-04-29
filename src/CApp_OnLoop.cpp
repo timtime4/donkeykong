@@ -26,8 +26,14 @@ void CApp::OnLoop() {
 	mario.setPlatformCollide(0) ;	
 	fire.setLadderCollide(0);
 	fire.setPlatformCollide(0) ;
-	barrel.setLadderCollide(0) ;
+	fire2.setLadderCollide(0) ;
+	fire2.setPlatformCollide(0) ;
+	fire3.setLadderCollide(0) ;
+	fire3.setPlatformCollide(0) ;
 	barrel.setPlatformCollide(0) ;
+	barrel2.setPlatformCollide(0) ;
+	barrel3.setPlatformCollide(0) ;
+	barrel4.setPlatformCollide(0) ;
 	for (int i = 0 ; i < bgObjs.size() ; i++) {
 		bgObjs[i]->IsCollision(mario) ;
 		for(int j = 0 ; j < entityList.size() ; j++) {	
@@ -58,6 +64,22 @@ void CApp::OnLoop() {
 	} else if(!fire.IsDiffLevel(mario)){
 		fire.setState(FIRE_WALKING);
 		fire.wheresMarioX(mario);
+	}
+	if(fire2.IsDiffLevel(mario) && !fire2.getLadderCollide()){
+		fire2.setState(FIRE_SEARCHING);
+	} else if(fire2.IsDiffLevel(mario) && fire2.getLadderCollide()){
+		fire2.setState(FIRE_CLIMBING);
+	} else if(!fire2.IsDiffLevel(mario)){
+		fire2.setState(FIRE_WALKING);
+		fire2.wheresMarioX(mario);
+	}
+	if(fire3.IsDiffLevel(mario) && !fire3.getLadderCollide()){
+		fire3.setState(FIRE_SEARCHING);
+	} else if(fire3.IsDiffLevel(mario) && fire3.getLadderCollide()){
+		fire3.setState(FIRE_CLIMBING);
+	} else if(!fire3.IsDiffLevel(mario)){
+		fire3.setState(FIRE_WALKING);
+		fire3.wheresMarioX(mario);
 	}
 
 

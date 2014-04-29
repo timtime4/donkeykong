@@ -84,6 +84,13 @@ int CApp::OnInit() {
 	fire2.setXinit(10) ;
 	fire2.setYinit(250) ;
 	entityList.push_back(&fire2) ;
+	if(fire3.OnLoad("../imgFiles/fire.bmp") == 0) {
+		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl; 
+		return 0 ;
+	}
+	fire3.setXinit(420) ;
+	fire3.setYinit(150) ;
+	entityList.push_back(&fire3) ;
 
 
 	//////////BARREL INITIALIZATION//////////

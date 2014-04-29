@@ -65,6 +65,7 @@ class CApp {
 		CDonkeyKong dk;
 		CFire fire;
 		CFire fire2;
+		CFire fire3 ;
 		CBarrel barrel;
 		CBarrel barrel2 ;
 		CBarrel barrel3 ;

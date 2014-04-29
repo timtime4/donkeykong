@@ -38,7 +38,7 @@
 #define MARIO_RIGHT 0
 #define MARIO_LEFT 1
 
-#define MARIO_START_X 50
+#define MARIO_START_X 20
 #define MARIO_START_Y 525
 
 

@@ -28,6 +28,11 @@ int CApp::OnInit_StaticL2() {
 		platforms.push_back(temp) ;
 	}
 
+	temp.OnInit(80, 490, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+	platforms.push_back(temp) ;
+	temp.OnInit(140, 490, 30, PLATFORM_HEIGHT) ;
+	platforms.push_back(temp) ;
+
 	//begin 1st level
 	temp.OnInit(420, 510-yIncrement-PLATFORM_HEIGHT, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
 	platforms.push_back(temp) ;
@@ -44,7 +49,7 @@ int CApp::OnInit_StaticL2() {
 	temp.OnInit(0, 385, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
 	platforms.push_back(temp) ;
 
-	//safety platform
+	//"safety" platform
 	temp.OnInit(420, 350, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
 	platforms.push_back(temp) ;
 	temp.OnInit(360, 350, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
@@ -101,20 +106,28 @@ int CApp::OnInit_StaticL2() {
 	//////////////INITIALIZE LADDERS//////////////////
 	Ladder tempL ;
 
+	tempL.OnInit(145, 510, LADDER_WIDTH, 55) ;
+	ladders.push_back(tempL) ;
 	tempL.OnInit(380, 510-yIncrement, LADDER_WIDTH, 70) ;
+	ladders.push_back(tempL) ;
+	tempL.OnInit(80, 405, LADDER_WIDTH, 22) ;
+	ladders.push_back(tempL) ;
+	tempL.OnInit(445, 370, LADDER_WIDTH, 44) ;
 	ladders.push_back(tempL) ;
 	tempL.OnInit(5, 300, LADDER_WIDTH, 60) ;
 	ladders.push_back(tempL) ;
 	tempL.OnInit(300, 303, LADDER_WIDTH, 47) ;
 	ladders.push_back(tempL) ; 
+	tempL.OnInit(135, 270, LADDER_WIDTH, 10) ;
+	ladders.push_back(tempL) ;
 	tempL.OnInit(135, 200, LADDER_WIDTH, 32) ;
 	ladders.push_back(tempL) ;
-	tempL.OnInit(135, 270, LADDER_WIDTH, 10) ;
+	tempL.OnInit(205, 120, LADDER_WIDTH, 37) ;
 	ladders.push_back(tempL) ;
 
 	for (i = 0 ; i < ladders.size() ; i++) {
 		bgObjs.push_back(&ladders[i]) ;
 	}
+	
 	return 1 ;
-
 }

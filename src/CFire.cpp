@@ -79,7 +79,8 @@ void CFire::set_clips(){		// Clip the fire sprites
 
 
 int CFire::IsDiffLevel(CMario& mario){
-	if( abs(this->y - mario.getY()) > 22){ //indicates fire is on level lower than mario and not climbing a ladder
+	//if( abs(this->y - mario.getY()) > 22){ //indicates fire is on level lower than mario and not climbing a ladder
+	if( this->y - mario.getY() > 22) {	//indicates fire is on level lower than mario and not climbing a ladder
 		return 1;
 	} else{
 		return 0;

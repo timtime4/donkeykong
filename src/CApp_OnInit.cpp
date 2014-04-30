@@ -26,7 +26,9 @@ int CApp::OnInit() {
 	jumps = Mix_LoadWAV( "../wavFiles/jump.wav" );
 	burns = Mix_LoadWAV( "../wavFiles/burn.wav" );
 	hurts = Mix_LoadWAV( "../wavFiles/hurt.wav" );
-	if ( (jumps == NULL) || (burns == NULL) || (hurts == NULL) ){
+	gameover = Mix_LoadWAV( "../wavFiles/game_over.wav" );
+	levelclear = Mix_LoadWAV( "../wavFiles/stage_clear.wav" ) ;
+	if ( (jumps == NULL) || (burns == NULL) || (hurts == NULL) || (gameover == NULL) || (levelclear == NULL) ){
 		printf("Error: Sound Clip Load Error.");
 	}
 

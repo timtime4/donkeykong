@@ -18,6 +18,8 @@ CApp::CApp() {		//initialize private data members
 	jumps = NULL ;
 	burns = NULL ;
 	hurts = NULL ;
+	gameover = NULL ;
+	levelclear = NULL ;
 
 	Surf_Menu = NULL ;
 	Surf_Controls = NULL ;
@@ -142,7 +144,12 @@ int CApp::OnExecute() {
 			if(game == 0) break ;
 		}
 
+		if(mario.getLives() == 0) Mix_PlayChannel(-1, gameover, 0) ;	// Play gameover sound
 		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
+		if(wonLevel2) {
+			Surf_LevelText = TTF_RenderText_Solid(largeFont, "YOU WIN!", {255, 0, 125}) ;
+			CSurface::OnDraw(Surf_Display, Surf_LevelText, 175, 60) ; 
+		}
 		SDL_Flip(Surf_Display) ;
 		while ( OnGameover(&Event) ){
 		}

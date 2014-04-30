@@ -30,6 +30,8 @@ void CApp::OnCleanup() {
 	Mix_FreeChunk ( burns );		// Free the sound effects
 	Mix_FreeChunk ( hurts );
 	Mix_FreeChunk ( jumps );
+	Mix_FreeChunk ( gameover );
+	Mix_FreeChunk ( levelclear );
 	Mix_FreeMusic ( theme );		// Free the music
 	Mix_CloseAudio();			// Quit SDL_mixer
 	

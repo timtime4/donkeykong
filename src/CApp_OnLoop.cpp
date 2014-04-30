@@ -127,8 +127,7 @@ void CApp::OnLoop() {
 		} else if (!wonLevel2) {
 			wonLevel2 = 1 ;
 		}
-		//celebration music?
-		//YOU WIN!!! screen
+		Mix_PlayChannel(-1, levelclear, 0) ;	// Play celebration sound effect
 	}
 
 	//update score, highscore, and their displays
@@ -169,6 +168,7 @@ void CApp::OnLoop() {
 				running = 0 ;
 				wonLevel1 = 0 ;
 				wonLevel2 = 0 ;
+				//Mix_PlayChannel(-1, gameover, 0) ;	// Play gameover sound
 			} else {
 				mario.reset() ;
 			}

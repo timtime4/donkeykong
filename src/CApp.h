@@ -100,6 +100,8 @@ class CApp {
 		Mix_Chunk *jumps ;
 		Mix_Chunk *burns ;
 		Mix_Chunk *hurts ;
+		Mix_Chunk *gameover ;
+		Mix_Chunk *levelclear ;
 
 		int dyingCount ;
 

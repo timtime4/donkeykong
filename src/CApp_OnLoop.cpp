@@ -127,7 +127,9 @@ void CApp::OnLoop() {
 		} else if (!wonLevel2) {
 			wonLevel2 = 1 ;
 		}
+		Mix_PauseMusic() ;
 		Mix_PlayChannel(-1, levelclear, 0) ;	// Play celebration sound effect
+		Mix_PlayMusic(theme, -1) ;
 	}
 
 	//update score, highscore, and their displays

@@ -114,8 +114,6 @@ class CApp {
 
 		int levelCounter ;
 		int constantEntitiesCount ;	//keeps track of number of entities that will always be part of the game (ie. all entities except additional barrels)
-
-
 } ;
 
 #endif

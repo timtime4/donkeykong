@@ -46,11 +46,7 @@ int CApp::OnInit() {
 	if(SDL_EnableKeyRepeat(50, 50)) return 0 ;
 
 	//////////MARIO INITIALIZATION//////////
-<<<<<<< HEAD
-	if(mario.OnLoad("imgFiles/mar.bmp") == 0) {
-=======
 	if(mario.OnLoad("../imgFiles/mar2.bmp") == 0) {
->>>>>>> e41ed1319e25e149b9ed798fe040867398a74ea1
 		cout << "mario didn't load" << endl ;
 		return 0 ;
 	}
@@ -78,19 +74,19 @@ int CApp::OnInit() {
 
 	/////////FIRE INITIALIZATION////////////
 
-	if(fire.OnLoad("../imgFiles/fire.bmp") == 0){
+	if(fire.OnLoad("../imgFiles/fire1.bmp") == 0){
 		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl;
 		return 0;
 	}
 	entityList.push_back(&fire);
-	if(fire2.OnLoad("../imgFiles/fire.bmp") == 0) {
+	if(fire2.OnLoad("../imgFiles/fire1.bmp") == 0) {
 		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl; 
 		return 0 ;
 	}
 	fire2.setXinit(10) ;
 	fire2.setYinit(250) ;
 	entityList.push_back(&fire2) ;
-	if(fire3.OnLoad("../imgFiles/fire.bmp") == 0) {
+	if(fire3.OnLoad("../imgFiles/fire1.bmp") == 0) {
 		cout << "CApp_OnInit.cpp: Error - fire.bmp did not load" << endl; 
 		return 0 ;
 	}

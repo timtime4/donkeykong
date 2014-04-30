@@ -1,6 +1,8 @@
 /*
  * DonkeyKong
  * CApp_OnEvent.cpp
+ * This file contains the implementation of the CApp class member function OnEvent().  This function is part of the game loop, and 
+ * it handles all user keyboard events during the game, limiting the effect based on Mario's state. 
 */
 
 #include "CApp.h"

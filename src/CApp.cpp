@@ -1,7 +1,8 @@
 /*
  * DonkeyKong
- ** CApp.cpp
- * This file contains implementation of OnExecute() function of CApp class, as well as the main function for the project.
+ * CApp.cpp
+ * This file contains implementation of OnExecute() function of CApp class, as well as the main function for the 
+ * application.  OnExecute() contains the implementation of the game loop.
 */
 
 #include "CApp.h"
@@ -51,7 +52,7 @@ CApp::CApp() {		//initialize private data members
 	constantEntitiesCount = 0 ;
 }
 
-void CApp::resetLevel() {
+void CApp::resetLevel() {	//called whenever a level is started or after mario loses a life in a level
 	running = 1 ;
 	mario.reset() ;
 	barrel.reset() ;
@@ -59,7 +60,7 @@ void CApp::resetLevel() {
 	barrel3.reset() ;
 	levelCounter = 0 ;
 	while(entityList.size() > constantEntitiesCount) {
-		entityList.pop_back() ;	//removes additional barrels from entityList
+		entityList.pop_back() ;	//removes additional barrels from entityList to be readded during the level play
 	}
 	fire.reset() ;
 	fire2.reset() ;
@@ -100,7 +101,7 @@ int CApp::OnExecute() {
 		SDL_Delay(1500) ;		
 		//////play LEVEL 1//////
 		while(running) {
-			fps.start() ;
+			fps.start() ;	//start timer
 			while(SDL_PollEvent(&Event)) {	//use while to go through any events on a queue one at a time, SDL_PollEvent returns 0 when no events on queue
 				if(!OnEvent(&Event)) {
 					OnCleanup() ;
@@ -148,8 +149,10 @@ int CApp::OnExecute() {
 		CSurface::OnDraw(Surf_Display, Surf_Gameover, 0, 0) ;
 		if(wonLevel2) {
 			Surf_LevelText = TTF_RenderText_Solid(largeFont, "YOU WIN!", {255, 0, 125}) ;
-			CSurface::OnDraw(Surf_Display, Surf_LevelText, 175, 60) ; 
+		} else {
+			Surf_LevelText = TTF_RenderText_Solid(largeFont, "YOU LOSE.", {255, 0, 0}) ;
 		}
+		CSurface::OnDraw(Surf_Display, Surf_LevelText, 175, 60) ; 
 		SDL_Flip(Surf_Display) ;
 		while ( OnGameover(&Event) ){
 		}

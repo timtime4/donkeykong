@@ -1,6 +1,7 @@
 /*
  * DonkeyKong
  * CApp.h
+ * Interface for CApp class, which contains all elements required by the game.  CApp is a class used to run the application.
 */
 #ifndef CAPP_H
 #define CAPP_H

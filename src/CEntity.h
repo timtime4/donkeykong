@@ -1,7 +1,10 @@
 /*
  * DonkeyKong
  * CEntity.h
- * This file contains the interface for the CEntity class.  For this project, an Entity is any nonstatic object that can interact with mario.  Inheriting classes include CFire, CBarrel, CPeach, and CDonkeyKong.  Because entities will interact with mario, CMario had to be defined as a separate class, not inheriting from CEntity, to avoid circular dependencies.
+ * This file contains the interface for the CEntity class.  For this project, an Entity is any nonstatic object 
+ * that can interact with mario.  Inheriting classes include CFire, CBarrel, CPeach, and CDonkeyKong.  Because 
+ * entities will interact with mario, CMario had to be defined as a separate class, not inheriting from CEntity, 
+ * to avoid circular dependencies.
 */
 
 #ifndef CENTITY_H

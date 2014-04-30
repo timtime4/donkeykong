@@ -1,7 +1,9 @@
 /*
  * DonkeyKong
  * CSurface.h
- * This file is the interface for the CSurface class.  Objects of this class are not instantiated, but the functions are used to load files and render surfaces to the screen.  The member functions are declared static so they can be used without instantiating the objects.
+ * This file is the interface for the CSurface class.  Objects of this class are not instantiated, but the functions
+ * are used to load files and render surfaces to the screen.  The member functions are declared static so they can be 
+ * used without instantiating the objects.  Acts as a wrapper for SDL rendering functions.
 */
 
 #ifndef CSURFACE_H

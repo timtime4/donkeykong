@@ -1,6 +1,6 @@
 /*	DonkeyKong
  *	CApp_OnInit_StaticL2.cpp
- *	This file sets up ladder and platform objects for an alternate level.
+ *	This file sets up ladder and platform objects for a second level, implemented in a similar way as OnInit_Static() for the first level.
  */
 
 #include "CApp.h"

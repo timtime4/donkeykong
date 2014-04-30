@@ -7,7 +7,7 @@
 #include "CSurface.h"
 
 CSurface::CSurface() {
-	//empty constructor
+	//empty constructor, objects never instantiated
 }
 
 SDL_Surface* CSurface::OnLoad(std::string file) {

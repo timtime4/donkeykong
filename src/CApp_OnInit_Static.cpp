@@ -1,8 +1,13 @@
 /*
  * DonkeyKong
  * CApp_OnInt_Static.cpp
- *  This file contains OnInit_Static() private helper function of CApp class.  This function is called in OnInit() of the CApp class, and initializes all Platform and Ladder objects (the static members of the game).  Mario will interact with both of these objects, and these collisions will be handled using polymorphism.  Therefore, each Platform and Ladder added to the platforms and ladders vectors are also tracked in the bgObjs vector.  This is a vector of StaticObj pointers, which will be iterated through to invoke polymorphic behavior with collisions.
- * The coordinates passed as arguments for placing the Platform and Ladder objects were determined through developing a desired image of the static objects together on the screen, and then determining the pixels where these objects would be placed.
+ *  This file contains OnInit_Static() private helper function of CApp class.  This function is called in OnInit() of the CApp 
+ * class, and initializes all Platform and Ladder objects (the static members of the game).  Mario will interact with both of
+ * these objects, and these collisions will be handled using polymorphism.  Therefore, each Platform and Ladder added to the platforms 
+ * and ladders vectors are also tracked in the bgObjs vector.  This is a vector of StaticObj pointers, which will be iterated through 
+ * to invoke polymorphic behavior with collisions.
+ * The coordinates passed as arguments for placing the Platform and Ladder objects were determined through developing a desired image 
+ * of the static objects together on the screen, and then determining the pixels where these objects would be placed.
 */
 
 #include "CApp.h"

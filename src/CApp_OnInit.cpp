@@ -1,6 +1,8 @@
 /*
  * DonkeyKong
  * CApp_OnInit.cpp
+ * This file contains the OnInit() member function of the CApp class.  This function executes before the main game loop is entered, 
+ * setting up SDL and initializing all of the data members, SDL surfaces, music files, and other necessary loaded items.
 */
 
 #include "CApp.h"
@@ -101,9 +103,9 @@ int CApp::OnInit() {
                 return 0;
         }
         entityList.push_back(&barrel);
-	constantEntitiesCount = entityList.size() ;
+	constantEntitiesCount = entityList.size() ;	//keep this value for popping extra barrels off back of entityList at the reset of each level
 
-	//don't push_back barrel2 or barrel3 until reached a certain levelCounter value (in CApp_OnLoop.cpp)
+	//don't push_back barrel2, barrel3, or barrel4 until reached a certain levelCounter value (pushed back in CApp_OnLoop.cpp)
 	if(barrel2.OnLoad("../imgFiles/barrel.bmp") == 0){
 		cout << "Barrel didn't load" << endl ;
 		return 0 ;
@@ -131,9 +133,9 @@ int CApp::OnInit() {
 		 cout << "TTF_Init() fail" << endl ; 
 		return 0 ;
 	}
-	scoreFont = TTF_OpenFont("../bauhs93.ttf", 18) ;
+	scoreFont = TTF_OpenFont("../bauhs93.ttf", 18) ;	//medium font to display score and highscore at top of screen 
 	pointsFont = TTF_OpenFont("../bauhs93.ttf", 10) ;	//smaller font for display when points are added to score
-	largeFont = TTF_OpenFont("../bauhs93.ttf", 30) ;
+	largeFont = TTF_OpenFont("../bauhs93.ttf", 30) ;	//large font for bigger displays (ie. YOU WIN!)
 	if(scoreFont == NULL || pointsFont == NULL || largeFont == NULL) {
 		cout << "Font did not open" << endl ; 
 		return 0 ;

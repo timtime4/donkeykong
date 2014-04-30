@@ -1,7 +1,8 @@
 /*
  * DonkeyKong
  * CDonkeyKong.h
- * This file contains the interface of CDonkeyKong class.  DK follows well-defined behavior and does not deviate from the top platform.  One CDonkeyKong object will be instantiated in the CApp class.
+ * This file contains the interface of CDonkeyKong class.  DK follows well-defined behavior and does not 
+ * deviate from the top platform.  One CDonkeyKong object will be instantiated in the CApp class.
 */
 
 #ifndef CDONKEYKONG_H

@@ -1,5 +1,6 @@
 /*
-	CTimer.h
+ * DonkeyKong
+ * CTimer.h
 */
 #ifndef CTIMER_H
 #define CTIMER_H

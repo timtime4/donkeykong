@@ -1,3 +1,10 @@
+/*  
+ * DonkeyKong
+ * Define.h
+ * This file contains definitions of values that were constant throughout the program, defined by image files or 
+ * by determined properties of the game.
+*/
+
 #ifndef DEFINE_H
 #define DEFINE_H
 
@@ -75,7 +82,7 @@
 
 
 #define DK_WIDTH 62
-#define DK_HEIGHT 80 //120
+#define DK_HEIGHT 80
 
 #define DK_START_X 30
 #define DK_START_Y 108

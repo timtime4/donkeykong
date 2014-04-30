@@ -1,3 +1,10 @@
+/*
+ * DonkeyKong
+ * Ladder.cpp
+ * This file contains the implementation of the Ladder class, inheriting from StaticObj.  This class is used 
+ * to instantiate Ladder objects, which can collide with mario or an entity.
+ */
+
 #include "Ladder.h"
 
 Ladder::Ladder(int _x, int _y, int _w, int _h) {

@@ -1,3 +1,11 @@
+/*
+ * DonkeyKong
+ * Platform.cpp
+ * This file contains the implemenation of the Platform class.  Platform objects check collision with mario
+ * and all other entities each time through the OnLoop function to ensure that mario and entities do not fall
+ * through the ground.
+*/
+
 #include "Platform.h"
 
 Platform::Platform(int _x, int _y) {

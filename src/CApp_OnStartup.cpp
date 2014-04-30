@@ -1,7 +1,9 @@
 /*
  * DonkeyKong
  * CApp_OnStartup.cpp
- * Implementation of start up menu for game.  This function is executed until the user clicks the START option.  While in the start up menu, the user also has the option to move the mouse over the CONTROLS option, which displays the controls used in the game.
+ * Implementation of start up menu for game.  This function is executed until the user clicks the START option.  
+ * While in the start up menu, the user also has the option to move the mouse over the CONTROLS option, which displays 
+ * the controls used in the game.
 */
 
 #include "CApp.h"

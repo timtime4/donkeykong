@@ -5,7 +5,7 @@
 */
 
 #include "CPeach.h"
-#define SLOWED 1	//set to 1 if want to slow peach by half
+#define SLOWED 1	//set to 1 if want to slow peach by half, otherwise peach moves too quickly 
 
 CPeach::CPeach() {
 	x = PEACH_START_X ;

@@ -1,4 +1,6 @@
-/* CTimer.cpp
+/*
+ * DonkeyKong
+ * CTimer.cpp
 */
 
 #include "CTimer.h"

@@ -1,6 +1,7 @@
 /*
  * DonkeyKong
  * Ladder.h
+ * This file contains the interface for the Ladder class, inheriting from StaticObj.
 */
 
 #ifndef LADDER_H

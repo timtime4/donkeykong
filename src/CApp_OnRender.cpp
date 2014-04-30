@@ -1,7 +1,8 @@
 /*
  * DonkeyKong
  * CApp_OnRender.cpp
- * This file contains the implementation of the OnRender() function of class CApp.  This function renders all Surfaces to Surf_Display)
+ * This file contains the implementation of the OnRender() function of class CApp.
+ * This function renders all Surfaces to Surf_Display)
 */
 
 #include "CApp.h"
@@ -31,7 +32,7 @@ void CApp::OnRender() {
 	//score information
 	CSurface::OnDraw(Surf_Display, Surf_Highscore, 180, 0) ;
 	CSurface::OnDraw(Surf_Display, Surf_Score, 0, 0) ;
-	if(displayPoints > 0) {		//true when mario has just earned points
+	if(displayPoints > 0) {		//true when mario has just earned points, display the +200/+1500 when gain points
 		CSurface::OnDraw(Surf_Display, Surf_Points, pointsX, pointsY) ;
 		displayPoints++ ;
 		if(displayPoints > 5) displayPoints = 0 ;

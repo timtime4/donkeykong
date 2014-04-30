@@ -1,7 +1,9 @@
 /*
  * DonkeyKong
  * CApp_OnLoop.cpp
- * This file contains the implemenation of OnLoop() function of CApp class.  This function performs all necessary updates each time through the OnExecute() loop.
+ * This file contains the implemenation of OnLoop() function of CApp class.  This function performs all necessary
+ * updates each time through the OnExecute() loop.  These updates include motion of entities and mario, collision
+ * detection, fire AI update, and keeping the score.
 */
 
 #include "CApp.h"
@@ -22,7 +24,7 @@ void CApp::OnLoop() {
 	levelCounter++ ;
 
 	//check for collisions with static objects
-	mario.setLadderCollide(0) ;		//reset to false each time through, will both be checked and set in IsCollision functions if there is a collision
+	mario.setLadderCollide(0) ;		//reset to false each time through, will both be checked and set in collision functions if there is a collision
 	mario.setPlatformCollide(0) ;	
 	fire.setLadderCollide(0);
 	fire.setPlatformCollide(0) ;
@@ -58,12 +60,12 @@ void CApp::OnLoop() {
 	
 	//AI for fire
 	if(fire.IsDiffLevel(mario) && !fire.getLadderCollide()){
-		fire.setState(FIRE_SEARCHING);
+		fire.setState(FIRE_SEARCHING);	//fire is searching for a latter by randomly moving left and right
 	} else if(fire.IsDiffLevel(mario) && fire.getLadderCollide()){
 		fire.setState(FIRE_CLIMBING);
 	} else if(!fire.IsDiffLevel(mario)){
-		fire.setState(FIRE_WALKING);
-		fire.wheresMarioX(mario);
+		fire.setState(FIRE_WALKING);	//fire and mario are on the same level, fire will follow mario's velocity and position
+		fire.wheresMarioX(mario);	//wheresMarioX sends Mario's X position to the fire in order to make decision 
 	}
 	if(fire2.IsDiffLevel(mario) && !fire2.getLadderCollide()){
 		fire2.setState(FIRE_SEARCHING);
@@ -106,7 +108,7 @@ void CApp::OnLoop() {
 		score+=1500 ;	
 		displayPoints = 1 ;
 		pointsX = mario.getX() ;
-		pointsY = mario.getY() - 10 ;
+		pointsY = mario.getY() - 15 ;
 		Surf_Points = TTF_RenderText_Solid(pointsFont, "+1500", {255, 105, 180}) ;	//pink for peach
 
 		ostringstream scoreStream ;	//string stream for displaying score
@@ -139,7 +141,7 @@ void CApp::OnLoop() {
 			gotPoints = 0 ;
 			score+=200 ;
 
-			displayPoints = 1 ;
+			displayPoints = 1 ;		//used as condition in OnRender() to render +200/+1500 when gain points
 			pointsX = mario.getX() ;
 			pointsY = mario.getY() - 10 ;
 			Surf_Points = TTF_RenderText_Solid(pointsFont, "+200", {255, 100, 70}) ;	//orange for scoring over barrels and fire
@@ -149,7 +151,7 @@ void CApp::OnLoop() {
 			scoreString = scoreStream.str() ;
 			Surf_Score = TTF_RenderText_Solid(scoreFont, scoreString.c_str(), {0, 165, 230}) ;
 
-			if(score > hs) {
+			if(score > hs) {		//update highscore if score excedes the highscore
 				hs = score ;
 				ostringstream hsStream ;
 				hsStream << "Highscore: " << hs ;
@@ -166,11 +168,10 @@ void CApp::OnLoop() {
 		if(dyingCount > 50) {
 			dyingCount = 0 ;
 	                --mario ;	//decrement lives after blinking finished
-			if(mario.getLives() == 0) {
+			if(mario.getLives() == 0) {	//game is over when mario has no remaining lives
 				running = 0 ;
 				wonLevel1 = 0 ;
 				wonLevel2 = 0 ;
-				//Mix_PlayChannel(-1, gameover, 0) ;	// Play gameover sound
 			} else {
 				mario.reset() ;
 			}

@@ -1,6 +1,7 @@
 /*
  * DonkeyKong
  * Platform.h
+ * This file contains the interface for the Platform class.
 */
 
 #ifndef PLATFORM_H

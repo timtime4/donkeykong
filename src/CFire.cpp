@@ -41,7 +41,7 @@ void CFire::OnLoop() {
 			y += yGravityVel;
 		}
 	} 
-    if(state == FIRE_CLIMBING){
+    	if(state == FIRE_CLIMBING){
 		y -= yVel;
 	}
 	
@@ -79,8 +79,8 @@ void CFire::set_clips(){		// Clip the fire sprites
 
 
 int CFire::IsDiffLevel(CMario& mario){
-	//if( abs(this->y - mario.getY()) > 22){ //indicates fire is on level lower than mario and not climbing a ladder
-	if( this->y - mario.getY() > 22) {	//indicates fire is on level lower than mario and not climbing a ladder
+	//indicates fire is on level lower than mario and not climbing a ladder
+	if( this->y - mario.getY() > 22) {	// 22 was found to be the best distance to determine if fire & mario are on diff levels 
 		return 1;
 	} else{
 		return 0;
@@ -89,7 +89,7 @@ int CFire::IsDiffLevel(CMario& mario){
 
 //This function will change the direction of the fire if it makes sense in respect to Mario
 int CFire::wheresMarioX(CMario& mario){
-	if( (mario.getX() - 15 > this->x) && (this->xVel < 0) ){
+	if( (mario.getX() - 15 > this->x) && (this->xVel < 0) ){     // 15 is used as buffer to make the AI more forgiving
 		this->xVel *= -1;
 	}
 	else if( (mario.getX() + 15 < this->x) && (this->xVel > 0) ) this->xVel *= -1;

@@ -1,7 +1,8 @@
 /*
  * DonkeyKong
  * CApp_OnCleanup.cpp
- * This file contains the member function OnCleanup() for the class CApp.
+ * This file contains the member function OnCleanup() for the class CApp.  OnCleanup() takes care of freeing all SDL surfaces 
+ * and sound chunks from memory.
 */
 
 #include "CApp.h"

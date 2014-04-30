@@ -52,7 +52,7 @@ void CBarrel::OnRender(SDL_Surface* Surf_Display) {
 
 	CSurface::OnDraw(Surf_Display, Surf_Entity, x, y, clips[frame].x, clips[frame].y, BARREL_WIDTH, BARREL_HEIGHT);
 
-}  //end OnRender
+}
 
 int CBarrel::identifyType() {
 	return 2 ;

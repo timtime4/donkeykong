@@ -1,7 +1,10 @@
 /*
  * DonkeyKong
  * CPeach.h
- * This file contains the interface of CPeach class.  Peach follows well-defined behavior and does not deviate from her pacing on the top platform.  One CPeach object will be instantiated in the CApp class.  When (if) there is a collision of this CPeach object with the CMario object instantiated in CApp, the user wins the level.
+ * This file contains the interface of CPeach class.  Peach follows well-defined behavior and does 
+ * not deviate from her pacing on the top platform.  One CPeach object will be instantiated in the 
+ * CApp class.  When (if) there is a collision of this CPeach object with the CMario object instantiated 
+ * in CApp, the user wins the level.
 */
 
 #ifndef CPEACH_H

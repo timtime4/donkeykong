@@ -13,6 +13,7 @@ int CApp::OnStartup(SDL_Event* Event) {
 	while(SDL_PollEvent(Event)) {	
 		if(Event->type == SDL_QUIT) {
 			running = 0 ; //finishes game
+			game = 0 ;	//won't ask if want to play new game
 			return 0 ;
 		}
 		if(Event->type == SDL_MOUSEBUTTONDOWN) {

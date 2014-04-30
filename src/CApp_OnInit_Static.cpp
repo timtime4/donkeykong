@@ -10,13 +10,15 @@
 
 int CApp::OnInit_Static() {
 
-	Surf_bgObjs = CSurface::OnLoad("imgFiles/bgFiles/staticObjects.png") ;	//load file containing static objects image sprites
+	platforms.clear() ;
+	ladders.clear() ;
+	bgObjs.clear() ;
+
+	Surf_bgObjs = CSurface::OnLoad("../imgFiles/bgFiles/staticObjects.png") ;	//load file containing static objects image sprites
 	if(Surf_bgObjs == NULL) {
 		cout << "BgObjs image fail" << endl ; 
 		return 0 ;
 	}
-
-	CSurface::Transparent(Surf_bgObjs, 0, 0, 0) ;	//does not work
 
 	int i ;
 
@@ -28,7 +30,7 @@ int CApp::OnInit_Static() {
 
 	//begin 0th level, L to R
 	for (i = 0 ; i < 4 ; i++) {	//flat platforms at bottom of screen
-		temp.OnInit(xIncrement*i, 580, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
+		temp.OnInit(xIncrement*i, LEVEL_0_MIN, PLATFORM_WIDTH, PLATFORM_HEIGHT) ;
 		platforms.push_back(temp) ;
 	}
 	int baseYL0 = 577 ;	//for platforms that begin to slant at level 0
@@ -40,9 +42,9 @@ int CApp::OnInit_Static() {
 
 	int baseXLOdd = 360 ;	//odd level starting platform x position, R to L
 	int baseXLEven = 60 ;	//event level starting platform x position, L to R
-	int baseYL1 = 506 ;	//y starting position 1st level, R to L
-	int baseYL2 = 426 ;
-	int baseYL3 = 346 ;
+	int baseYL1 = LEVEL_1_MIN ;	//y starting position 1st level, R to L
+	int baseYL2 = LEVEL_2_MIN ;
+	int baseYL3 = LEVEL_3_MIN ;
 	int baseYL4 = 266 ;
 
 	for (i = 0 ; i < 7 ; i++) {	//initializes the 7 platforms on each level (1-4)
@@ -107,8 +109,8 @@ int CApp::OnInit_Static() {
 
 	tempL.OnInit(365, 366, LADDER_WIDTH, 45) ;	//begin level 2 ladders
 	ladders.push_back(tempL) ;
-	tempL.OnInit(220, 357, LADDER_WIDTH, 63) ;
-	ladders.push_back(tempL) ;
+	/*tempL.OnInit(220, 357, LADDER_WIDTH, 63) ;
+	ladders.push_back(tempL) ;*/
 	tempL.OnInit(120, 354, LADDER_WIDTH, 24) ;
 	ladders.push_back(tempL) ;
 	tempL.OnInit(120, 405, LADDER_WIDTH, 18) ;
@@ -116,8 +118,8 @@ int CApp::OnInit_Static() {
 
 	tempL.OnInit(75, 446, LADDER_WIDTH, 45) ;	//begin level 1 ladders
 	ladders.push_back(tempL) ;
-	tempL.OnInit(185, 440, LADDER_WIDTH, 57) ;
-	ladders.push_back(tempL) ;
+	/*tempL.OnInit(185, 440, LADDER_WIDTH, 57) ;
+	ladders.push_back(tempL) ;*/
 	tempL.OnInit(310, 434, LADDER_WIDTH, 24) ;
 	ladders.push_back(tempL) ;
 

@@ -1,12 +1,11 @@
 /*
  * DonkeyKong
  * CEntity.cpp
- * This file contains the implementation of CEntity class.
+ * This file contains the implementation of CEntity class. 
 */
 
 #include "CEntity.h"
 
-//std::vector<CEntity*> CEntity::entityList ;	
 
 CEntity::CEntity() {
 	Surf_Entity = NULL ;
@@ -20,18 +19,14 @@ CEntity::CEntity() {
 	frame = 0 ;
 	maxFrames = 0 ;
 	status = 0 ;
+	platformCollide = 0 ;
+	ladderCollide = 0 ;
 }
 
-CEntity::~CEntity() {
-	//empty deconstructor definition
-}
 
 int CEntity::OnLoad(string file) {
 	Surf_Entity = CSurface::OnLoad(file.c_str()) ;
 	if(Surf_Entity == NULL) return 0 ;
-
-	CSurface::Transparent(Surf_Entity, 255, 255, 255) ;	//not working - because of color or function?
-
 	return 1 ;
 }
 
@@ -40,6 +35,22 @@ void CEntity::OnCleanup() {
 	if(Surf_Entity) SDL_FreeSurface(Surf_Entity) ;
 	Surf_Entity = NULL ;
 }
+
+int CEntity::IsCollision(CMario& mario) {	//used for CFire, CBarrel, and CDonkeyKong classes
+	//returns 1 if collides with CMario object, returns 2 if mario jumps over within a y threshold
+	if( (mario.getX() < this->x + this->width) && (mario.getX() + mario.getWidth() > this->x) ) {	//in correct x range
+		if( (mario.getY() < this->y + this->height) && (mario.getY() + mario.getHeight() > this->y) ) {
+			return 1 ;	//indicates collision with entity and death of mario
+		} else if ( (mario.getY()+mario.getHeight() < this->y) && (mario.getY()+mario.getHeight() > this->y - 25) ) {
+			return 2 ;	//indicates mario jumping over entity
+		}
+	} 
+	return 0 ;
+}
+
+/*void CEntity::playSoundEffect(Mix_Chunk *effect) {
+
+}*/
 
 
 //get and set functions for protected data members needed outside of CEntity and classes inheriting from CEntity
@@ -85,4 +96,20 @@ void CEntity::setYVel(int _yVel) {
 
 void CEntity::setStatus(int _status) {
 	status = _status ;
+}
+
+int CEntity::getLadderCollide() {
+	return ladderCollide ;
+}
+
+void CEntity::setLadderCollide(int collide) {
+	ladderCollide = collide ;
+}
+
+int CEntity::getPlatformCollide() {
+	return platformCollide ;
+}
+
+void CEntity::setPlatformCollide(int collide) {
+	platformCollide = collide ;
 }
